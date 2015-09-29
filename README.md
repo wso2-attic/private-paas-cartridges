@@ -6,5 +6,9 @@ or a Virtual Machine (VM) image created using following:
    - Cartridge Agent
    - Cartridge Agent Plugins
    - Configurator Template Module 
-   - Puppet Module
+   - Runtime/Middleware/Service Distribution
+   - Initialization Script
 
+## Compatibility
+
+Cartridges found in this repository can only be used with WSO2 Private PaaS 4.1.0 or later versions. The comaptible Private PaaS version is mentioned in each cartridge.
