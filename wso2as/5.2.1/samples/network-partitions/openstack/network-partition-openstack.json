@@ -1,0 +1,42 @@
+{
+    "id": "network-partition-openstack",
+    "provider": "openstack",
+    "partitions": [
+        {
+            "id": "partition-1",
+            "property": [
+                {
+                    "name": "region",
+                    "value": "RegionOne"
+                }
+            ]
+        },
+        {
+            "id": "partition-2",
+            "property": [
+                {
+                    "name": "region",
+                    "value": "RegionOne"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "payload_parameter.PUPPET_IP",
+            "value": "192.168.30.7"
+        },
+        {
+            "name": "payload_parameter.MB_IP",
+            "value": "192.168.30.78"
+        },
+        {
+            "name": "payload_parameter.MB_PORT",
+            "value": "1883"
+        },
+        {
+            "name": "payload_parameter.PUPPET_HOSTNAME",
+            "value": "puppet.ppaas.org"
+        }
+    ]
+}
