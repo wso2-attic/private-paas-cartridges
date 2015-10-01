@@ -24,8 +24,9 @@ script_path=`cd "$prgdir"; pwd`
 wso2_ppaas_version="4.1.0-SNAPSHOT"
 wso2_product_type="as"
 wso2_product_version="5.2.1"
-wso2_product_template_module_path=`cd ${script_path}/../../templates-modules/wso2${wso2_product_type}-${wso2_product_version}/; pwd`
-wso2_product_plugin_path=`cd ${script_path}/../../plugins/wso2${wso2_product_type}-${wso2_product_version}/; pwd`
+wso2_product_template_module_path=`cd ${script_path}/../templates-modules/; pwd`
+wso2_product_plugin_path=`cd ${script_path}/../plugins/; pwd`
+common_plugin_path=`cd ${script_path}/../../../common/common-plugins/; pwd`
 clean=false
 
 if [ "$1" = "clean" ]; then
@@ -46,6 +47,13 @@ if ${clean} ; then
    echo "----------------------------------"
    rm -f ${script_path}/plugins/*
    pushd ${wso2_product_plugin_path}
+   cp * ${script_path}/plugins
+   popd
+
+   echo "----------------------------------"
+   echo "Copying" ${wso2_product_type} - ${wso2_product_version} "common plugins"
+   echo "----------------------------------"
+   pushd ${common_plugin_path}
    cp * ${script_path}/plugins
    popd
 fi
