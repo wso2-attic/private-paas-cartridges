@@ -39,11 +39,11 @@
     <inceptionYear>2012</inceptionYear>
 
     <modules>
-	    <module>common</module>
-        <module>wso2am-1.9.0</module>
-        <module>wso2as-5.2.1</module>
-        <module>wso2esb-4.8.1</module>
-        <module>wso2is-5.0.0</module>
+        <module>common</module>
+        <module>wso2am</module>
+        <module>wso2as</module>
+        <module>wso2esb</module>
+        <module>wso2is</module>
     </modules>
 
     <profiles>
@@ -326,14 +326,82 @@
         </profile>
     </profiles>
 
+
+    <repositories>
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://repository.apache.org/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2-nexus</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2.releases</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
     <pluginRepositories>
         <pluginRepository>
-            <id>wso2-maven2-repository-1</id>
-            <url>http://dist.wso2.org/maven2</url>
+            <id>wso2.releases</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
         </pluginRepository>
         <pluginRepository>
-            <id>wso2-maven2-repository-2</id>
-            <url>http://dist.wso2.org/snapshots/maven2</url>
+            <id>wso2.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>wso2-nexus</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
         </pluginRepository>
     </pluginRepositories>
 
@@ -447,8 +515,7 @@
     <properties>
         <!-- Carbon related versions -->
         <wso2carbon.version>4.2.0</wso2carbon.version>
-        <carbon.platform.package.import.version.range>[4.2.0, 5.0.0)
-        </carbon.platform.package.import.version.range>
+        <carbon.platform.package.import.version.range>[4.2.0, 5.0.0)</carbon.platform.package.import.version.range>
         <carbon.platform.package.export.version>4.2.0</carbon.platform.package.export.version>
         <axis2.osgi.version>1.6.1.wso2v10</axis2.osgi.version>
         <stratos.version>4.1.0</stratos.version>
