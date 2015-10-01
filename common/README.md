@@ -1,2 +1,2 @@
-# WSO2 Private PaaS Cartridges common stuff
+# WSO2 Private PaaS Cartridges Common Stuff
 
