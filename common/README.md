@@ -4,7 +4,7 @@ Common stuff related to the cartridges will be placed here
 
 ### Following are the common stuff for all the cartridges
 
-(1) base-image
-(2) configurator
-(3) puppet scripts
+(1) base-image <br />
+(2) configurator <br />
+(3) puppet scripts  <br />
 (4) init-scripts
