@@ -43,7 +43,7 @@
 
         <!-- Apply Kernel Patches-->
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0001</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0001</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <includes>
@@ -51,7 +51,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0002</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0002</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <includes>
@@ -59,7 +59,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0003</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0003</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <includes>
@@ -67,7 +67,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0004</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0004</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <excludes>
@@ -78,7 +78,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0005</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0005</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <includes>
@@ -86,7 +86,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0006</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0006</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <includes>
@@ -94,7 +94,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0007</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0007</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <excludes>
@@ -105,7 +105,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0008</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0008</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <includes>
@@ -113,7 +113,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0009</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0009</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <excludes>
@@ -124,7 +124,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0010</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0010</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <excludes>
@@ -135,7 +135,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0011</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0011</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <excludes>
@@ -146,7 +146,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0012</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0012</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
             <excludes>
@@ -159,7 +159,7 @@
 
         <!-- Additional configuration for kernel patches -->
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0001/dbscripts</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0001/dbscripts</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/dbscripts</outputDirectory>
             <includes>
                 <include>**/db2.sql</include>
@@ -167,35 +167,35 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0003/dbscripts</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0003/dbscripts</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/dbscripts</outputDirectory>
             <includes>
                 <include>**/mysql_cluster.sql</include>
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0009/bin</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0009/bin</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/bin</outputDirectory>
             <includes>
                 <include>**/org.wso2.carbon.bootstrap_4.2.0.jar</include>
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0010/lib</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0010/lib</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/lib</outputDirectory>
             <includes>
                 <include>**/org.wso2.ciphertool-1.0.0-wso2v2.jar</include>
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0012/lib</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0012/lib</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/lib</outputDirectory>
             <includes>
                 <include>**/org.wso2.carbon.server-4.2.0.jar</include>
             </includes>
         </fileSet>
         <fileSet>
-            <directory>../target/WSO2-CARBON-PATCH-4.2.0-0012/dbscripts</directory>
+            <directory>../../../target/WSO2-CARBON-PATCH-4.2.0-0012/dbscripts</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/dbscripts</outputDirectory>
             <includes>
                 <include>**/oracle_rac.sql</include>
