@@ -33,7 +33,7 @@
     <artifactId>ppaas-cartridges-wso2as-5.2.1-parent</artifactId>
 
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - AS-5.2.1 - Cartridge</name>
+    <name>WSO2 PPaaS - WSO2AS-5.2.1 - Cartridge</name>
     <url>http://wso2.com</url>
 
     <modules>
