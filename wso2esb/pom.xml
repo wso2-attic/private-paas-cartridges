@@ -30,13 +30,13 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ppaas-cartridges-wso2am-1.9.0-parent</artifactId>
+    <artifactId>ppaas-cartridges-wso2esb-parent</artifactId>
 
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - WSO2AM-1.9.0 - Cartridge</name>
+    <name>WSO2 PPaaS - WSO2ESB - Cartridge</name>
     <url>http://wso2.com</url>
 
     <modules>
-        <module>templates-modules</module>
+        <module>4.8.1</module>
     </modules>
 </project>
