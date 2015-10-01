@@ -1,0 +1,50 @@
+{
+    "id": "network-partition-ec2",
+    "provider": "ec2",
+    "partitions": [
+        {
+            "id": "partition-1",
+            "property": [
+                {
+                    "name": "region",
+                    "value": "us-west-1"
+                },
+                {
+                    "name": "zone",
+                    "value": "us-west-1a"
+                }
+            ]
+        },
+        {
+            "id": "partition-2",
+            "property": [
+                {
+                    "name": "region",
+                    "value": "us-west-1"
+                },
+                {
+                    "name": "zone",
+                    "value": "us-west-1b"
+                }
+            ]
+        }
+    ],
+    "properties": [
+        {
+            "name": "payload_parameter.PUPPET_IP",
+            "value": "192.168.30.7"
+        },
+        {
+            "name": "payload_parameter.MB_IP",
+            "value": "192.168.30.78"
+        },
+        {
+            "name": "payload_parameter.MB_PORT",
+            "value": "1883"
+        },
+        {
+            "name": "payload_parameter.PUPPET_HOSTNAME",
+            "value": "puppet.ppaas.org"
+        }
+    ]
+}

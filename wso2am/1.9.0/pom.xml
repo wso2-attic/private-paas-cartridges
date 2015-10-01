@@ -37,6 +37,6 @@
     <url>http://wso2.com</url>
 
     <modules>
-        <module>templates-modules</module>
+        <module>templates-module</module>
     </modules>
 </project>
