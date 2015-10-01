@@ -42,6 +42,7 @@ TEMPLATE_ENVIRONMENT = Environment(
     loader=FileSystemLoader(os.path.abspath(os.sep)),
     trim_blocks=False)
 
+
 def render_template(template_filename, default_context):
     """
     parse the xml file and return the content as a text
@@ -166,7 +167,7 @@ def configure():
         if dirName == ".gitkeep":
             continue
 
-        module_file_path = os.path.join(TEMPLATE_DIRECTORY, dirName,
+        module_file_path = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
                                         constants.CONFIG_FILE_NAME)
         template_dir = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
                                     constants.TEMPLATE_FOLDER_NAME)

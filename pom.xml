@@ -55,8 +55,8 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <configuration>
-                            <source>1.6</source>
-                            <target>1.6</target>
+                            <source>1.7</source>
+                            <target>1.7</target>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -131,8 +131,8 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <configuration>
-                            <source>1.6</source>
-                            <target>1.6</target>
+                            <source>1.7</source>
+                            <target>1.7</target>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -455,8 +455,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -512,7 +512,67 @@
         </pluginManagement>
     </build>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-exec</artifactId>
+                <version>${commons.exec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>org.apache.commons.logging</artifactId>
+                <version>${commons.logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlbeans</groupId>
+                <artifactId>xmlbeans-xpath</artifactId>
+                <version>${xmlbeans.xpath.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <properties>
+        <!-- ppaas distribution properties -->
+        <configurator.distribution.name>ppaas-configurator</configurator.distribution.name>
+
+        <!-- External libraries -->
+        <commons.logging.version>1.1.1</commons.logging.version>
+        <commons.io.version>2.0</commons.io.version>
+        <org.testng.version>6.1.1</org.testng.version>
+        <activemq.version>5.10.0</activemq.version>
+        <andes.client.version>0.13.wso2v8</andes.client.version>
+        <drools.wso2.version>5.0.1.wso2v1</drools.wso2.version>
+        <rampart.mar.version>1.6.1-wso2v8</rampart.mar.version>
+        <bcprov.version>132</bcprov.version>
+        <geronimo.j2ee.management_1.1.spec.version>1.0.1</geronimo.j2ee.management_1.1.spec.version>
+        <hawtbuf.version>1.9</hawtbuf.version>
+        <mqtt.client.version>0.4.0</mqtt.client.version>
+        <geronimo.jta_1.1.spec.version>1.1.1</geronimo.jta_1.1.spec.version>
+        <slf4j.version>1.7.0</slf4j.version>
+        <velocity.version>1.7</velocity.version>
+        <hazelcast.wso2.version>3.2.6.wso2v3</hazelcast.wso2.version>
+        <commons.exec.version>1.0.1</commons.exec.version>
+        <testng.version>6.1.1</testng.version>
+        <activemq.version>5.10.0</activemq.version>
+        <httpcore.version>4.3.0.wso2v1</httpcore.version>
+        <httpclient.version>4.2.5.wso2v1</httpclient.version>
+        <jacoco.agent.version>0.7.4.201502262128</jacoco.agent.version>
+        <commons.logging.version>1.0.4</commons.logging.version>
+        <xmlbeans.xpath.version>2.3.0</xmlbeans.xpath.version>
+        <testng.version>6.1.1</testng.version>
+        <mysql.connector.java.version>5.1.36</mysql.connector.java.version>
+        <commons.lang3.version>3.1</commons.lang3.version>
+
         <!-- Carbon related versions -->
         <wso2carbon.version>4.2.0</wso2carbon.version>
         <carbon.platform.package.import.version.range>[4.2.0, 5.0.0)</carbon.platform.package.import.version.range>

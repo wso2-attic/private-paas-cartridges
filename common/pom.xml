@@ -27,7 +27,8 @@
     <packaging>pom</packaging>
     <name>WSO2 PPaaS - Cartridges - Common</name>
 
-     <modules>
-	    <module>configurator</module>
-     </modules>
+    <modules>
+        <module>configurator</module>
+        <module>configurator/live-test</module>
+    </modules>
 </project>
