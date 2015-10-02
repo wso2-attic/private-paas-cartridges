@@ -17,7 +17,7 @@ Please follow below steps to proceed with the installation:
    ```
    pip install Jinja2
    ```
-(3) Build required [template module](https://github.com/wso2/product-private-paas/tree/master/cartridges/templates-modules).
+(3) Build required template module in the path .
 
 (4) Unzip and copy template module to `<configurator_home>/template-modules` folder. 
 

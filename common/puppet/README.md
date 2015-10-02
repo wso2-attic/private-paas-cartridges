@@ -64,7 +64,7 @@ $configurator_name    = 'ppaas-configurator'
 $configurator_version = '4.1.0-SNAPSHOT'
 ```
 ### **Optional Modules**
-Following modules are mandatory to setup puppet-master. Only servers that are used by application needs to be configured. For example, If only esb cartridge is used in application only esb related module needs to be setup.
+Following modules are not mandatory to setup puppet-master. Only servers that are used by application needs to be configured. For example, If only esb cartridge is used in application only esb related module needs to be setup.
 
 (1) Copy server pack from   to `/etc/puppet/modules/wso2installer/files/<server_name>/packs` folder. ( If configuring ESB, path is :`/etc/puppet/modules/wso2installer/files/wso2esb481/packs` )
 
