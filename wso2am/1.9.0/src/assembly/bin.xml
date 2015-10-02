@@ -65,5 +65,12 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>src/main/license</directory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </assembly>
