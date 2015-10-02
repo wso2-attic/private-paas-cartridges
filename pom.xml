@@ -122,208 +122,6 @@
                 </plugins>
             </build>
         </profile>
-
-        <profile>
-            <id>addLicense</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <configuration>
-                            <source>1.7</source>
-                            <target>1.7</target>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.rat</groupId>
-                        <artifactId>apache-rat-plugin</artifactId>
-                        <version>0.10</version>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/target/**/*</exclude>
-                                <exclude>**/.settings/**/*</exclude>
-                                <exclude>**/.project</exclude>
-                                <exclude>**/.classpath</exclude>
-                                <exclude>**/.git/**/*</exclude>
-                                <exclude>**/README.md</exclude>
-                                <exclude>**/MANIFEST.MF</exclude>
-                                <exclude>**/edit_area/**/*</exclude>
-                                <exclude>**/editarea/**/*</exclude>
-                                <exclude>**/jquery/**/*</exclude>
-                                <exclude>**/jquery*</exclude>
-                                <exclude>**/*.iml</exclude>
-                                <exclude>**/*.iws</exclude>
-                                <exclude>**/*.ipr</exclude>
-                                <exclude>**/.gitignore</exclude>
-                                <exclude>**/payload/launch-params</exclude>
-                                <exclude>**/*.key</exclude>
-                                <exclude>**/bootstrap*.css</exclude>
-                                <exclude>**/animation.css</exclude>
-                                <exclude>**/fontello*</exclude>
-                                <exclude>**/jaggery.conf</exclude>
-                                <exclude>**/zoo.cfg</exclude>
-                                <exclude>**/scripts/*/customization</exclude>
-                                <exclude>**/siddhi.extension</exclude>
-                                <exclude>**/templates/*.cfg.template</exclude>
-                                <exclude>**/instrumentation.txt</exclude>
-                                <exclude>**/*json</exclude>
-
-
-                                <!-- Added following based on jclouds -->
-                                <exclude>**/src/test/resources/**/*.xml</exclude>
-                                <!-- META-INF/services files -->
-                                <exclude>**/services/*LoggingModule</exclude>
-                                <exclude>**/services/*ApiMetadata</exclude>
-                                <exclude>**/services/*ProviderMetadata</exclude>
-                            </excludes>
-                            <licenses>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>BSD</licenseFamilyCategory>
-                                    <licenseFamilyName>The BSD License</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>The BSD License</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>CDDL</licenseFamilyCategory>
-                                    <licenseFamilyName>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
-                                        Version 1.0
-                                    </licenseFamilyName>
-                                    <patterns>
-                                        <pattern>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE
-                                        </pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>EPL</licenseFamilyCategory>
-                                    <licenseFamilyName>Eclipse Public License - v 1.0
-                                    </licenseFamilyName>
-                                    <patterns>
-                                        <pattern>Eclipse Public License</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>MIT</licenseFamilyCategory>
-                                    <licenseFamilyName>The MIT License (MIT)</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>MIT License</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>JSMON</licenseFamilyCategory>
-                                    <licenseFamilyName>JSMON</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>JSMON</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>JDOM</licenseFamilyCategory>
-                                    <licenseFamilyName>JDOM</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>JDOM</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>JSON</licenseFamilyCategory>
-                                    <licenseFamilyName>The JSON License</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>JSON License</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>MPL10</licenseFamilyCategory>
-                                    <licenseFamilyName>MOZILLA PUBLIC LICENSE Version 1.0
-                                    </licenseFamilyName>
-                                    <patterns>
-                                        <pattern>MOZILLA PUBLIC LICENSE</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>SNAPTREE</licenseFamilyCategory>
-                                    <licenseFamilyName>SNAPTREE LICENSE</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>SNAPTREE LICENSE</pattern>
-                                    </patterns>
-                                </license>
-                                <license
-                                        implementation="org.apache.rat.analysis.license.SimplePatternBasedLicense">
-                                    <licenseFamilyCategory>CPL1</licenseFamilyCategory>
-                                    <licenseFamilyName>Common Public License 1.0</licenseFamilyName>
-                                    <patterns>
-                                        <pattern>CPL</pattern>
-                                    </patterns>
-                                </license>
-                            </licenses>
-                            <licenseFamilies>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>The BSD LicenseThe BSD License</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version
-                                        1.0
-                                    </familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>Eclipse Public License - v 1.0</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>The MIT License (MIT)</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>JSMON</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>JDOM</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>The JSON License</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>MOZILLA PUBLIC LICENSE Version 1.0</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>SNAPTREE LICENSE</familyName>
-                                </licenseFamily>
-                                <licenseFamily
-                                        implementation="org.apache.rat.license.SimpleLicenseFamily">
-                                    <familyName>Common Public License 1.0</familyName>
-                                </licenseFamily>
-                            </licenseFamilies>
-                            <addLicenseHeaders>forced</addLicenseHeaders>
-                            <ignoreErrors>false</ignoreErrors>
-                            <excludeSubProjects>false</excludeSubProjects>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
     </profiles>
 
 
@@ -411,14 +209,12 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
-                <version>2.1</version>
             </extension>
         </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.3.1</version>
                 <executions>
                     <execution>
                         <id>enforce</id>
@@ -466,7 +262,6 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-scr-plugin</artifactId>
-                    <version>1.7.2</version>
                     <executions>
                         <execution>
                             <id>generate-scr-scrdescriptor</id>
@@ -479,7 +274,6 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.3.5</version>
                     <extensions>true</extensions>
                     <configuration>
                         <obrRepository>NONE</obrRepository>
@@ -503,7 +297,6 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.2-beta-2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -645,7 +438,6 @@
         <mysql.connector.java.version>5.1.36</mysql.connector.java.version>
         <commons.lang3.version>3.1</commons.lang3.version>
 
-
         <!-- Carbon related versions -->
         <wso2carbon.version>4.2.0</wso2carbon.version>
         <carbon.platform.package.import.version.range>[4.2.0, 5.0.0)</carbon.platform.package.import.version.range>
@@ -670,5 +462,26 @@
         <carbon.logaggregator.version>1.0.0</carbon.logaggregator.version>
         <carbon.event.version>1.0.0</carbon.event.version>
         <wso2.stratos.common.version>2.2.2</wso2.stratos.common.version>
+
+        <!-- Maven plugin versions -->
+        <maven.incremental.plugin.version>1.3</maven.incremental.plugin.version>
+        <maven.scr.plugin.version>1.7.4</maven.scr.plugin.version>
+        <maven.bundle.plugin.version>2.3.5</maven.bundle.plugin.version>
+        <maven.source.plugin.version>2.1.2</maven.source.plugin.version>
+        <maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
+        <maven.build.helper.plugin.version>1.7</maven.build.helper.plugin.version>
+        <maven.build.number.plugin.version>0.9.4</maven.build.number.plugin.version>
+        <maven.jar.plugin.version>2.4</maven.jar.plugin.version>
+        <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+        <maven.enforcer.plugin.version>1.3.1</maven.enforcer.plugin.version>
+        <maven.compiler.plugin.version>2.3.1</maven.compiler.plugin.version>
+        <maven.wagon.ssh.extension.version>2.1</maven.wagon.ssh.extension.version>
+        <maven.project.info.reports.plugin.version>2.4</maven.project.info.reports.plugin.version>
+        <maven.surefire.plugin.version>2.18</maven.surefire.plugin.version>
+        <maven.resources.plugin.verison>2.7</maven.resources.plugin.verison>
+        <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
+        <maven.incremental.build.plugin.version>1.3</maven.incremental.build.plugin.version>
+        <project.scm.id>wso2-scm-server</project.scm.id>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>
