@@ -847,7 +847,7 @@
     </dependencyManagement>
     <properties>
         <!-- Apache Stratos version -->
-        <stratos.version>4.1.3-SNAPSHOT</stratos.version>
+        <stratos.version>4.1.3</stratos.version>
 
         <!-- ppaas distribution properties -->
         <configurator.distribution.name>ppaas-configurator</configurator.distribution.name>
