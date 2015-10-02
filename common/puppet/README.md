@@ -52,7 +52,7 @@ $java_distribution 	    = 'jdk-7u80-linux-x64.tar.gz'
 $java_folder    		= 'jdk1.7.0_72'
 ```
 ##### **Configurator Module**
-(1) Copy ppaas-configurator-4.1.0-SNAPSHOT.zip from `<PRIVATE_PaaS_HOME>/products/configurator/target/ppaas-configurator-4.1.0-SNAPSHOT.zip`  to `/etc/puppet/modules/configurator/files` folder.
+(1) Copy ppaas-configurator-4.1.0-SNAPSHOT.zip from `<private-paas-cartridges_home>/common/configurator/target/ppaas-configurator-4.1.0-SNAPSHOT.zip`  to `/etc/puppet/modules/configurator/files` folder.
 
 (2) Change file permission to 0755 for ppaas-configurator-4.1.0-SNAPSHOT.zip .
 ```
@@ -68,7 +68,7 @@ Following modules are mandatory to setup puppet-master. Only servers that are us
 
 (1) Copy server pack from   to `/etc/puppet/modules/wso2installer/files/<server_name>/packs` folder. ( If configuring ESB, path is :`/etc/puppet/modules/wso2installer/files/wso2esb481/packs` )
 
-(2) Copy respective [template module pack](https://github.com/wso2/product-private-paas/tree/master/cartridges/templates-modules) to `/etc/puppet/modules/wso2installer/files/<server_name>/packs/`
+(2) Copy respective template module from `<private-paas-cartridges_home>/<server_name>/<version>/templates-module/target` to `/etc/puppet/modules/wso2installer/files/<server_name>/packs/`
 
 (3) Change file permission to 0755 for contents in side `/etc/puppet/modules/wso2installer/files/<server_name>/packs/` directory .
 ```
@@ -76,7 +76,7 @@ chmod 755 <server_pack>.zip
 chmod 755 <template_module>.zip 
 ```
 
-(4) Copy respective [PCA plugins](https://github.com/wso2/product-private-paas/tree/master/cartridges/plugins) to `/etc/puppet/modules/wso2installer/files/<server_name>/plugins/`
+(4) Copy respective `<private-paas-cartridges_home>/<server_name>/<version>/plugins/` to `/etc/puppet/modules/wso2installer/files/<server_name>/plugins/`
 
 (5) Change file permission to 0755 for contents in side `/etc/puppet/modules/wso2installer/files/<server_name>/plugins/` directory .
 ```
