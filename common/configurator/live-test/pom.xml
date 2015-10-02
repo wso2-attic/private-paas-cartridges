@@ -24,7 +24,7 @@
 
     <artifactId>configurator-live-tests</artifactId>
     <packaging>jar</packaging>
-    <name>Configurator - Live Tests</name>
+    <name>Python Configurator Live Tests</name>
 
     <profiles>
         <profile>
@@ -95,8 +95,8 @@
             <artifactId>commons-exec</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>org.apache.commons.logging</artifactId>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>

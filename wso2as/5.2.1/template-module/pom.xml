@@ -25,8 +25,8 @@
 
     <artifactId>wso2as-5.2.1-template-module</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - WSO2AS-5.2.1 - Template Module</name>
-    <description>WSO2 AS 5.2.1 Template Module</description>
+    <name>WSO2 AS 5.2.1 Template Module</name>
+    <description>WSO2 Application Server 5.2.1 Template Module</description>
 
     <build>
         <plugins>
@@ -321,5 +321,4 @@
             <artifactId>ppaas-membership-scheme</artifactId>
         </dependency>
     </dependencies>
-
 </project>

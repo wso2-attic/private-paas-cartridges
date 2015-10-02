@@ -25,7 +25,7 @@
 
     <artifactId>wso2am-1.9.0-template-module</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 API Manager 1.9.0 - Template Module</name>
+    <name>WSO2 API Manager 1.9.0 Template Module</name>
     <description>WSO2 API Manager 1.9.0 Template Module</description>
 
     <build>

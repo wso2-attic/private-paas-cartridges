@@ -25,8 +25,8 @@
 
     <artifactId>wso2is-5.0.0-template-module</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - WSO2IS-5.0.0 - Template Module</name>
-    <description>WSO2 IS 5.0.0 Template Module</description>
+    <name>WSO2 IS 5.0.0 Template Module</name>
+    <description>WSO2 Identity Server 5.0.0 Template Module</description>
 
     <build>
         <plugins>

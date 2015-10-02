@@ -25,7 +25,7 @@
 
     <artifactId>org.wso2.ppaas.cartridges.common.configurator</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - Python Configurator</name>
+    <name>Python Configurator</name>
 
     <build>
         <plugins>

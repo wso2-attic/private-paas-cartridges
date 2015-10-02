@@ -25,7 +25,7 @@
 
     <artifactId>wso2esb-4.8.1-template-module</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - WSO2ESB-4.8.1 - Template Module</name>
+    <name>WSO2 ESB 4.8.1 Template Module</name>
     <description>WSO2 ESB 4.8.1 Template Module</description>
 
     <build>
@@ -321,5 +321,4 @@
             <artifactId>ppaas-membership-scheme</artifactId>
         </dependency>
     </dependencies>
-
 </project>

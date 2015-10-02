@@ -25,7 +25,7 @@
 
     <artifactId>org.wso2.ppaas.cartridges.common</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 PPaaS - Cartridges - Common</name>
+    <name>Common Components and Plugins</name>
 
     <modules>
         <module>configurator</module>
