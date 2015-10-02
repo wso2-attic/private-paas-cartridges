@@ -321,5 +321,4 @@
             <artifactId>ppaas-membership-scheme</artifactId>
         </dependency>
     </dependencies>
-
 </project>

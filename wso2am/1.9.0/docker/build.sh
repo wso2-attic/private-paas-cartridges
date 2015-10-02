@@ -24,16 +24,16 @@ script_path=`cd "$prgdir"; pwd`
 wso2_ppaas_version="4.1.0-SNAPSHOT"
 wso2_product_type="am"
 wso2_product_version="1.9.0"
-wso2_product_template_module_path=`cd ${script_path}/../templates-modules/; pwd`
+wso2_product_template_module_path=`cd ${script_path}/../template-module/; pwd`
 wso2_product_plugin_path=`cd ${script_path}/../plugins/; pwd`
-common_plugin_path=`cd ${script_path}/../../../common/common-plugins/; pwd`
-clean=false
+common_plugin_path=`cd ${script_path}/../../../common/plugins/; pwd`
+skip_template_build=false
 
-if [ "$1" = "clean" ]; then
-   clean=true
+if [ "$1" = "skip" ]; then
+   skip_template_build=true
 fi
 
-if ${clean} ; then
+if ! (( ${skip_template_build} )) ; then
    echo "-----------------------------------"
    echo "Building" ${wso2_product_type} - ${wso2_product_version} "template module"
    echo "-----------------------------------"
