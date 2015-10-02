@@ -23,7 +23,7 @@ script_path=`cd "$prgdir"; pwd`
 
 wso2_ppaas_version="4.1.0-SNAPSHOT"
 wso2_base_image_version="4.1.0"
-configurator_path=`cd ${script_path}/../../../components/org.wso2.ppaas.configurator/; pwd`
+configurator_path=`cd ${script_path}/../../configurator; pwd`
 
 echo "----------------------------------"
 echo "Building Configurator"
