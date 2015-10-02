@@ -16,51 +16,22 @@
 # limitations under the License
 #
 # ------------------------------------------------------------------------
-
 set -e
 prgdir=`dirname "$0"`
 script_path=`cd "$prgdir"; pwd`
-
-wso2_ppaas_version="4.1.0-SNAPSHOT"
-wso2_product_type="esb"
+wso2_product_type="wso2esb"
 wso2_product_version="4.8.1"
-wso2_product_template_module_path=`cd ${script_path}/../template-modules/; pwd`
+docker_image_name="esb"
+wso2_product_template_module_path=`cd ${script_path}/../template-module/; pwd`
 wso2_product_plugin_path=`cd ${script_path}/../plugins/; pwd`
-common_plugin_path=`cd ${script_path}/../../../common/plugins/; pwd`
-skip_template_build=false
+
+source ${script_path}/../../../common/docker/scripts/build-helper.sh
 
 if [ "$1" = "skip" ]; then
    skip_template_build=true
+else
+   skip_template_build=false
 fi
 
-if ! (( ${skip_template_build} )) ; then
-   echo "-----------------------------------"
-   echo "Building" ${wso2_product_type} - ${wso2_product_version} "template module"
-   echo "-----------------------------------"
-   pushd ${wso2_product_template_module_path}
-   mvn clean install
-   cp -v target/wso2${wso2_product_type}-${wso2_product_version}-template-module-${wso2_ppaas_version}.zip ${script_path}/packages/
-   popd
-
-   echo "----------------------------------"
-   echo "Copying" ${wso2_product_type} - ${wso2_product_version} "python plugins"
-   echo "----------------------------------"
-   rm -f ${script_path}/plugins/*
-   pushd ${wso2_product_plugin_path}
-   cp * ${script_path}/plugins
-   popd
-
-   echo "----------------------------------"
-   echo "Copying" ${wso2_product_type} - ${wso2_product_version} "common plugins"
-   echo "----------------------------------"
-   pushd ${common_plugin_path}
-   cp * ${script_path}/plugins
-   popd
-fi
-
-echo "----------------------------------"
-echo "Building" ${wso2_product_type} - ${wso2_product_version} "docker image"
-echo "----------------------------------"
-sudo docker build -t wso2/${wso2_product_type}:${wso2_product_version} .
-
-echo "wso2" ${wso2_product_type} - ${wso2_product_version} "docker image built successfully."
+build_image $skip_template_build $wso2_product_type $wso2_product_version $wso2_product_plugin_path \
+              $wso2_product_template_module_path $script_path $docker_image_name
