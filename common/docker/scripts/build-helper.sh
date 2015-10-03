@@ -66,7 +66,7 @@ function build_image () {
     echo "----------------------------------"
     echo "Building" $2 - $3 "docker image"
     echo "----------------------------------"
-    sudo docker build -t wso2/$7-$3:$9 .
+    sudo docker build -t wso2/$7:$3 .
 
     echo $2 - $3 "docker image built successfully."
 }
