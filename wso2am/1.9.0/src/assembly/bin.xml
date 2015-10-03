@@ -51,7 +51,7 @@
         </fileSet>
         <fileSet>
             <directory>template-module/</directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/templates-module/</outputDirectory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/template-module/</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
@@ -86,6 +86,11 @@
         <file>
             <source>README.md</source>
             <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>../../common/docker/scripts/build-helper.sh</source>
+            <outputDirectory>${pom.artifactId}-${pom.version}/docker</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>

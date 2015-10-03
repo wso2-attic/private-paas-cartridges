@@ -68,7 +68,7 @@ Following modules are not mandatory to setup puppet-master. Only servers that ar
 
 (1) Copy server pack from   to `/etc/puppet/modules/wso2installer/files/<server_name>/packs` folder. ( If configuring ESB, path is :`/etc/puppet/modules/wso2installer/files/wso2esb481/packs` )
 
-(2) Copy respective template module from `<private-paas-cartridges_home>/<server_name>/<version>/templates-module/target` to `/etc/puppet/modules/wso2installer/files/<server_name>/packs/`
+(2) Copy respective template module from `<private-paas-cartridges_home>/<server_name>/<version>/template-module/target` to `/etc/puppet/modules/wso2installer/files/<server_name>/packs/`
 
 (3) Change file permission to 0755 for contents in side `/etc/puppet/modules/wso2installer/files/<server_name>/packs/` directory .
 ```

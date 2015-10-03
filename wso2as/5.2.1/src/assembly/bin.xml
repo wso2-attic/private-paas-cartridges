@@ -51,7 +51,7 @@
         </fileSet>
         <fileSet>
             <directory>template-module/</directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/templates-module/</outputDirectory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/template-module/</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>

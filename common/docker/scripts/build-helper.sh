@@ -17,24 +17,16 @@
 #
 # ------------------------------------------------------------------------
 
-set -e
-prgdir=`dirname "$0"`
-script_path=`cd "$prgdir"; pwd`
-common_plugin_path=`cd ${script_path}/../../../common/plugins/; pwd`
-skip_template_build=false
-
-pushd `cd ${script_path}/../../../; pwd`
-VERSION=`mvn help:evaluate -Dexpression=project.version 2>/dev/null| grep -v "^\["`
-IMAGE_VERSION=${VERSION%-*} # Remove the SNAPSHOT string for non-released versions
-popd
-
-# Arg1 - "skip" flag
-# Arg2 - product type
-# Arg3 - product version
-# Arg4 - product plugins path
-# Arg5 - template module path
-# Arg6 - cartridge docker build script path
-# Arg7 - docker image name
+# Arg1  - "skip" flag
+# Arg2  - product type
+# Arg3  - product version
+# Arg4  - product plugins path
+# Arg5  - template module path
+# Arg6  - cartridge docker build script path
+# Arg7  - docker image name
+# Arg8  - common plugin path
+# Arg9  - Docker image version
+# Arg10 - PPaaS version
 function build_image () {
     echo "skip flag: ${1}"
     echo "product type: ${2}"
@@ -43,14 +35,17 @@ function build_image () {
     echo "template module path: ${5}"
     echo "cartridge docker build script path: ${6}"
     echo "docker image name: ${7}"
+    echo "common plugin path: ${8}"
+    echo "Docker image version: ${9}"
+    echo "PPaaS version: ${10}"
 
-    if ! [[ "${skip_template_build}" = "true" ]] ; then
+    if ! [[ "${1}" = "true" ]] ; then
        echo "-----------------------------------"
        echo "Building" $2 - $3 "template module"
        echo "-----------------------------------"
        pushd $5
        mvn clean install
-       cp -v target/$2-$3-template-module-${VERSION}.zip $6/packages/
+       cp -v target/$2-$3-template-module-${10}.zip $6/packages/
        popd
 
        echo "----------------------------------"
@@ -63,7 +58,7 @@ function build_image () {
        echo "----------------------------------"
        echo "Copying" $2 - $3 "common plugins"
        echo "----------------------------------"
-       pushd ${common_plugin_path}
+       pushd ${8}
        cp * $6/plugins
        popd
     fi
@@ -71,7 +66,7 @@ function build_image () {
     echo "----------------------------------"
     echo "Building" $2 - $3 "docker image"
     echo "----------------------------------"
-    sudo docker build -t wso2/$7-$3:$IMAGE_VERSION .
+    sudo docker build -t wso2/$7-$3:$9 .
 
     echo $2 - $3 "docker image built successfully."
 }

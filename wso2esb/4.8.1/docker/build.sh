@@ -25,7 +25,23 @@ docker_image_name="esb"
 wso2_product_template_module_path=`cd ${script_path}/../template-module/; pwd`
 wso2_product_plugin_path=`cd ${script_path}/../plugins/; pwd`
 
-source ${script_path}/../../../common/docker/scripts/build-helper.sh
+pushd `cd ${script_path}/../template-module/; pwd`
+VERSION=`mvn help:evaluate -Dexpression=project.version 2>/dev/null| grep -v "^\["`
+IMAGE_VERSION=${VERSION%-*} # Remove the SNAPSHOT string for non-released versions
+popd
+
+if [ -f ${script_path}/../../../common/docker/scripts/build-helper.sh ]; then
+    source ${script_path}/../../../common/docker/scripts/build-helper.sh
+else
+    # build-helper.sh will be available in the distribution zip archive
+    source build-helper.sh
+fi
+
+if [ -d ${script_path}/../../../common/plugins/ ]; then
+    common_plugin_path=`cd ${script_path}/../../../common/plugins/; pwd`
+else
+    common_plugin_path=$wso2_product_plugin_path
+fi
 
 if [ "$1" = "skip" ]; then
    skip_template_build=true
@@ -34,4 +50,5 @@ else
 fi
 
 build_image $skip_template_build $wso2_product_type $wso2_product_version $wso2_product_plugin_path \
-              $wso2_product_template_module_path $script_path $docker_image_name
+              $wso2_product_template_module_path $script_path $docker_image_name $common_plugin_path \
+              $IMAGE_VERSION $VERSION
