@@ -31,6 +31,8 @@
             <excludes>
                 <exclude>**/*.gitkeep</exclude>
                 <exclude>**/*.gitignore</exclude>
+                <exclude>packages/*/**</exclude>
+                <exclude>plugins/*/**</exclude>
             </excludes>
         </fileSet>
         <fileSet>
@@ -56,6 +58,12 @@
             <excludes>
                 <exclude>target/**</exclude>
                 <exclude>**/*.iml</exclude>
+                <exclude>files/bin/*/**</exclude>
+                <exclude>files/dbscripts/*/**</exclude>
+                <exclude>files/lib/*/**</exclude>
+                <exclude>files/repository/components/dropins/*/**</exclude>
+                <exclude>files/repository/components/lib/*/**</exclude>
+                <exclude>files/repository/components/patches/*/**</exclude>
             </excludes>
         </fileSet>
         <fileSet>
