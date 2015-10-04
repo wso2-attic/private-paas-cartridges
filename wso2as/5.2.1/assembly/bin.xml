@@ -73,24 +73,17 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
-        <fileSet>
-            <directory>src/main/license</directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/</outputDirectory>
-            <includes>
-                <include>**/*</include>
-            </includes>
-        </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>README.md</source>
+            <source>LICENSE</source>
             <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
         </file>
         <file>
-            <source>../../common/docker/scripts/build-helper.sh</source>
-            <outputDirectory>${pom.artifactId}-${pom.version}/docker</outputDirectory>
+            <source>README.md</source>
+            <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
