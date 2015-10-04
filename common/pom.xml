@@ -30,5 +30,6 @@
     <modules>
         <module>configurator</module>
         <module>configurator/live-test</module>
+        <module>vm</module>
     </modules>
 </project>

@@ -1,4 +1,4 @@
-# WSO2 products base image Dockerfile
+# WSO2 Private PaaS base image Dockerfile
 
 WSO2 products base image Dockerfile defines required resources for building a Docker image with WSO2 product prerequisites.
 
