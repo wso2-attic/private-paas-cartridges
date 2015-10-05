@@ -25,7 +25,7 @@
         <version>4.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>vm-tools-distribution</artifactId>
+    <artifactId>wso2ppaas-vm-tools</artifactId>
     <packaging>pom</packaging>
     <name>Tools for VM scenario</name>
     <description>Aggregate module which contains tools required for Virtual Machine scenario</description>
