@@ -474,7 +474,7 @@
 
     <properties>
         <!-- Apache Stratos version -->
-        <stratos.version>4.1.3</stratos.version>
+        <stratos.version>4.1.4-SNAPSHOT</stratos.version>
 
         <!-- WSO2 Private PaaS version -->
         <ppaas.version>4.1.0-SNAPSHOT</ppaas.version>
