@@ -1,0 +1,18 @@
+{
+    "artifactRepositories": [
+        {
+            "alias": "wso2brs-210-manager",
+            "privateRepo": false,
+            "repoUrl": "https://github.com/chanikag/brs-dep-sync.git",
+            "repoUsername": "",
+            "repoPassword": ""
+        },
+        {
+            "alias": "wso2brs-210-worker",
+            "privateRepo": false,
+            "repoUrl": "https://github.com/chanikag/brs-dep-sync.git",
+            "repoUsername": "",
+            "repoPassword": ""
+        }
+    ]
+}

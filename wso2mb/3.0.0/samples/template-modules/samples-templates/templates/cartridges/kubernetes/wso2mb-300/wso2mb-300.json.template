@@ -1,0 +1,106 @@
+{
+    "type": "wso2mb-300",
+    "category": "framework",
+    "provider": "wso2",
+    "host": "mb.wso2.org",
+    "displayName": "WSO2 MB 3.0.0",
+    "description": "WSO2 MB 3.0.0 Cartridge",
+    "version": "3.0.0",
+    "multiTenant": false,
+    "loadBalancingIPType": "public",
+    "portMapping": [
+        {
+            "name": "mgt-http",
+            "protocol": "http",
+            "port": 9763,
+            "proxyPort": 0
+        },
+        {
+            "name": "mgt-https",
+            "protocol": "https",
+            "port": 9443,
+            "proxyPort": 0
+        },
+        {
+            "name": "amqp",
+            "protocol": "tcp",
+            "port": 5672
+        },
+        {
+            "name": "amqp-ssl",
+            "protocol": "ssl",
+            "port": 8672
+        },
+        {
+            "name": "mqtt",
+            "protocol": "tcp",
+            "port": 1883
+        },
+        {
+            "name": "mqtt-ssl",
+            "protocol": "ssl",
+            "port": 8883
+        }
+    ],
+    "iaasProvider": [
+        {
+            "type": "kubernetes",
+            "imageId": "wso2/as:5.2.1",
+            "networkInterfaces": []
+        }
+    ],
+    "property": [
+        {
+            "name": "KUBERNETES_CONTAINER_CPU",
+            "value": "0"
+        },
+        {
+            "name": "KUBERNETES_CONTAINER_MEMORY",
+            "value": "0"
+        },
+        {
+            "name": "KUBERNETES_SERVICE_SESSION_AFFINITY",
+            "value": "ClientIP"
+        },
+        {
+            "name": "payload_parameter.START_CMD",
+            "value": "PCA"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+            "value": "false"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_METRICS_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{MB_METRICS_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_METRICS_DB_USERNAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_METRICS_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_METRICS_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_STORE_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{MB_STORE_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_STORE_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_STORE_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MB_STORE_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        }
+    ]
+}

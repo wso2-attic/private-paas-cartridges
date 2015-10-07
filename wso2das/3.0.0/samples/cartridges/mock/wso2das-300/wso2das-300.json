@@ -1,0 +1,56 @@
+{
+    "type": "wso2das-300",
+    "category": "framework",
+    "provider": "wso2",
+    "host": "das.wso2.org",
+    "displayName": "WSO2 DAS 3.0.0",
+    "description": "WSO2 DAS 3.0.0 Cartridge",
+    "version": "3.0.0",
+    "multiTenant": true,
+    "loadBalancingIPType": "public",
+    "portMapping": [
+        {
+            "name": "mgt-http",
+            "protocol": "http",
+            "port": 9763,
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
+        },
+        {
+            "name": "mgt-https",
+            "protocol": "https",
+            "port": 9443,
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
+        },
+        {
+            "name": "thrift-tcp",
+            "protocol": "tcp",
+            "port": 7611
+        },
+        {
+            "name": "thrift-ssl",
+            "protocol": "ssl",
+            "port": 7711
+        },
+        {
+            "name": "spark-manager",
+            "protocol": "http",
+            "port": 8081
+        },
+        {
+            "name": "spark-worker",
+            "protocol": "http",
+            "port": 11500
+        }
+    ],
+    "iaasProvider": [
+        {
+            "type": "mock",
+            "imageId": "wso2/das:3.0.0",
+            "networkInterfaces": []
+        }
+    ],
+    "property": [
+    ]
+}
