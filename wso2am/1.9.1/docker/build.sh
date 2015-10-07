@@ -19,9 +19,9 @@
 set -e
 prgdir=`dirname "$0"`
 script_path=`cd "$prgdir"; pwd`
-wso2_product_type="wso2esb"
-wso2_product_version="4.8.1"
-docker_image_name="esb"
+wso2_product_type="wso2am"
+wso2_product_version="1.9.1"
+docker_image_name="am"
 wso2_product_template_module_path=`cd ${script_path}/../template-module/; pwd`
 wso2_product_plugin_path=`cd ${script_path}/../plugins/; pwd`
 
