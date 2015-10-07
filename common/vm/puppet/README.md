@@ -54,7 +54,7 @@ $java_folder    		= 'jdk1.7.0_72'
 ##### **Configurator Module**
 (1) Copy ppaas-configurator-4.1.0.zip from `<private-paas-cartridges_home>/common/configurator/target/ppaas-configurator-4.1.0.zip`  to `/etc/puppet/modules/configurator/files` folder.
 
-(2) Change file permission to 0755 for ppaas-configurator-4.1.0-SNAPSHOT.zip .
+(2) Change file permission to 0755 for ppaas-configurator-4.1.0.zip .
 ```
 chmod 755 ppaas-configurator-4.1.0.zip 
 ```
@@ -138,7 +138,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |   |       `-- init.pp
 |   |-- python_agent
 |   |   |-- files
-|   |   |   |-- apache-stratos-python-cartridge-agent-4.1.3-SNAPSHOT.zip
+|   |   |   |-- apache-stratos-python-cartridge-agent-4.1.3.zip
 |   |   |   |-- README.txt
 |   |   |   `-- start_agent.sh
 |   |   |-- manifests
