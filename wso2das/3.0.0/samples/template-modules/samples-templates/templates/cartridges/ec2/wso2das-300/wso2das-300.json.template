@@ -1,0 +1,131 @@
+{
+    "type": "wso2das-300",
+    "category": "framework",
+    "provider": "wso2",
+    "host": "das.wso2.org",
+    "displayName": "WSO2 DAS 3.0.0",
+    "description": "WSO2 DAS 3.0.0 Cartridge",
+    "version": "3.0.0",
+    "multiTenant": false,
+    "loadBalancingIPType": "public",
+    "portMapping": [
+        {
+            "name": "mgt-http",
+            "protocol": "http",
+            "port": 9763,
+            "proxyPort": 80
+        },
+        {
+            "name": "mgt-https",
+            "protocol": "https",
+            "port": 9443,
+            "proxyPort": 443
+        },
+        {
+            "name": "thrift-tcp",
+            "protocol": "tcp",
+            "port": 7611
+        },
+        {
+            "name": "thrift-ssl",
+            "protocol": "ssl",
+            "port": 7711
+        },
+        {
+            "name": "spark-manager",
+            "protocol": "http",
+            "port": 8081
+        },
+        {
+            "name": "spark-worker",
+            "protocol": "http",
+            "port": 11500
+        }
+    ],
+    "iaasProvider": [
+        {
+            "type": "ec2",
+            "imageId": "{{EC2_REGION_ID}}/{{EC2_IMAGE_ID}}",
+            "property": [
+                {
+                    "name": "instanceType",
+                    "value": "{{EC2_FLAVOUR_ID}}"
+                },
+                {
+                    "name":"tag:Name",
+                    "value":"WSO2 PPaaS DAS"
+                },
+                {
+                    "name":"tag:User",
+                    "value":"xxxxxx"
+                }
+            ]
+        }
+    ],
+    "property": [
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WORKER_HOST_NAME",
+            "value": "das.wso2.com"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+            "value": "false"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_MEMBERSHIP_SCHEME",
+            "value": "private-paas"
+        },
+        {
+            "name": "payload_parameter.APPLICATION_PATH",
+            "value": "/var/www"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{ANALYTICS_FS_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{ANALYTICS_EVENT_STORE_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{ANALYTICS_PROCESSED_DATA_STORE_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        }
+    ]
+}

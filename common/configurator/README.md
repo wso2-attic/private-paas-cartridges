@@ -23,7 +23,7 @@ Please follow below steps to proceed with the installation:
 
 Final folder structure should look like below :
 ```
-ppaas-configurator-4.1.0-SNAPSHOT
+ppaas-configurator-4.1.0
 |-- conf
 |   `-- logging_config.ini
 |-- configparserutil.py
@@ -32,7 +32,7 @@ ppaas-configurator-4.1.0-SNAPSHOT
 |-- constants.py
 |-- __init__.py
 `-- template-modules
-    `-- wso2as-5.2.1-template-module-4.1.0-SNAPSHOT
+    `-- wso2as-5.2.1-template-module-4.1.0
         |-- files
         |   |-- bin
         |   |   `-- ciphertool.bat
@@ -45,7 +45,7 @@ ppaas-configurator-4.1.0-SNAPSHOT
         |       |   |   |-- org.apache.commons.lang3_3.1.0.jar
         |       |   |   |-- org.apache.stratos.common-4.1.0.jar
         |       |   |   |-- org.apache.stratos.messaging-4.1.0.jar
-        |       |   |   `-- private-paas-membership-scheme-4.1.0-SNAPSHOT.jar
+        |       |   |   `-- private-paas-membership-scheme-4.1.0.jar
         |       |   |-- lib
         |       |   |   |-- mysql-connector-java-5.1.29-bin.jar
         |       |   |   |-- org.wso2.carbon.server-4.2.0.jar
