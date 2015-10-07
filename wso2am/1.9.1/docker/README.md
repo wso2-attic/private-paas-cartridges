@@ -22,7 +22,7 @@ WSO2 AM 1.9.1 Dockerfile defines required resources for building a Docker image 
 
 (3) Run build.sh file to build the docker image: (This will copy the plugins and template module to the docker image)
 ```
-sh build.sh clean
+sh build.sh
 ```
 
 (4) List docker images:

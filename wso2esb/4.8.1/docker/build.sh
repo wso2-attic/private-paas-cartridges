@@ -26,7 +26,7 @@ wso2_product_template_module_path=`cd ${script_path}/../template-module/; pwd`
 wso2_product_plugin_path=`cd ${script_path}/../plugins/; pwd`
 
 pushd `cd ${script_path}/../template-module/; pwd`
-VERSION=`mvn help:evaluate -Dexpression=project.version 2>/dev/null| grep -v "^\["`
+VERSION=`grep -oP '<version>\K[^<]+' pom.xml| head -1`
 IMAGE_VERSION=${VERSION%-*} # Remove the SNAPSHOT string for non-released versions
 popd
 
