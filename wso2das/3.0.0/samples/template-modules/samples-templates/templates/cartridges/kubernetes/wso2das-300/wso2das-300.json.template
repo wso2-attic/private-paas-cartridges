@@ -1,0 +1,124 @@
+{
+    "type": "wso2das-300",
+    "category": "framework",
+    "provider": "wso2",
+    "host": "das.wso2.org",
+    "displayName": "WSO2 DAS 3.0.0",
+    "description": "WSO2 DAS 3.0.0 Cartridge",
+    "version": "3.0.0",
+    "multiTenant": true,
+    "loadBalancingIPType": "public",
+    "portMapping": [
+        {
+            "name": "mgt-http",
+            "protocol": "http",
+            "port": 9763,
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
+        },
+        {
+            "name": "mgt-https",
+            "protocol": "https",
+            "port": 9443,
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
+        },
+        {
+            "name": "thrift-tcp",
+            "protocol": "tcp",
+            "port": 7611
+        },
+        {
+            "name": "thrift-ssl",
+            "protocol": "ssl",
+            "port": 7711
+        },
+        {
+            "name": "spark-manager",
+            "protocol": "http",
+            "port": 8081
+        },
+        {
+            "name": "spark-worker",
+            "protocol": "http",
+            "port": 11500
+        }
+    ],
+    "iaasProvider": [
+        {
+            "type": "kubernetes",
+            "imageId": "wso2/das:3.0.0",
+            "networkInterfaces": []
+        }
+    ],
+    "property": [
+        {
+            "name": "KUBERNETES_CONTAINER_CPU",
+            "value": "0"
+        },
+        {
+            "name": "KUBERNETES_CONTAINER_MEMORY",
+            "value": "0"
+        },
+        {
+            "name": "KUBERNETES_SERVICE_SESSION_AFFINITY",
+            "value": "ClientIP"
+        },
+        {
+            "name": "payload_parameter.START_CMD",
+            "value": "PCA"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+            "value": "false"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{ANALYTICS_FS_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{ANALYTICS_EVENT_STORE_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_URL",
+            "value": "jdbc:mysql://{{MYSQL_IP}}:{{MYSQL_PORT}}/{{ANALYTICS_PROCESSED_DATA_STORE_DB}}?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_USER_NAME",
+            "value": "{{DB_USERNAME}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_PASSWORD",
+            "value": "{{DB_PASSWORD}}"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME",
+            "value": "com.mysql.jdbc.Driver"
+        }
+    ]
+}
