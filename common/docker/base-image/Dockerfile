@@ -22,13 +22,13 @@ MAINTAINER dev@wso2.org
 ENV DEBIAN_FRONTEND noninteractive
 
 # PCA
-ENV PCA_VERSION 4.1.3
+ENV PCA_VERSION 4.1.4-SNAPSHOT
 ENV PCA_FILENAME apache-stratos-python-cartridge-agent-${PCA_VERSION}
 ENV PCA_HOME /opt/${PCA_FILENAME}
 
 # JDK
-ENV JDK_VERSION 1.7.0_60
-ENV JDK_TAR_FILE jdk-7u80-linux-x64.tar.gz
+ENV JDK_VERSION 1.7.0_79
+ENV JDK_TAR_FILE jdk-7u79-linux-x64.tar.gz
 ENV JAVA_HOME /opt/jdk${JDK_VERSION}
 
 # Configurator
