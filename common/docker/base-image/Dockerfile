@@ -27,7 +27,7 @@ ENV PCA_FILENAME apache-stratos-python-cartridge-agent-${PCA_VERSION}
 ENV PCA_HOME /opt/${PCA_FILENAME}
 
 # JDK
-ENV JDK_VERSION 1.7.0_60
+ENV JDK_VERSION 1.7.0_80
 ENV JDK_TAR_FILE jdk-7u80-linux-x64.tar.gz
 ENV JAVA_HOME /opt/jdk${JDK_VERSION}
 
