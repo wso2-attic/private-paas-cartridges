@@ -6,6 +6,6 @@ hawtbuf_1.9_1.0.0.jar
 org.apache.commons.lang3_3.1.0.jar
 org.apache.stratos.common-4.1.0.jar
 org.apache.stratos.messaging-4.1.0.jar
-private-paas-membership-scheme-4.1.0-SNAPSHOT.jar
+private-paas-membership-scheme-4.1.0.jar
 
 More info - https://github.com/imesh/stratos-membership-scheme/tree/master/carbon-4.2.0

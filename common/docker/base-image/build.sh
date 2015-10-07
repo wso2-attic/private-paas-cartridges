@@ -21,8 +21,11 @@ set -e
 prgdir=`dirname "$0"`
 script_path=`cd "$prgdir"; pwd`
 
-wso2_ppaas_version="4.1.0-SNAPSHOT"
-wso2_base_image_version="4.1.0"
+pushd `cd ${script_path}/../../; pwd`
+configurator_version=`grep -oP '<version>\K[^<]+' pom.xml| head -1`
+popd
+
+wso2_base_image_version=${configurator_version%-*}
 configurator_path=`cd ${script_path}/../../configurator; pwd`
 
 echo "----------------------------------"
@@ -30,7 +33,7 @@ echo "Building Configurator"
 echo "----------------------------------"
 pushd ${configurator_path}
 mvn clean install
-cp -v target/ppaas-configurator-${wso2_ppaas_version}.zip ${script_path}/packages/
+cp -v target/ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
 popd
 
 echo "----------------------------------"
