@@ -23,7 +23,7 @@ Please follow below steps to proceed with the installation:
 
 Final folder structure should look like below :
 ```
-ppaas-configurator-4.1.0
+<configurator_home>
 |-- conf
 |   `-- logging_config.ini
 |-- configparserutil.py

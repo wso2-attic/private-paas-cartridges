@@ -19,7 +19,7 @@
 node 'base' {
 
 # General Configurations
-  $ppaas_version        = '4.1.0'
+  $ppaas_version        = '4.1.0-beta'
   $server_ip            = $ipaddress
 
 # PCA Configurations
@@ -47,7 +47,7 @@ node 'base' {
 
 # Configurator Configurations
   $configurator_name    = 'ppaas-configurator'
-  $configurator_version = '4.1.0'
+  $configurator_version = '4.1.0-SNAPSHOT'
 
   require ppaas_base
 }
