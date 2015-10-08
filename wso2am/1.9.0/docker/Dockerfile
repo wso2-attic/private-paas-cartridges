@@ -22,7 +22,7 @@ MAINTAINER dev@wso2.org
 ENV DEBIAN_FRONTEND noninteractive
 ENV WSO2_SERVER_TYPE am
 ENV WSO2_SERVER_VERSION 1.9.0
-ENV TEMPLATE_MODULE_NAME wso2${WSO2_SERVER_TYPE}-${WSO2_SERVER_VERSION}-template-module-${PPAAS_VERSION}
+ENV TEMPLATE_MODULE_NAME wso2${WSO2_SERVER_TYPE}-${WSO2_SERVER_VERSION}-template-module-${PROJECT_VERSION}
 
 # --------------------------------
 # Copy scripts, packages & plugins
