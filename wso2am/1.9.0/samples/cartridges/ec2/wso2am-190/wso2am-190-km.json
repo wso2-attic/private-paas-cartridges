@@ -108,6 +108,10 @@
         {
             "name": "payload_parameter.CONFIG_PARAM_LB_IP",
             "value": "127.0.0.1"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+            "value": "true"
         }
 
     ]

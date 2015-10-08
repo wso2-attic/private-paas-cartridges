@@ -67,6 +67,7 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
     GATEWAY_SERVICES = [CONST_GATEWAY_MANAGER_SERVICE_NAME, CONST_GATEWAY_WORKER_SERVICE_NAME]
     PUB_STORE_SERVICES = [CONST_PUBLISHER_SERVICE_NAME, CONST_STORE_SERVICE_NAME]
     PUB_STORE = [CONST_PUBLISHER_STORE_NAME]
+    KEY_MANAGER_SERVICES = [CONST_KEY_MANAGER_SERVICE_NAME]
 
     # list of environment variables exported by the plugin
     ENV_CONFIG_PARAM_MB_HOST = 'CONFIG_PARAM_MB_HOST'
@@ -154,6 +155,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 service_list = self.PUB_STORE_SERVICES
             elif service_name in self.PUB_STORE:
                 service_list = self.PUB_STORE
+            elif service_name in self.KEY_MANAGER_SERVICES:
+                service_list = self.KEY_MANAGER_SERVICES
 
             # set cluster ids for private-paas clustering schema in axis2.xml
             self.set_cluster_ids(app_id, service_list)
@@ -635,7 +638,7 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         cluster_ids = []
 
         for service_name in service_list:
-            WSO2AMStartupHandler.log.info("Looking cluster id for service - " + service_name)
+            WSO2AMStartupHandler.log.info("Retrieve cluster id for service - " + service_name)
             cluster_id_of_service = self.read_cluster_id_of_service(service_name, app_id)
             if cluster_id_of_service is not None:
                 cluster_ids.append(cluster_id_of_service)
