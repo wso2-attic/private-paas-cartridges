@@ -32,7 +32,7 @@ ppaas-configurator-4.1.0
 |-- constants.py
 |-- __init__.py
 `-- template-modules
-    `-- wso2as-5.2.1-template-module-4.1.0
+    `-- wso2as-5.2.1-template-module-4.1.0-SNAPSHOT
         |-- files
         |   |-- bin
         |   |   `-- ciphertool.bat
@@ -43,9 +43,9 @@ ppaas-configurator-4.1.0
         |       |   |   |-- geronimo_j2ee_management_1.1_spec_1.0.1_1.0.0.jar
         |       |   |   |-- hawtbuf_1.9_1.0.0.jar
         |       |   |   |-- org.apache.commons.lang3_3.1.0.jar
-        |       |   |   |-- org.apache.stratos.common-4.1.0.jar
-        |       |   |   |-- org.apache.stratos.messaging-4.1.0.jar
-        |       |   |   `-- private-paas-membership-scheme-4.1.0.jar
+        |       |   |   |-- org.apache.stratos.common-4.1.3.jar
+        |       |   |   |-- org.apache.stratos.messaging-4.1.3.jar
+        |       |   |   `-- private-paas-membership-scheme-4.1.0-beta.jar
         |       |   |-- lib
         |       |   |   |-- mysql-connector-java-5.1.29-bin.jar
         |       |   |   |-- org.wso2.carbon.server-4.2.0.jar
