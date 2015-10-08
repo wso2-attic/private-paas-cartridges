@@ -635,7 +635,7 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         cluster_ids = []
 
         for service_name in service_list:
-            WSO2AMStartupHandler.log.info("Looking cluster id for service - " + service_name)
+            WSO2AMStartupHandler.log.info("Retrieve cluster id for service - " + service_name)
             cluster_id_of_service = self.read_cluster_id_of_service(service_name, app_id)
             if cluster_id_of_service is not None:
                 cluster_ids.append(cluster_id_of_service)

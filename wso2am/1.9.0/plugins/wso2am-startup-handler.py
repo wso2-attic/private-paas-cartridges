@@ -242,8 +242,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_names_for_gw(app_id, member_ip)
             self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
-            set_system_properties = "-Dkm.ip=" + keymanager_ip + " -Dkm.port=" + km_port
-            start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=gateway-manager " + set_system_properties + " start"
+
+            start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=gateway-manager start"
 
 
         elif profile == self.CONST_GATEWAY_WORKER:
@@ -280,9 +280,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_names_for_gw(app_id, member_ip)
             self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
-            set_system_properties = "-Dkm.ip=" + keymanager_ip + " -Dkm.port=" + km_port
 
-            start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=gateway-worker " + set_system_properties + " start"
+            start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=gateway-worker start"
 
 
         elif profile == self.CONST_PUBLISHER:
@@ -632,6 +631,7 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         cluster_ids = []
 
         for service_name in service_list:
+            WSO2AMStartupHandler.log.info("Retrieve cluster id for service - " + service_name)
             cluster_id_of_service = self.read_cluster_id_of_service(service_name, app_id)
             if cluster_id_of_service is not None:
                 cluster_ids.append(cluster_id_of_service)
