@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
         <artifactId>ppaas-cartridges-wso2esb-parent</artifactId>
-        <version>4.1.0-beta</version>
+        <version>4.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>wso2esb-4.8.1-cartridge</artifactId>
