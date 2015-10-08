@@ -91,6 +91,10 @@
         {
             "name": "payload_parameter.CONFIG_PARAM_LB_IP",
             "value": "172.17.8.102"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+            "value": "true"
         }
 
     ]
