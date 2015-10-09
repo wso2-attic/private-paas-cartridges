@@ -186,18 +186,6 @@ else
 	sed -i "s/^.*level.*=.*$/level=${LOG_LEVEL}/g" ${PCA_HOME}/logging.ini
 fi
 
-if [ -z "${MB_USERNAME}" ]; then
-	sed -i "s/MB-USERNAME/ /g" ${PCA_HOME}/agent.conf
-else
-	sed -i "s#MB-USERNAME#${MB_USERNAME}#g" ${PCA_HOME}/agent.conf
-fi
-
-if [ -z "${MB_PASSWORD}" ]; then
-	sed -i "s/MB-PASSWORD/ /g" ${PCA_HOME}/agent.conf
-else
-	sed -i "s#MB-PASSWORD#${MB_PASSWORD}#g" ${PCA_HOME}/agent.conf
-fi
-
 # Start cartridge agent
 cd ${PCA_HOME}/
 python agent.py > /tmp/agent.screen.log 2>&1 &

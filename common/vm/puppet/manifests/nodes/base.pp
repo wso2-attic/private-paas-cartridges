@@ -28,8 +28,6 @@ node 'base' {
   $local_package_dir    = '/mnt/packs'
   $mb_ip                = 'localhost'
   $mb_port              = '1883'
-  $mb_username          = 'system'
-  $mb_password          = 'manager'
   $cep_urls             = "localhost:7711"
   $cep_username         = 'admin'
   $cep_password         = 'admin'
