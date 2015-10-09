@@ -31,7 +31,7 @@
     <groupId>org.wso2.ppaas.cartridges</groupId>
     <artifactId>ppaas-cartridges-parent</artifactId>
     <packaging>pom</packaging>
-    <version>4.1.0-SNAPSHOT</version>
+    <version>4.1.0</version>
     <name>WSO2 PPaaS Cartridges - Parent</name>
     <description>This repo contains cartridges that can be used with WSO2 Private PaaS to deploy WSO2 services on a
         cloud deployment
@@ -60,7 +60,7 @@
         <url>https://github.com/wso2/private-paas-cartridges.git</url>
         <developerConnection>scm:git:https://github.com/wso2/private-paas-cartridges.git</developerConnection>
         <connection>scm:git:https://github.com/wso2/private-paas-cartridges</connection>
-        <tag>HEAD</tag>
+        <tag>v4.1.0</tag>
     </scm>
 
     <modules>

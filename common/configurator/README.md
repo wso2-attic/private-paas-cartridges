@@ -32,7 +32,7 @@ Final folder structure should look like below :
 |-- constants.py
 |-- __init__.py
 `-- template-modules
-    `-- wso2as-5.2.1-template-module-4.1.0-SNAPSHOT
+    `-- wso2as-5.2.1-template-module-4.1.0
         |-- files
         |   |-- bin
         |   |   `-- ciphertool.bat
