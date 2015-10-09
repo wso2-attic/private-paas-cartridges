@@ -73,13 +73,6 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
-        <fileSet>
-            <directory>src/main/license</directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/</outputDirectory>
-            <includes>
-                <include>**/*</include>
-            </includes>
-        </fileSet>
     </fileSets>
 
     <files>
@@ -89,7 +82,7 @@
             <filtered>true</filtered>
         </file>
         <file>
-            <source>LICENSE</source>
+            <source>../../LICENSE</source>
             <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
         </file>
