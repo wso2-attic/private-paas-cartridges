@@ -83,3 +83,52 @@ node /[0-9]{1,12}.*wso2as-521/ inherits base {
 
 # Execution sequence
 Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
+
+
+# DAS 3.0.0 cartridge node
+node /[0-9]{1,12}.*wso2das-300/ inherits base {
+
+  class { 'java': }
+  class { 'python_agent': }
+  class { 'configurator': }
+  class { 'wso2installer':
+    server_name      => 'wso2das-3.0.0-SNAPSHOT',
+    module_name      => 'wso2das300'
+  }
+}
+
+# Execution sequence
+Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
+
+
+
+# BRS 2.1.0 cartridge node
+node /[0-9]{1,12}.*wso2brs-210/ inherits base {
+
+  class { 'java': }
+  class { 'python_agent': }
+  class { 'configurator': }
+  class { 'wso2installer':
+    server_name      => 'wso2brs-2.1.0',
+    module_name      => 'wso2brs210'
+  }
+}
+
+# Execution sequence
+Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
+
+
+# MB 3.0.0 cartridge node
+node /[0-9]{1,12}.*wso2mb-300/ inherits base {
+
+  class { 'java': }
+  class { 'python_agent': }
+  class { 'configurator': }
+  class { 'wso2installer':
+    server_name      => 'wso2mb-3.0.0-SNAPSHOT',
+    module_name      => 'wso2mb300'
+  }
+}
+
+# Execution sequence
+Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
