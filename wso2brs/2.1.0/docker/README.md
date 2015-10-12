@@ -8,7 +8,7 @@ WSO2 BRS 2.1.0 Dockerfile defines required resources for building a Docker image
 
 * [wso2brs-2.1.0.zip](http://wso2.com/products/business-rules-server/)
 
-(2) Generate template module `wso2brs-2.1.0-template-module-<PPAAS_VERSION>.zip` as described in [README.md](https://github.com/wso2/private-paas-cartridges/blob/master/wso2brs/2.1.0/template-module/README.md) under "Creating BRS Template Module for Private PaaS" section. Then copy the resulting Zip file to `packages` folder.
+(2) Generate template module `wso2brs-2.1.0-template-module-<PPAAS_VERSION>.zip` as described in [README.md](https://github.com/wso2/private-paas-cartridges/blob/master/wso2brs/2.1.0/template-module) under "Creating BRS Template Module for Private PaaS" section.
 
 
 (3) Run build.sh file to build the docker image. (This will copy the plugins and template module to the docker image)
