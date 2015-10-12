@@ -8,7 +8,7 @@ WSO2 DAS 3.0.0 Dockerfile defines required resources for building a Docker image
 
 * [wso2das-3.0.0.zip]
 
-(2) Generate template module `wso2das-3.0.0-template-module-<PPAAS_VERSION>.zip` as described in [README.md](https://github.com/wso2/private-paas-cartridges/blob/master/wso2das/3.0.0/template-module/README.md) under "Creating DAS Template Module for Private PaaS" section. Then copy the resulting Zip file to `packages` folder.
+(2) Generate template module `wso2das-3.0.0-template-module-<PPAAS_VERSION>.zip` as described in [README.md](https://github.com/wso2/private-paas-cartridges/blob/master/wso2das/3.0.0/template-module) under "Creating DAS Template Module for Private PaaS" section.
 
 
 (3) Run build.sh file to build the docker image. (This will copy the plugins and template module to the docker image)
