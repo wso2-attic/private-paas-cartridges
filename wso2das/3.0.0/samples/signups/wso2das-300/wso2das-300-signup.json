@@ -1,0 +1,11 @@
+{
+    "artifactRepositories": [
+        {
+            "alias": "wso2das-300",
+            "privateRepo": false,
+            "repoUrl": "https://github.com/chanikag/das-dep-sync.git",
+            "repoUsername": "",
+            "repoPassword": ""
+        }
+    ]
+}
