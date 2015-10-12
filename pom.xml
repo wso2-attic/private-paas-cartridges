@@ -69,6 +69,9 @@
         <module>wso2as</module>
         <module>wso2esb</module>
         <module>wso2is</module>
+        <module>wso2das</module>
+        <module>wso2brs</module>
+        <module>wso2mb</module>
     </modules>
 
     <profiles>
