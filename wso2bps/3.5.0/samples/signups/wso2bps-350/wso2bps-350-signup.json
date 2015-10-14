@@ -1,0 +1,18 @@
+{
+    "artifactRepositories": [
+        {
+            "alias": "wso2bps-350-manager",
+            "privateRepo": false,
+            "repoUrl": "<REPO_URL>",
+            "repoUsername": "<REPO_USERNAME>",
+            "repoPassword": "<REPO_PASSWORD>"
+        },
+        {
+            "alias": "wso2bps-350-worker",
+            "privateRepo": false,
+            "repoUrl": "<REPO_URL>",
+            "repoUsername": "<REPO_USERNAME>",
+            "repoPassword": "<REPO_PASSWORD>"
+        }
+    ]
+}
