@@ -67,13 +67,9 @@
         <module>wso2bps</module>
         <module>wso2brs</module>
         <module>wso2das</module>
-        <module>wso2dss</module>
         <module>wso2esb</module>
         <module>wso2greg</module>
         <module>wso2is</module>
-        <module>wso2das</module>
-        <module>wso2bps</module>
-        <module>wso2brs</module>
         <module>wso2mb</module>
     </modules>
 
