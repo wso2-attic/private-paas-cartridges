@@ -18,7 +18,8 @@
 # ------------------------------------------------------------------------
 
 iaas=$1
-host_ip="localhost"
+host_ip="192.168.30.96"
+#host_ip="localhost"
 host_port=9443
 
 prgdir=`dirname "$0"`
