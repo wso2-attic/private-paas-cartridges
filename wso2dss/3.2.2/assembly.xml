@@ -77,7 +77,7 @@
 
     <files>
         <file>
-            <source>../../LICENSE</source>
+            <source>LICENSE</source>
             <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
         </file>
