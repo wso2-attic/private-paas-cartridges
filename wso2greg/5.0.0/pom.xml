@@ -43,7 +43,7 @@
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>${basedir}/assembly/bin.xml</descriptor>
+                                <descriptor>assembly.xml</descriptor>
                             </descriptors>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
