@@ -75,7 +75,6 @@
         <module>wso2greg</module>
         <module>wso2is</module>
         <module>wso2mb</module>
-        <module>activemq</module>
     </modules>
 
     <profiles>
