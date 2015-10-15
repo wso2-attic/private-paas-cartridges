@@ -18,7 +18,7 @@ WSO2 AM 1.9.1 Dockerfile defines required resources for building a Docker image 
 
 * [wso2am-1.9.1.zip](http://wso2.com/api-management/)
 
-(2) Generate template module `wso2am-1.9.1-template-module-<PPAAS_VERSION>.zip` as described in [README.md] (https://github.com/wso2/product-private-paas/tree/master/cartridges/template-module/wso2am-1.9.1) under "Creating AM Template Module for Private PaaS" section.
+(2) Generate template module `wso2am-1.9.1-template-module-<PPAAS_VERSION>.zip` as described in [README.md] (https://github.com/wso2/private-paas-cartridges/blob/master/wso2am/1.9.1/template-module/README.md) under "Creating AM Template Module for Private PaaS" section. Then copy the resulting Zip file to `packages` folder.
 
 (3) Run build.sh file to build the docker image: (This will copy the plugins and template module to the docker image)
 ```
