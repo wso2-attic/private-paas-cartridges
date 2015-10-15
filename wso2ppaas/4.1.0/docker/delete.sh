@@ -1,4 +1,6 @@
+#!/bin/bash
 # ------------------------------------------------------------------------
+#
 # Copyright 2005-2015 WSO2, Inc. (http://wso2.com)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,26 +14,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License
+#
 # ------------------------------------------------------------------------
 
-[SETTINGS]
-READ_FROM_ENVIRONMENT=true
-CARBON_HOME=/opt/wso2am-1.9.0
-
-[PARAMS]
-CONFIG_PARAM_CLUSTERING=false
-CONFIG_PARAM_MEMBERSHIP_SCHEME=multicast
-CONFIG_PARAM_DOMAIN=wso2.carbon.domain
-CONFIG_PARAM_LOCAL_MEMBER_HOST=127.0.0.1
-CONFIG_PARAM_LOCAL_MEMBER_PORT=4000
-CONFIG_PARAM_WKA_MEMBERS=[127.0.0.1:4000]
-CONFIG_PARAM_PORT_OFFSET=0
-CONFIG_PARAM_PROFILE=Default
-
-# For using private-paas membership schema
-#CONFIG_PARAM_MB_HOST
-CONFIG_PARAM_MB_PORT=61616
-#CONFIG_PARAM_CLUSTER_IDs
+# Delete the AM docker cluster
+memberId=1
 
 
+deleteMember() {
+	name="wso2ppaas-${memberId}"
+	docker rm ${name}
+	memberId=$((memberId + 1))
+	echo "AM member deleted: [name] ${name}"
+	sleep 1
+}
 
+echo "Deleting the PPaaS..."
+
+deleteMember
