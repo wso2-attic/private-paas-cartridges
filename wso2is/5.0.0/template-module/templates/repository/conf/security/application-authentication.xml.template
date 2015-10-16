@@ -16,7 +16,9 @@
 			<!-- Include a data source name (jndiConfigName) from the set of data 
 				sources defined in master-datasources.xml -->
 			<!--Name>jdbc/WSO2_IDP_DB</Name-->
-			 {% if CONFIG_PARAM_USER_MGT_DB_URL is defined -%}
+			 {% if CONFIG_PARAM_PROFILE == 'KeyManager' -%}
+             <Name>jdbc/WSO2AM_DB</Name>
+			 {% elif CONFIG_PARAM_USER_MGT_DB_URL is defined -%}
 			 <Name>jdbc/WSO2UMDB</Name>
              {% else -%}
 			 <Name>jdbc/WSO2CarbonDB</Name>
@@ -100,6 +102,27 @@
 			<Parameter name="AttributesRequestor">org.wso2.carbon.identity.application.authenticator.openid.manager.SampleAttributesRequestor</Parameter-->
 		</AuthenticatorConfig>	
 	</AuthenticatorConfigs> 
+
+	{% if CONFIG_PARAM_PROFILE == 'KeyManager' -%}
+	<AuthenticationEndpointQueryParams>
+		<AuthenticationEndpointQueryParam name="SAMLRequest"/>
+		<AuthenticationEndpointQueryParam name="commonAuthCallerPath"/>
+		<AuthenticationEndpointQueryParam name="relyingParty"/>
+		<AuthenticationEndpointQueryParam name="sessionDataKey"/>
+		<AuthenticationEndpointQueryParam name="tenantDomain"/>
+		<AuthenticationEndpointQueryParam name="type"/>
+		<AuthenticationEndpointQueryParam name="authenticators"/>
+		<AuthenticationEndpointQueryParam name="accessToken"/>
+		<AuthenticationEndpointQueryParam name="resource_url"/>
+		<AuthenticationEndpointQueryParam name="scope"/>
+		<AuthenticationEndpointQueryParam name="response_type"/>
+		<AuthenticationEndpointQueryParam name="redirect_uri"/>
+		<AuthenticationEndpointQueryParam name="client_id"/>
+		<AuthenticationEndpointQueryParam name="forceAuthenticate"/>
+		<AuthenticationEndpointQueryParam name="checkAuthentication"/>
+		<AuthenticationEndpointQueryParam name="tenantId"/>
+	</AuthenticationEndpointQueryParams>
+	{% endif -%}
 
     <!--
 		Sequences allow specifying authentication flows for different

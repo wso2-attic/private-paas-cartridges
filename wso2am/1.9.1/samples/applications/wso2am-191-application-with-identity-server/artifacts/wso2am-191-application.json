@@ -1,0 +1,86 @@
+{
+    "applicationId": "wso2am-191-application-with-is",
+    "multiTenant": true,
+    "alias": "wso2am-191-application",
+    "components": {
+        "groups": [
+            {
+                "name": "identityserver-gw-manager-gw-worker",
+                "alias": "identityserver-gw-manager-gw-worker",
+                "groupMinInstances": 1,
+                "groupMaxInstances": 1,
+                "cartridges": [
+                    {
+                        "type": "wso2am-191-gw-manager",
+                        "cartridgeMin": 1,
+                        "cartridgeMax": 1,
+                        "subscribableInfo": {
+                            "alias": "gateway-manager",
+                            "deploymentPolicy": "deployment-policy-1",
+                            "autoscalingPolicy": "autoscaling-policy-1"
+                        }
+                    },
+                    {
+                        "type": "wso2am-191-gw-worker",
+                        "cartridgeMin": 1,
+                        "cartridgeMax": 1,
+                        "subscribableInfo": {
+                            "alias": "gateway-worker",
+                            "deploymentPolicy": "deployment-policy-1",
+                            "autoscalingPolicy": "autoscaling-policy-1"
+                        }
+                    },
+                    {
+                        "type": "wso2is-500-manager",
+                        "cartridgeMin": 1,
+                        "cartridgeMax": 1,
+                        "subscribableInfo": {
+                            "alias": "identity-server",
+                            "deploymentPolicy": "deployment-policy-1",
+                            "autoscalingPolicy": "autoscaling-policy-1"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "pub-store-grp",
+                "alias": "pub-store-grp",
+                "groupMinInstances": 1,
+                "groupMaxInstances": 1,
+                "cartridges": [
+                    {
+                        "type": "wso2am-191-pub",
+                        "cartridgeMin": 1,
+                        "cartridgeMax": 1,
+                        "subscribableInfo": {
+                            "alias": "publisher",
+                            "deploymentPolicy": "deployment-policy-1",
+                            "autoscalingPolicy": "autoscaling-policy-1"
+                        }
+                    },
+                    {
+                        "type": "wso2am-191-store",
+                        "cartridgeMin": 1,
+                        "cartridgeMax": 1,
+                        "subscribableInfo": {
+                            "alias": "store",
+                            "deploymentPolicy": "deployment-policy-1",
+                            "autoscalingPolicy": "autoscaling-policy-1"
+                        }
+                    }
+                ]
+            }
+        ],
+        "dependencies": {
+            "startupOrders": [
+                {
+                    "aliases": [
+                        "group.identityserver-gw-manager-gw-worker",
+                        "group.pub-store-grp"
+                    ]
+                }
+            ],
+            "terminationBehaviour": "terminate-none"
+        }
+    }
+}

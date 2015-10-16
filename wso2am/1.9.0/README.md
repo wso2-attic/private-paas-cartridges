@@ -24,3 +24,6 @@ value : 120
 Default value is 120 seconds. Value should be specified in seconds.
 
 - Create database tables before deploying the application
+
+- Sign up for the application in Private Paas by giving a git repository for both gateway manager and gateway worker
+ cartridges for artifact distribution. 
