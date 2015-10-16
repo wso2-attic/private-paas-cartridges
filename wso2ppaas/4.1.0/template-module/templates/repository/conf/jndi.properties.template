@@ -29,3 +29,6 @@ topic.MyTopic = example.MyTopic
 connectionfactoryName=TopicConnectionFactory
 java.naming.provider.url=tcp://{{CONFIG_PARAM_MB_HOST}}:{{CONFIG_PARAM_MB_PORT}}
 java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory
+
+java.naming.security.principal={{CONFIG_PARAM_MB_USERNAME}}
+java.naming.security.credentials={{CONFIG_PARAM_MB_PASSWORD}}
