@@ -1,0 +1,11 @@
+{
+    "name": "identityserver-gw-manager-gw-worker",
+    "cartridges": [
+        "wso2am-191-gw-manager",
+        "wso2am-191-gw-worker",
+        "wso2is-500-manager"
+    ],
+    "dependencies": {
+        "terminationBehaviour": "terminate-none"
+    }
+}

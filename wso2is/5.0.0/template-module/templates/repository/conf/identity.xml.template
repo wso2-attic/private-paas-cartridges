@@ -15,7 +15,10 @@
 		<DataSource>
 			<!-- Include a data source name (jndiConfigName) from the set of data 
 				sources defined in master-datasources.xml -->
-		{% if CONFIG_PARAM_USER_MGT_DB_URL is defined -%}
+
+		{% if CONFIG_PARAM_PROFILE == 'KeyManager' -%}
+			<Name>jdbc/WSO2AM_DB</Name>
+		{% elif CONFIG_PARAM_USER_MGT_DB_URL is defined -%}
 			<Name>jdbc/WSO2UMDB</Name>
 		{% else -%}
 			<Name>jdbc/WSO2CarbonDB</Name>
@@ -74,6 +77,21 @@
 	</OpenID>
 
 	<OAuth>
+	    {% if CONFIG_PARAM_PROFILE == 'KeyManager' -%}
+		<OAuthScopeValidator class="org.wso2.carbon.identity.oauth2.validators.JDBCScopeValidator"/>
+		<!-- Enable renewal of refresh token for refresh_token grant -->
+		<RenewRefreshTokenForRefreshGrant>true</RenewRefreshTokenForRefreshGrant>
+		<!-- Process the token before storing it in database, e.g. encrypting -->
+		<TokenPersistenceProcessor>org.wso2.carbon.identity.oauth.tokenprocessor.PlainTextPersistenceProcessor</TokenPersistenceProcessor>
+		<!-- Supported Client Autnetication Methods -->
+		<ClientAuthHandlers>
+			<ClientAuthHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.clientauth.BasicAuthClientAuthHandler</ClientAuthHandlerImplClass>
+		</ClientAuthHandlers>
+
+		<!-- Default validity period for application access tokens in seconds -->
+		<UserAccessTokenDefaultValidityPeriod>3600</UserAccessTokenDefaultValidityPeriod>
+		{% endif -%}
+
 		<RequestTokenUrl>https://localhost:9443/oauth/request-token</RequestTokenUrl>
 		<AccessTokenUrl>https://localhost:9443/oauth/access-token</AccessTokenUrl>
 		<AuthorizeUrl>https://localhost:9443/oauth/authorize-url</AuthorizeUrl>
@@ -81,14 +99,20 @@
 		<AuthorizationCodeDefaultValidityPeriod>300</AuthorizationCodeDefaultValidityPeriod>
 		<!-- Default validity period for user access tokens in seconds -->
 		<AccessTokenDefaultValidityPeriod>3600</AccessTokenDefaultValidityPeriod>
+
+		{% if CONFIG_PARAM_PROFILE != 'KeyManager' -%}
 		<!-- Default validity period for application access tokens in seconds -->
 		<UserAccessTokenDefaultValidityPeriod>3600</UserAccessTokenDefaultValidityPeriod>
 		<!-- Validity period for refresh token -->		
 		<RefreshTokenValidityPeriod>84600</RefreshTokenValidityPeriod>
+		{% endif -%}
+
 		<!-- Timestamp skew in seconds -->
 		<TimestampSkew>300</TimestampSkew>
 		<!-- Enable OAuth caching -->
 		<EnableOAuthCache>true</EnableOAuthCache>
+
+		{% if CONFIG_PARAM_PROFILE != 'KeyManager' -%}
 		<!-- Enable renewal of refresh token for refresh_token grant -->
 		<RenewRefreshTokenForRefreshGrant>true</RenewRefreshTokenForRefreshGrant>
 		<!-- Process the token before storing it in database, e.g. encrypting -->
@@ -96,7 +120,9 @@
 		<!-- Supported Client Autnetication Methods -->
 		<ClientAuthHandlers>
 		    <ClientAuthHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.clientauth.BasicAuthClientAuthHandler</ClientAuthHandlerImplClass>
-		</ClientAuthHandlers>		
+		</ClientAuthHandlers>
+		{% endif -%}
+
 		<!-- Supported Response Types -->
 		<SupportedResponseTypes>
 		    <SupportedResponseType>
@@ -110,6 +136,39 @@
 		</SupportedResponseTypes>
 		<!-- Supported Grant Types -->
 		<SupportedGrantTypes>
+
+		{% if CONFIG_PARAM_PROFILE == 'KeyManager' -%}
+			<SupportedGrantType>
+				<GrantTypeName>authorization_code</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ExtendedAuthorizationCodeGrantHandler</GrantTypeHandlerImplClass>
+			</SupportedGrantType>
+			<SupportedGrantType>
+				<GrantTypeName>password</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ExtendedPasswordGrantHandler</GrantTypeHandlerImplClass>
+			</SupportedGrantType>
+			<SupportedGrantType>
+			   <GrantTypeName>application_token</GrantTypeName>
+			   <GrantTypeHandlerImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ApplicationTokenGrantHandler</GrantTypeHandlerImplClass>
+			   <GrantTypeValidatorImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ApplicationTokenGrantValidator</GrantTypeValidatorImplClass>
+		   </SupportedGrantType>
+			<SupportedGrantType>
+				<GrantTypeName>refresh_token</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.grant.RefreshGrantHandler</GrantTypeHandlerImplClass>
+			</SupportedGrantType>
+			<SupportedGrantType>
+				<GrantTypeName>client_credentials</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ExtendedClientCredentialsGrantHandler</GrantTypeHandlerImplClass>
+			</SupportedGrantType>
+			<SupportedGrantType>
+				<GrantTypeName>urn:ietf:params:oauth:grant-type:saml2-bearer</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.apimgt.keymgt.handlers.ExtendedSAML2BearerGrantHandler</GrantTypeHandlerImplClass>
+			</SupportedGrantType>
+			<SupportedGrantType>
+				<GrantTypeName>iwa:ntlm</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.grant.iwa.ntlm.NTLMAuthenticationGrantHandler</GrantTypeHandlerImplClass>
+				<GrantTypeValidatorImplClass>org.wso2.carbon.identity.oauth.common.NTLMAuthenticationValidator</GrantTypeValidatorImplClass>
+			</SupportedGrantType>
+        {% else -%}
 		    <SupportedGrantType>
 		    	<GrantTypeName>authorization_code</GrantTypeName>
 			<GrantTypeHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.grant.AuthorizationCodeGrantHandler</GrantTypeHandlerImplClass>
@@ -131,9 +190,11 @@
 			<GrantTypeHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.grant.saml.SAML2BearerGrantHandler</GrantTypeHandlerImplClass>
 		    </SupportedGrantType>
 		    <SupportedGrantType>
-                        <GrantTypeName>iwa:ntlm</GrantTypeName>
-                        <GrantTypeHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.grant.iwa.ntlm.NTLMAuthenticationGrantHandler</GrantTypeHandlerImplClass>
-                    </SupportedGrantType>
+				<GrantTypeName>iwa:ntlm</GrantTypeName>
+				<GrantTypeHandlerImplClass>org.wso2.carbon.identity.oauth2.token.handlers.grant.iwa.ntlm.NTLMAuthenticationGrantHandler</GrantTypeHandlerImplClass>
+			</SupportedGrantType>
+		{% endif -%}
+
 		</SupportedGrantTypes>
 		<OAuthCallbackHandlers>
 			<OAuthCallbackHandler Class="org.wso2.carbon.identity.oauth.callback.DefaultCallbackHandler" />
@@ -198,6 +259,15 @@
 
 	<SSOService>
 		<EntityId>localhost</EntityId>
+
+		{% if CONFIG_PARAM_PROFILE == 'KeyManager' -%}
+		<SAMLSSOEncrypter>org.wso2.carbon.identity.sso.saml.builders.encryption.DefaultSSOEncrypter</SAMLSSOEncrypter>
+                        <SAMLSSOSigner>org.wso2.carbon.identity.sso.saml.builders.signature.DefaultSSOSigner</SAMLSSOSigner>
+        <SAML2HTTPRedirectSignatureValidator>org.wso2.carbon.identity.sso.saml.validators.SAML2HTTPRedirectDeflateSignatureValidator</SAML2HTTPRedirectSignatureValidator>
+                        <!--SAMLSSOResponseBuilder>org.wso2.carbon.identity.sso.saml.builders.DefaultResponseBuilder</SAMLSSOResponseBuilder-->
+                        <UseAuthenticatedUserDomain>false</UseAuthenticatedUserDomain>
+		{% endif -%}
+
 		<IdentityProviderURL>https://localhost:9443/samlsso</IdentityProviderURL>
 		<SingleLogoutRetryCount>5</SingleLogoutRetryCount>
 		<SingleLogoutRetryInterval>60000</SingleLogoutRetryInterval> <!-- in milli seconds -->
@@ -208,14 +278,20 @@
                 <AttributesClaimDialect>http://wso2.org/claims</AttributesClaimDialect>
 		<AcceptOpenIDLogin>false</AcceptOpenIDLogin>
 		<ClaimsRetrieverImplClass>org.wso2.carbon.identity.sso.saml.builders.claims.DefaultClaimsRetriever</ClaimsRetrieverImplClass>
+
+		{% if CONFIG_PARAM_PROFILE != 'KeyManager' -%}
 		<SAMLSSOEncrypter>org.wso2.carbon.identity.sso.saml.builders.encryption.DefaultSSOEncrypter</SAMLSSOEncrypter>
                 <SAMLSSOSigner>org.wso2.carbon.identity.sso.saml.builders.signature.DefaultSSOSigner</SAMLSSOSigner>
                 <SAML2HTTPRedirectSignatureValidator>org.wso2.carbon.identity.sso.saml.validators.SAML2HTTPRedirectDeflateSignatureValidator</SAML2HTTPRedirectSignatureValidator>
                 <!--SAMLSSOResponseBuilder>org.wso2.carbon.identity.sso.saml.builders.DefaultResponseBuilder</SAMLSSOResponseBuilder-->
+		{% endif -%}
 
 		<!-- SAML Token validity period in minutes -->
                 <SAMLResponseValidityPeriod>5</SAMLResponseValidityPeriod>
+
+                {% if CONFIG_PARAM_PROFILE != 'KeyManager' -%}
                 <UseAuthenticatedUserDomain>false</UseAuthenticatedUserDomain>
+                {% endif -%}
 	</SSOService>
 
 	<EntitlementSettings>
