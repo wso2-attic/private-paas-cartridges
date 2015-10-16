@@ -52,15 +52,15 @@ $java_distribution 	    = 'jdk-7u80-linux-x64.tar.gz'
 $java_folder    		= 'jdk1.7.0_72'
 ```
 ##### **Configurator Module**
-(1) Copy ppaas-configurator-4.1.0-SNAPSHOT.zip from `<private-paas-cartridges_home>/common/configurator/target/ppaas-configurator-4.1.0-SNAPSHOT.zip`  to `/etc/puppet/modules/configurator/files` folder.
+(1) Copy wso2ppaas-configurator-4.1.0-SNAPSHOT.zip from `<private-paas-cartridges_home>/common/configurator/target/wso2ppaas-configurator-4.1.0-SNAPSHOT.zip`  to `/etc/puppet/modules/configurator/files` folder.
 
-(2) Change file permission to 0755 for ppaas-configurator-4.1.0-SNAPSHOT.zip .
+(2) Change file permission to 0755 for wso2ppaas-configurator-4.1.0-SNAPSHOT.zip .
 ```
-chmod 755 ppaas-configurator-4.1.0-SNAPSHOT.zip 
+chmod 755 wso2ppaas-configurator-4.1.0-SNAPSHOT.zip 
 ```
 (3) Update the following configurator related variables in `/etc/puppet/manifests/nodes/base.pp` file with respective values.
 ```
-$configurator_name    = 'ppaas-configurator'
+$configurator_name    = 'wso2ppaas-configurator'
 $configurator_version = '4.1.0-SNAPSHOT'
 ```
 ### **Optional Modules**
@@ -122,7 +122,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |-- modules
 |   |-- configurator
 |   |   |-- files
-|   |   |   `-- ppaas-configurator-4.1.0-SNAPSHOT.zip
+|   |   |   `-- wso2ppaas-configurator-4.1.0-SNAPSHOT.zip
 |   |   `-- manifests
 |   |       `-- init.pp
 |   |-- java

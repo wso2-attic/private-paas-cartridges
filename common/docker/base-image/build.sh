@@ -33,7 +33,7 @@ echo "Building Configurator"
 echo "----------------------------------"
 pushd ${configurator_path}
 mvn clean install
-cp -v target/ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
+cp -v target/wso2ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
 popd
 
 echo "----------------------------------"

@@ -1,0 +1,18 @@
+{
+    "artifactRepositories": [
+        {
+            "alias": "wso2dss-322-manager",
+            "privateRepo": false,
+            "repoUrl": "https://github.com/lasinducharith/dss-dep-sync.git",
+            "repoUsername": "",
+            "repoPassword": ""
+        },
+        {
+            "alias": "wso2dss-322-worker",
+            "privateRepo": false,
+            "repoUrl": "https://github.com/lasinducharith/dss-dep-sync.git",
+            "repoUsername": "",
+            "repoPassword": ""
+        }
+    ]
+}

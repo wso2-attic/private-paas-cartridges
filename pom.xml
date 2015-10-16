@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+  ~ Copyright 2005-2015 WSO2, Inc. (http://wso2.com)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -67,8 +64,14 @@
         <module>common</module>
         <module>wso2am</module>
         <module>wso2as</module>
+        <module>wso2bps</module>
+        <module>wso2brs</module>
+        <module>wso2das</module>
+        <module>wso2dss</module>
         <module>wso2esb</module>
+        <module>wso2greg</module>
         <module>wso2is</module>
+        <module>wso2mb</module>
     </modules>
 
     <profiles>
@@ -480,7 +483,7 @@
         <ppaas.version>4.1.0-beta</ppaas.version>
 
         <!-- distribution properties -->
-        <configurator.distribution.name>ppaas-configurator</configurator.distribution.name>
+        <configurator.distribution.name>wso2ppaas-configurator</configurator.distribution.name>
 
         <!-- External libraries -->
         <commons.logging.version>1.1.1</commons.logging.version>

@@ -42,7 +42,7 @@
                         <configuration>
                             <finalName>${configurator.distribution.name}-${project.version}</finalName>
                             <descriptors>
-                                <descriptor>src/assembly/bin.xml</descriptor>
+                                <descriptor>assembly.xml</descriptor>
                             </descriptors>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
