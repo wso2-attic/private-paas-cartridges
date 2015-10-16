@@ -32,7 +32,6 @@ Default value is 120 seconds. Value should be specified in seconds.
   
   1. Use the pre packaged Identity Server pack which is designed to run as Key Manager. Do not use the default IS pack.
      Download from  - [WSO2 Identity Server](http://product-dist.wso2.com/downloads/api-manager/1.9.1/identity-server/wso2is-5.0.0.zip)
-     Refer [Docs](https://docs.wso2.com/display/CLUSTER420/Configuring+the+Pre-Packaged+Identity+Server+5.0.0+with+API+Manager+1.9.1)
-      
+           
   2. Rename the patch0012 kernal patch to patch9999 if you are applying the WSO2 Identity Server Service Pack for 5.0.0.
      This is to support private-paas membership schema which comes from kernal patch 12. 
