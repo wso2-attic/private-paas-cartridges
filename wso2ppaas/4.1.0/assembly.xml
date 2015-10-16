@@ -89,11 +89,6 @@
             <filtered>true</filtered>
         </file>
         <file>
-            <source>../../LICENSE</source>
-            <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
-            <filtered>true</filtered>
-        </file>
-        <file>
             <source>../../common/docker/scripts/build-helper.sh</source>
             <outputDirectory>${pom.artifactId}-${pom.version}/docker</outputDirectory>
             <filtered>true</filtered>
