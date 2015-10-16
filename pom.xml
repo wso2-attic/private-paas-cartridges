@@ -486,7 +486,7 @@
         <ppaas.version>4.1.0-beta</ppaas.version>
 
         <!-- distribution properties -->
-        <configurator.distribution.name>ppaas-configurator</configurator.distribution.name>
+        <configurator.distribution.name>wso2ppaas-configurator</configurator.distribution.name>
 
         <!-- External libraries -->
         <commons.logging.version>1.1.1</commons.logging.version>

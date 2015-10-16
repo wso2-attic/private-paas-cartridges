@@ -3,7 +3,7 @@
 How to use template modules to generate cartridges and network partitions
 -------------------------------------------------------------
 
-- Get the Configurator pack ppaas-configurator-4.1.0-SNAPSHOT.zip
+- Get the Configurator pack wso2ppaas-configurator-4.1.0-SNAPSHOT.zip
 
 - Configure samples-templates/module.ini with correct target path as carbon-home where the samples can be found and with relevant other details
 

@@ -23,7 +23,7 @@
     <fileSets>
         <fileSet>
             <directory>src/main/python/configurator</directory>
-            <outputDirectory>ppaas-configurator-${pom.version}</outputDirectory>
+            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
