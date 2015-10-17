@@ -72,6 +72,7 @@
         <module>wso2greg</module>
         <module>wso2is</module>
         <module>wso2mb</module>
+        <module>wso2ppaas</module>
     </modules>
 
     <profiles>

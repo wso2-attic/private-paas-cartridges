@@ -2,7 +2,7 @@
 ---
 
 
-###Creating AM Template Module for Private PaaS
+###Creating PPaaS Template Module for Private PaaS
 
 (1) Build the template module using the following command.
 
@@ -25,7 +25,7 @@ You can configure following in the ***module.ini*** file.
 
 #### Set the path of product directory :
 
-    CARBON_HOME = <AM_HOME>
+    CARBON_HOME = <PPAAS_HOME>
 
 ---
 
@@ -53,14 +53,6 @@ You can configure following in the ***module.ini*** file.
 
 ---
 
-#### Well known members declaration :
-
-    CONFIG_PARAM_WKA_MEMBERS = "127.0.0.1:4000,127.0.1.1:4001"
-
-* Format - "ip_address1:port1,ip_address2:port2"
-* Used in - < PPAAS_HOME >/repository/conf/axis2/axis2.xml
-
----
 
 #### Set Local Member Hostname and port :
 
@@ -77,11 +69,5 @@ You can configure following in the ***module.ini*** file.
 
 * Used in - < PPAAS_HOME >/repository/conf/carbon.xml
 
----
-#### Set proxy ports when using a load balancer :
 
-    CONFIG_PARAM_HTTP_PROXY_PORT = 80
-    CONFIG_PARAM_HTTPS_PROXY_PORT = 443
-
-* Used in - < PPAAS_HOME >/repository/conf/tomcat/catalina-server.xml
 
