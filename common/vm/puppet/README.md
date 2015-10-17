@@ -13,17 +13,17 @@ This folder contains WSO2 Private PaaS virtual machine cartridges.
 Following modules are mandatory to setup puppet-master.
 
 ##### **Python Cartridge Agent Module**
-(1) Copy [apache-stratos-python-cartridge-agent-4.1.3.zip ](http://www.apache.org/dyn/closer.cgi/stratos)  to 
+(1) Copy [apache-stratos-python-cartridge-agent-4.1.4.zip ](http://www.apache.org/dyn/closer.cgi/stratos)  to 
 `/etc/puppet/modules/python_agent/files/packs` folder.
 
-(2) Change file permission to 0755 for apache-stratos-python-cartridge-agent-4.1.3.zip.
+(2) Change file permission to 0755 for apache-stratos-python-cartridge-agent-4.1.4.zip.
 ```
-chmod 755 apache-stratos-python-cartridge-agent-4.1.3.zip
+chmod 755 apache-stratos-python-cartridge-agent-4.1.4.zip
 ```
 (3) Update the following python agent related variables in `/etc/puppet/manifests/nodes/base.pp` file with respective values.
 ```
   $pca_name             = 'apache-stratos-python-cartridge-agent'
-  $pca_version          = '4.1.3'
+  $pca_version          = '4.1.4'
   $mb_ip                = 'MB-IP'
   $mb_port              = 'MB-PORT'
   $mb_type    			= 'activemq' #in wso2mb case, value should be 'wso2mb'
@@ -52,16 +52,16 @@ $java_distribution 	    = 'jdk-7u80-linux-x64.tar.gz'
 $java_folder    		= 'jdk1.7.0_72'
 ```
 ##### **Configurator Module**
-(1) Copy wso2ppaas-configurator-4.1.0-SNAPSHOT.zip from `<private-paas-cartridges_home>/common/configurator/target/wso2ppaas-configurator-4.1.0-SNAPSHOT.zip`  to `/etc/puppet/modules/configurator/files` folder.
+(1) Copy wso2ppaas-configurator-4.1.0.zip from `<private-paas-cartridges_home>/common/configurator/target/wso2ppaas-configurator-4.1.0.zip`  to `/etc/puppet/modules/configurator/files` folder.
 
-(2) Change file permission to 0755 for wso2ppaas-configurator-4.1.0-SNAPSHOT.zip .
+(2) Change file permission to 0755 for wso2ppaas-configurator-4.1.0.zip .
 ```
-chmod 755 wso2ppaas-configurator-4.1.0-SNAPSHOT.zip 
+chmod 755 wso2ppaas-configurator-4.1.0.zip 
 ```
 (3) Update the following configurator related variables in `/etc/puppet/manifests/nodes/base.pp` file with respective values.
 ```
 $configurator_name    = 'wso2ppaas-configurator'
-$configurator_version = '4.1.0-SNAPSHOT'
+$configurator_version = '4.1.0'
 ```
 ### **Optional Modules**
 Following modules are not mandatory to setup puppet-master. Only servers that are used by application needs to be configured. For example, If only esb cartridge is used in application only esb related module needs to be setup.
@@ -122,7 +122,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |-- modules
 |   |-- configurator
 |   |   |-- files
-|   |   |   `-- wso2ppaas-configurator-4.1.0-SNAPSHOT.zip
+|   |   |   `-- wso2ppaas-configurator-4.1.0.zip
 |   |   `-- manifests
 |   |       `-- init.pp
 |   |-- java
@@ -138,7 +138,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |   |       `-- init.pp
 |   |-- python_agent
 |   |   |-- files
-|   |   |   |-- apache-stratos-python-cartridge-agent-4.1.3.zip
+|   |   |   |-- apache-stratos-python-cartridge-agent-4.1.4.zip
 |   |   |   |-- README.txt
 |   |   |   `-- start_agent.sh
 |   |   |-- manifests
@@ -156,7 +156,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |       |   `-- wso2esb481
 |       |       |-- packs
 |       |       |   |-- README
-|       |       |   |-- wso2esb-4.8.1-template-module-4.1.0-SNAPSHOT.zip
+|       |       |   |-- wso2esb-4.8.1-template-module-4.1.0.zip
 |       |       |   `-- wso2esb-4.8.1.zip
 |       |       `-- plugins
 |       |           |-- README

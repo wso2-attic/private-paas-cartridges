@@ -5,7 +5,7 @@ WSO2-DSS 3.2.2 Template for the Configurator
 
 (1) Copy [mysql-connector-java-5.1.xx-bin.jar](http://dev.mysql.com/downloads/connector/j/) file to `<template_module_home>/files/repository/components/lib` folder. (Folder structure needs to be created.)
 
-(2) Copy `<private_paas_home>/extensions/carbon/ppaas-membership-scheme/target/ppaas-membership-scheme-4.1.0-SNAPSHOT.jar` file to `<template_module_home>/files/repository/components/dropins` folder.
+(2) Copy `<private_paas_home>/extensions/carbon/ppaas-membership-scheme/target/wso2ppaas-membership-scheme-4.1.0.jar` file to `<template_module_home>/files/repository/components/dropins` folder.
 
 (3) Copy following jar files to `<template_module_home>/files/repository/components/dropins` folder.
 
@@ -13,8 +13,8 @@ WSO2-DSS 3.2.2 Template for the Configurator
  * geronimo_j2ee_management_1.1_spec_1.0.1_1.0.0.jar
  * hawtbuf_1.9_1.0.0.jar 
  * org.apache.commons.lang3_3.1.0.jar
- * org.apache.stratos.common-4.1.0.jar
- * org.apache.stratos.messaging-4.1.0.jar
+ * org.apache.stratos.common-4.1.4.jar
+ * org.apache.stratos.messaging-4.1.4.jar
 
 (4) Copy following [kernel patches](http://dist.wso2.org/maven2/org/wso2/carbon/WSO2-CARBON-PATCH-4.2.0/) and [security patches](http://product-dist.wso2.com/downloads/carbon/4.2.0/)  to  relevant folder structure accordingly.
 
@@ -43,9 +43,9 @@ files
         │   ├── geronimo-j2ee-management_1.1_spec-1.0.1.jar
         │   ├── hawtbuf-1.9.jar
         │   ├── org.apache.commons.lang3_3.1.0.jar
-        │   ├── org.apache.stratos.common_4.1.2.SNAPSHOT.jar
-        │   ├── org.apache.stratos.messaging_4.1.2.SNAPSHOT.jar
-        │   └── ppaas-membership-scheme-4.1.0-SNAPSHOT.jar
+        │   ├── org.apache.stratos.common_4.1.4.jar
+        │   ├── org.apache.stratos.messaging_4.1.4.jar
+        │   └── wso2ppaas-membership-scheme-4.1.0.jar
         ├── lib
         │   └── mysql-connector-java-5.1.33-bin.jar
         └── patches

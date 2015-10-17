@@ -19,12 +19,12 @@
 node 'base' {
 
 # General Configurations
-  $ppaas_version        = '4.1.0-beta'
+  $ppaas_version        = '4.1.0'
   $server_ip            = $ipaddress
 
 # PCA Configurations
   $pca_name             = 'apache-stratos-python-cartridge-agent'
-  $pca_version          = '4.1.3'
+  $pca_version          = '4.1.4'
   $local_package_dir    = '/mnt/packs'
   $mb_ip                = 'localhost'
   $mb_port              = '1883'
