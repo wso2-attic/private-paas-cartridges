@@ -70,9 +70,6 @@
             <directory>./target/WSO2-CARBON-PATCH-4.2.0-0004</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
-            <excludes>
-                <exclude>**/org.wso2.carbon.ui_4.2.0.jar</exclude>
-            </excludes>
             <includes>
                 <include>**/patch0004/*.*</include>
             </includes>
@@ -97,9 +94,6 @@
             <directory>./target/WSO2-CARBON-PATCH-4.2.0-0007</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
-            <excludes>
-                <exclude>**/org.wso2.carbon.ui_4.2.0.jar</exclude>
-            </excludes>
             <includes>
                 <include>**/patch0007/*.*</include>
             </includes>
@@ -116,9 +110,6 @@
             <directory>./target/WSO2-CARBON-PATCH-4.2.0-0009</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
-            <excludes>
-                <exclude>**/org.wso2.carbon.ui_4.2.0.jar</exclude>
-            </excludes>
             <includes>
                 <include>**/patch0009/*.*</include>
             </includes>
@@ -127,9 +118,6 @@
             <directory>./target/WSO2-CARBON-PATCH-4.2.0-0010</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
-            <excludes>
-                <exclude>**/org.wso2.carbon.ui_4.2.0.jar</exclude>
-            </excludes>
             <includes>
                 <include>**/patch0010/*.*</include>
             </includes>
@@ -149,9 +137,6 @@
             <directory>./target/WSO2-CARBON-PATCH-4.2.0-0012</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/files/repository/components/patches
             </outputDirectory>
-            <excludes>
-                <exclude>**/org.wso2.carbon.ui_4.2.0.jar</exclude>
-            </excludes>
             <includes>
                 <include>**/patch0012/*.*</include>
             </includes>
