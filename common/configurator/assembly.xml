@@ -32,4 +32,17 @@
             </excludes>
         </fileSet>
     </fileSets>
+
+    <files>
+        <file>
+            <source>README.md</source>
+            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>../../LICENSE</source>
+            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+    </files>
 </assembly>
