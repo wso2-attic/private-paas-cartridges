@@ -18,7 +18,7 @@ WSO2 AM 1.9.0 Dockerfile defines required resources for building a Docker image 
 
 * [wso2am-1.9.0.zip](http://wso2.com/api-management/)
 
-(2) Generate template module `wso2am-1.9.0-template-module-<PPAAS_VERSION>.zip` as described in [README.md] (https://github.com/wso2/private-paas-cartridges/blob/master/wso2am/1.9.0/template-module/README.md) under "Creating AM Template Module for Private PaaS" section. Then copy the resulting Zip file to `packages` folder. 
+(2) Generate template module `wso2am-1.9.0-template-module-<PROJECT_VERSION>.zip` as described in [README.md] (https://github.com/wso2/private-paas-cartridges/blob/master/wso2am/1.9.0/template-module/README.md) under "Creating AM Template Module for Private PaaS" section. Then copy the resulting Zip file to `packages` folder. 
 
 (3) Run build.sh file to build the docker image: (This will copy the plugins and template module to the docker image)
 ```
@@ -36,7 +36,7 @@ wso2/am        1.9.0              ac57800e96c2        2 minutes ago         1.14
 ```
 ## Docker environment variables
 ```
-PPAAS_VERSION - WSO2 Private PaaS Version
+PROJECT_VERSION - WSO2 Private PaaS Cartridge Repo Version
 PCA_HOME - Apache Stratos Python Cartridge Agent Home
 JAVA_HOME - JAVA HOME
 CONFIGURATOR_HOME - WSO2 Private PaaS Configurator Home

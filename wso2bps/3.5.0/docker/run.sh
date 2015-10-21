@@ -19,9 +19,12 @@
 
 # Start an BPS cluster with docker
 memberId=1
+version=`head -50 ../pom.xml | awk -F'>' '/version/ {printf $2}' | awk -F'<' '{print $1}'`
+image_version=${version%-*} # Remove the SNAPSHOT string for non-released versions
+
 startWkaMember() {
 	name="wso2bps-${memberId}-wka"
-	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -d -P --name ${name} wso2/bps:3.5.0`
+	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -d -P --name ${name} wso2/bps-3.5.0:${image_version}`
 	memberId=$((memberId + 1))
 	wka_member_ip=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${container_id}`
 	echo "BPS wka member started: [name] ${name} [ip] ${wka_member_ip} [container-id] ${container_id}"
@@ -30,7 +33,7 @@ startWkaMember() {
 
 startMember() {
 	name="wso2bps-${memberId}"
-	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -e CONFIG_PARAM_WKA_MEMBERS="["${wka_member_ip}:4000]"" -d -P --name ${name} wso2/bps:3.5.0`
+	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -e CONFIG_PARAM_WKA_MEMBERS="["${wka_member_ip}:4000]"" -d -P --name ${name} wso2/bps-3.5.0:${image_version}`
 	memberId=$((memberId + 1))
 	member_ip=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${container_id}`
 	echo "BPS member started: [name] ${name} [ip] ${member_ip} [container-id] ${container_id}"

@@ -26,7 +26,7 @@
 # Arg7  - docker image name
 # Arg8  - common plugin path
 # Arg9  - Docker image version
-# Arg10 - PPaaS version
+# Arg10 - Project version
 function build_image () {
     echo "skip flag: ${1}"
     echo "product type: ${2}"
@@ -37,7 +37,7 @@ function build_image () {
     echo "docker image name: ${7}"
     echo "common plugin path: ${8}"
     echo "Docker image version: ${9}"
-    echo "PPaaS version: ${10}"
+    echo "Project version: ${10}"
 
     if ! [[ "${1}" = "true" ]] ; then
        echo "-----------------------------------"
@@ -66,7 +66,7 @@ function build_image () {
     echo "----------------------------------"
     echo "Building" $2 - $3 "docker image"
     echo "----------------------------------"
-    sudo docker build -t wso2/$7:$3 .
+    sudo docker build -t wso2/$7-$3:$9 .
 
     echo $2 - $3 "docker image built successfully."
 }

@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------
 
-# Delete the AS docker cluster
+# Delete the BRS docker cluster
 memberId=1
 deleteWkaMember() {
 	name="wso2brs-${memberId}-wka"
