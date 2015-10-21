@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
         <artifactId>ppaas-cartridges-wso2brs-parent</artifactId>
-        <version>4.1.0-SNAPSHOT</version>
+        <version>4.1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>wso2brs-2.1.0-cartridge</artifactId>

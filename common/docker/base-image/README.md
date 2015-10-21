@@ -27,7 +27,7 @@ docker images
 ```
 (5) If successfully built docker image similar to following should display
 ```
-wso2/base-image        4.1.0              ac57800e96c2        2 minutes ago         677.6 MB
+wso2/base-image        4.1.1              ac57800e96c2        2 minutes ago         677.6 MB
 ```
 ## Docker environment variables
 ```

@@ -16,7 +16,7 @@
 #
 # ------------------------------------------------------------------------
 
-FROM wso2/base-image:4.1.0
+FROM wso2/base-image:4.1.1
 MAINTAINER dev@wso2.org
 
 ENV DEBIAN_FRONTEND noninteractive
