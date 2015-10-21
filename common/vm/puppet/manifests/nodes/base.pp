@@ -47,7 +47,7 @@ node 'base' {
 
 # Configurator Configurations
   $configurator_name    = 'wso2ppaas-configurator'
-  $configurator_version = '4.1.0-SNAPSHOT'
+  $configurator_version = '4.1.1-SNAPSHOT'
 
   require ppaas_base
 }
