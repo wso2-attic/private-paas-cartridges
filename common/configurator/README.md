@@ -32,12 +32,12 @@ Final folder structure should look like below :
 |-- constants.py
 |-- __init__.py
 `-- template-modules
-    `-- <templates here>
+    `-- <extracted template module>
 ```
 
   
-(5) Run Configurator `<configurator_home>/configurator.py`.
+(5) Run Configurator `<confiugrator_home>/configurator.py`.
    ```
-   ./configurator.py -d <template_module_directory>
+   ./configurator.py
    ```
 

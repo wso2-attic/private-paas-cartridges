@@ -23,8 +23,6 @@ from distutils.dir_util import copy_tree
 import logging
 import logging.config
 import os
-import sys
-import getopt
 
 from jinja2 import Environment, FileSystemLoader, meta
 
@@ -38,6 +36,7 @@ log = logging.getLogger(__name__)
 
 PACK_LOCATION = None
 READ_FROM_ENVIRONMENT = None
+TEMPLATE_DIRECTORY = None
 TEMPLATE_ENVIRONMENT = Environment(
     autoescape=False,
     loader=FileSystemLoader(os.path.abspath(os.sep)),
@@ -155,48 +154,30 @@ def copy_files_to_pack(source):
     log.info("Files copied: %s", result)
 
 
-def configure(cli_arguments):
+def configure():
     """
-    Main method
-    :param cli_arguments The cli arguments list
-    :return: None
+    Main method    :return: None
     """
-
-    # traverse through the template directory
-    template_dir_path = None
-    try:
-        opts, args = getopt.getopt(cli_arguments, "hd:")
-    except getopt.GetoptError:
-        print_usage()
-        sys.exit(2)
-
-    for opt, arg in opts:
-        if opt == "-h":
-            print_usage()
-            sys.exit()
-        elif opt == "-d":
-            template_dir_path = os.path.abspath(arg)
-
-    if template_dir_path is None:
-        print_usage()
-        sys.exit()
-
     log.info("Configurator started")
-    log.info("Scanning template directory :%s" % template_dir_path)
-    for dirName in os.listdir(template_dir_path):
+    # traverse through the template directory
+    global TEMPLATE_DIRECTORY
+    TEMPLATE_DIRECTORY = os.environ.get("CONFIGURATOR_TEMPLATE_PATH", constants.TEMPLATE_DIRECTORY)
+    log.info("Scanning template directory :%s" % TEMPLATE_DIRECTORY)
+    for dirName in os.listdir(os.path.join(PATH, TEMPLATE_DIRECTORY)):
         if dirName == ".gitkeep":
             continue
 
-        module_file_path = os.path.join(template_dir_path, constants.CONFIG_FILE_NAME)
-        template_dir = os.path.join(template_dir_path, constants.TEMPLATE_FOLDER_NAME)
-        files_dir = os.path.join(template_dir_path, constants.FILES_DIRECTORY_NAME)
-
+        module_file_path = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
+                                        constants.CONFIG_FILE_NAME)
+        template_dir = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
+                                    constants.TEMPLATE_FOLDER_NAME)
+        files_dir = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
+                                 constants.FILES_DIRECTORY_NAME)
         if os.path.isfile(module_file_path):
             log.info("module.ini file found: %s", module_file_path)
         else:
             log.error("module.ini file not found in path: %s", module_file_path)
             return
-
         log.info("Template directory: %s", template_dir)
         context = generate_context(module_file_path)
         traverse(template_dir, context)
@@ -209,9 +190,5 @@ def configure(cli_arguments):
     log.info("Configuration completed")
 
 
-def print_usage():
-    print "./configurator.py -d <template_directory>"
-
-
 if __name__ == "__main__":
-    configure(sys.argv[1:])
+    configure()
