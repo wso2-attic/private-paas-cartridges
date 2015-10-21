@@ -19,8 +19,8 @@
 node 'base' {
 
 # General Configurations
-  $ppaas_version        = '4.1.0'
-  $server_ip            = $ipaddress
+  $ppaas_cartridge_version = '4.1.0'
+  $server_ip               = $ipaddress
 
 # PCA Configurations
   $pca_name             = 'apache-stratos-python-cartridge-agent'

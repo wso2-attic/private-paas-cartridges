@@ -25,7 +25,7 @@ class wso2installer (
   $target               = "/mnt/${server_ip}"
   $carbon_home          = "/mnt/${server_ip}/${server_name}"
   $configurator_home    = "/mnt/${configurator_name}-${configurator_version}"
-  $template_module_pack = "${server_name}-template-module-${ppaas_version}.zip"
+  $template_module_pack = "${server_name}-template-module-${ppaas_cartridge_version}.zip"
   $pca_home             = "/mnt/${pca_name}-${pca_version}"
   $java_home            = "/opt/${java_folder}"
 
