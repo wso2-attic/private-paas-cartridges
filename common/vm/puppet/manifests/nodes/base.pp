@@ -46,7 +46,7 @@ node 'base' {
   $java_folder          = 'jdk1.7.0_72'
 
 # Configurator Configurations
-  $configurator_name    = 'ppaas-configurator'
+  $configurator_name    = 'wso2ppaas-configurator'
   $configurator_version = '4.1.0'
 
   require ppaas_base
