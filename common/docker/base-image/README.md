@@ -4,7 +4,7 @@ WSO2 products base image Dockerfile defines required resources for building a Do
 
 ## How to build
 
-(1) Remove logic which set the root user password, this will disable root user login with credentials:
+(1) Default username is root and password is set to wso2. If you want to disable root user login with credentials, remove following code block from the Docker file.
 ```
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:wso2' | chpasswd
@@ -18,7 +18,7 @@ RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password
 
 (3)  Run build.sh file to build the docker image:
 ```
-sh build.sh clean
+sh build.sh
 ```
 
 (4) List docker images:
@@ -31,7 +31,7 @@ wso2/base-image        4.1.0              ac57800e96c2        2 minutes ago     
 ```
 ## Docker environment variables
 ```
-PPAAS_VERSION - WSO2 Private PaaS Version
+PROJECT_VERSION - WSO2 Private PaaS Cartridge Repo Version
 PCA_HOME - Apache Stratos Python Cartridge Agent Home
 JAVA_HOME - JAVA HOME
 CONFIGURATOR_HOME - WSO2 Private PaaS Configurator Home

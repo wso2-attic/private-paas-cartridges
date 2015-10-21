@@ -19,9 +19,12 @@
 
 # Start an DSS cluster with docker
 memberId=1
+version=`head -50 ../pom.xml | awk -F'>' '/version/ {printf $2}' | awk -F'<' '{print $1}'`
+image_version=${version%-*} # Remove the SNAPSHOT string for non-released versions
+
 startWkaMember() {
 	name="wso2dss-${memberId}-wka"
-	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -d -P --name ${name} wso2/dss:3.2.2`
+	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -d -P --name ${name} wso2/dss-3.2.2:${image_version}`
 	memberId=$((memberId + 1))
 	wka_member_ip=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${container_id}`
 	echo "DSS wka member started: [name] ${name} [ip] ${wka_member_ip} [container-id] ${container_id}"
@@ -30,7 +33,7 @@ startWkaMember() {
 
 startMember() {
 	name="wso2dss-${memberId}"
-	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -e CONFIG_PARAM_WKA_MEMBERS="["${wka_member_ip}:4000]"" -d -P --name ${name} wso2/dss:3.2.2`
+	container_id=`docker run -e CONFIG_PARAM_CLUSTERING=true -e CONFIG_PARAM_MEMBERSHIP_SCHEME=wka -e CONFIG_PARAM_WKA_MEMBERS="["${wka_member_ip}:4000]"" -d -P --name ${name} wso2/dss-3.2.2:${image_version}`
 	memberId=$((memberId + 1))
 	member_ip=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${container_id}`
 	echo "DSS member started: [name] ${name} [ip] ${member_ip} [container-id] ${container_id}"

@@ -81,9 +81,6 @@ node /[0-9]{1,12}.*wso2as-521/ inherits base {
   }
 }
 
-# Execution sequence
-Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
-
 
 # DAS 3.0.0 cartridge node
 node /[0-9]{1,12}.*wso2das-300/ inherits base {
@@ -96,10 +93,6 @@ node /[0-9]{1,12}.*wso2das-300/ inherits base {
     module_name      => 'wso2das300'
   }
 }
-
-# Execution sequence
-Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
-
 
 
 # BRS 2.1.0 cartridge node
@@ -114,9 +107,6 @@ node /[0-9]{1,12}.*wso2brs-210/ inherits base {
   }
 }
 
-# Execution sequence
-Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']
-
 
 # MB 3.0.0 cartridge node
 node /[0-9]{1,12}.*wso2mb-300/ inherits base {
@@ -129,6 +119,46 @@ node /[0-9]{1,12}.*wso2mb-300/ inherits base {
     module_name      => 'wso2mb300'
   }
 }
+
+
+# BPS 3.5.0 cartridge node
+node /[0-9]{1,12}.*wso2bps-350/ inherits base {
+
+  class { 'java': }
+  class { 'python_agent': }
+  class { 'configurator': }
+  class { 'wso2installer':
+    server_name      => 'wso2bps-3.5.0',
+    module_name      => 'wso2bps350'
+  }
+}
+
+
+# DSS 3.2.2 cartridge node
+node /[0-9]{1,12}.*wso2dss-322/ inherits base {
+
+  class { 'java': }
+  class { 'python_agent': }
+  class { 'configurator': }
+  class { 'wso2installer':
+    server_name      => 'wso2dss-3.2.2',
+    module_name      => 'wso2dss322'
+  }
+}
+
+
+# GREG 5.0.0 cartridge node
+node /[0-9]{1,12}.*wso2greg-500/ inherits base {
+
+  class { 'java': }
+  class { 'python_agent': }
+  class { 'configurator': }
+  class { 'wso2installer':
+    server_name      => 'wso2greg-5.0.0',
+    module_name      => 'wso2greg500'
+  }
+}
+
 
 # Execution sequence
 Class['ppaas_base'] -> Class['java'] -> Class['configurator']-> Class['python_agent'] -> Class['wso2installer']

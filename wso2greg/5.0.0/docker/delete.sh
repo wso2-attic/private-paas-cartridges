@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------
 
-# Delete the AS docker cluster
+# Delete the GREG docker cluster
 memberId=1
 deleteWkaMember() {
 	name="wso2greg-${memberId}-wka"
