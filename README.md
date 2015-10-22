@@ -28,5 +28,5 @@ This base image contains JDK, configurator, python cartridge agent and other dep
 
 - Build the WSO2 product docker image
 
-Go to <WSO2 Product Name>/<Version>/docker and follow the steps in the Readme file.
+Go to (WSO2 Product Name) / (Version) / docker and follow the steps in the Readme file.
 

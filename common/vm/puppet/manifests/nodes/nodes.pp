@@ -37,8 +37,8 @@ node /[0-9]{1,12}.*wso2is-500/ inherits base {
   class { 'python_agent': }
   class { 'configurator': }
   class { 'wso2installer':
-    server_name      => 'wso2is5.0.0',
-    module_name      => 'wso2is-500'
+    server_name      => 'wso2is-5.0.0',
+    module_name      => 'wso2is500'
   }
 }
 
@@ -52,6 +52,18 @@ node /[0-9]{1,12}.*wso2am-190/ inherits base {
   class { 'wso2installer':
     server_name      => 'wso2am-1.9.0',
     module_name      => 'wso2am190'
+  }
+}
+
+# IS cartridge node for API Manager
+node /[0-9]{1,12}.*wso2is-as-km-500/ inherits base {
+
+  class { 'java': }
+class { 'python_agent': }
+class { 'configurator': }
+class { 'wso2installer':
+    server_name      => 'wso2is-5.0.0',
+    module_name      => 'wso2isaskm500'
   }
 }
 

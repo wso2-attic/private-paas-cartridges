@@ -27,3 +27,14 @@ Default value is 120 seconds. Value should be specified in seconds.
       
   2. Rename the patch0012 kernal patch to patch9999 if you are applying the WSO2 Identity Server Service Pack for 5.0.0.
      This is to support private-paas membership schema which comes from kernal patch 12. 
+     
+  3. If you are creating a docker image change only the default IS pack with pre packaged IS pack. Plugins and template module 
+  is same which is used in IS cartridge
+  
+  4. In VM scenario use the following structure for puppet. 
+  
+   wso2iskm500
+  │   │   ├── packs
+  │   │   │   └── Include the pre packaged IS pack and default IS template module
+  │   │   └── plugins
+  │   │       └── Include default IS plugins 
