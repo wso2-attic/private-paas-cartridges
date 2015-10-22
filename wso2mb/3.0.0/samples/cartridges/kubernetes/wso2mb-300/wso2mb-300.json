@@ -45,7 +45,7 @@
     "iaasProvider": [
         {
             "type": "kubernetes",
-            "imageId": "wso2/mb:3.0.0",
+            "imageId": "wso2/mb-3.0.0:4.1.1",
             "networkInterfaces": []
         }
     ],

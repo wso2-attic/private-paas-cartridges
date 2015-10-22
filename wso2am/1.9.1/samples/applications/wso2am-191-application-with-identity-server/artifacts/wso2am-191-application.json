@@ -31,7 +31,7 @@
                         }
                     },
                     {
-                        "type": "wso2is-500-manager",
+                        "type": "wso2is-km-500-manager",
                         "cartridgeMin": 1,
                         "cartridgeMax": 1,
                         "subscribableInfo": {

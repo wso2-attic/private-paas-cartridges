@@ -22,7 +22,7 @@ docker images
 
 (5) If successfully built docker image similar to following should display
 ```
-wso2/esb        4.8.1              ac57800e96c2        2 minutes ago         777.6 MB
+wso2/esb-4.8.1        4.1.1              ac57800e96c2        2 minutes ago         777.6 MB
 ```
 ## Docker environment variables
 ```

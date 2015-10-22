@@ -1,5 +1,5 @@
 {
-    "type": "wso2is-500-manager",
+    "type": "wso2is-km-500-manager",
     "category": "framework",
     "provider": "wso2",
     "host": "is.wso2.org",
@@ -27,7 +27,7 @@
     "iaasProvider": [
         {
             "type": "kubernetes",
-            "imageId": "wso2/is:5.0.0",
+            "imageId": "wso2/is-5.0.0:4.1.1",
             "networkInterfaces": []
         }
     ],
