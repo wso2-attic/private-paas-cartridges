@@ -1,5 +1,5 @@
 {
-    "type": "wso2is-km-500-manager",
+    "type": "wso2is-as-km-500-manager",
     "category": "framework",
     "provider": "wso2",
     "host": "is.wso2.org",

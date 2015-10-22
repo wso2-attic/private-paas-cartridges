@@ -49,7 +49,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
     CONST_PPAAS_MEMBERSHIP_SCHEME = "private-paas"
     CONST_PRODUCT = "IS"
 
-    SERVICES = ["wso2is-500-manager", "wso2is-km-500-manager"]
+    SERVICES = ["wso2is-500-manager", "wso2is-as-km-500-manager"]
 
     # list of environment variables exported by the plugin
     ENV_CONFIG_PARAM_SUB_DOMAIN = 'CONFIG_PARAM_SUB_DOMAIN'

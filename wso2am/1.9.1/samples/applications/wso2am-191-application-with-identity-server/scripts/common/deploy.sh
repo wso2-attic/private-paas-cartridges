@@ -60,7 +60,7 @@ echo "Adding WSO2 ${product_type} - ${product_version} Gateway Worker cartridge.
 curl -X POST -H "Content-Type: application/json" -d "@${iaas_cartridges_path}/${product}-gw-worker.json" -k -v -u admin:admin https://${host_ip}:${host_port}/api/cartridges
 
 echo "Adding WSO2 ${product_type} - ${product_version} Identity Server Key Manager cartridge..."
-curl -X POST -H "Content-Type: application/json" -d "@${iaas_cartridges_path}/wso2is-km-500-manager.json" -k -v -u admin:admin https://${host_ip}:${host_port}/api/cartridges
+curl -X POST -H "Content-Type: application/json" -d "@${iaas_cartridges_path}/wso2is-as-km-500-manager.json" -k -v -u admin:admin https://${host_ip}:${host_port}/api/cartridges
 
 echo "Adding WSO2 ${product_type} - ${product_version} Publisher cartridge..."
 curl -X POST -H "Content-Type: application/json" -d "@${iaas_cartridges_path}/${product}-pub.json" -k -v -u admin:admin https://${host_ip}:${host_port}/api/cartridges

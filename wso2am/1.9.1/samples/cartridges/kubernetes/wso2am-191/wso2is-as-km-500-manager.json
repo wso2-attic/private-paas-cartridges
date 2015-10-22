@@ -1,5 +1,5 @@
 {
-    "type": "wso2is-km-500-manager",
+    "type": "wso2is-as-km-500-manager",
     "category": "framework",
     "provider": "wso2",
     "host": "is.wso2.org",
@@ -26,27 +26,9 @@
     ],
     "iaasProvider": [
         {
-            "type": "openstack",
-            "imageId": "RegionOne/4d90cf74-6a1c-463e-8f04-10fe9254fcdf",
-            "property": [
-                {
-                    "name": "instanceType",
-                    "value": "RegionOne/15c3065c-462c-4977-9143-094d63d1c2c7"
-                },
-                {
-                    "name": "keyPair",
-                    "value": "test-key"
-                },
-                {
-                    "name": "securityGroups",
-                    "value": "default"
-                }
-            ],
-            "networkInterfaces": [
-                {
-                    "networkUuid": "512e1f54-1e85-4dac-b2e6-f0b30fc552cf"
-                }
-            ]
+            "type": "kubernetes",
+            "imageId": "wso2/is-5.0.0:4.1.1",
+            "networkInterfaces": []
         }
     ],
     "property": [

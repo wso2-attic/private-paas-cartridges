@@ -56,14 +56,14 @@ node /[0-9]{1,12}.*wso2am-190/ inherits base {
 }
 
 # IS cartridge node for API Manager
-node /[0-9]{1,12}.*wso2is-km-500/ inherits base {
+node /[0-9]{1,12}.*wso2is-as-km-500/ inherits base {
 
   class { 'java': }
 class { 'python_agent': }
 class { 'configurator': }
 class { 'wso2installer':
     server_name      => 'wso2is-5.0.0',
-    module_name      => 'wso2iskm500'
+    module_name      => 'wso2isaskm500'
   }
 }
 
