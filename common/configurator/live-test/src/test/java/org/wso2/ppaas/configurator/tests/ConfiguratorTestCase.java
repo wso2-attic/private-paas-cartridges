@@ -31,12 +31,11 @@ public class ConfiguratorTestCase extends ConfiguratorTestManager {
     @BeforeSuite
     public void setupAgentStartupTest() {
         // start Configurator with configurations provided in resource path
-        Map<String,String> environment = new HashMap<String, String>();
-        environment.put("CONFIG_PARAM_CLUSTERING","true");
-        environment.put("CONFIG_PARAM_LOCAL_MEMBER_HOST","127.0.1.1");
-        environment.put("CONFIG_PARAM_PORT_OFFSET","2");
-
-        setup(SUITE_NAME,environment);
+        Map<String, String> environment = new HashMap<String, String>();
+        environment.put("CONFIG_PARAM_CLUSTERING", "true");
+        environment.put("CONFIG_PARAM_LOCAL_MEMBER_HOST", "127.0.1.1");
+        environment.put("CONFIG_PARAM_PORT_OFFSET", "2");
+        setup(SUITE_NAME, environment);
     }
 
     /**
@@ -44,7 +43,7 @@ public class ConfiguratorTestCase extends ConfiguratorTestManager {
      */
     @AfterSuite
     public void tearDownAgentStartupTest() {
-        log.info("Test suite "+SUITE_NAME+"Completed");
+        log.info("Test suite " + SUITE_NAME + "Completed");
     }
 
     @Test(timeOut = STARTUP_TIMEOUT)
@@ -54,14 +53,15 @@ public class ConfiguratorTestCase extends ConfiguratorTestManager {
         String xpathExpression;
         String configuredValue;
         //Check clustering property
-        xpathExpression = "/axisconfig/clustering[@class='org.wso2.carbon.core.clustering.hazelcast.HazelcastClusteringAgent']/@enable";
+        xpathExpression = "/axisconfig/clustering[@class='org.wso2.carbon.core.clustering.hazelcast"
+                + ".HazelcastClusteringAgent']/@enable";
         configuredValue = readXML(axis2FilePath, xpathExpression);
-        Assert.assertEquals(configuredValue,"true");
+        Assert.assertEquals(configuredValue, "true");
 
         //Check CONFIG_PARAM_LOCAL_MEMBER_HOST
-        xpathExpression="/axisconfig/clustering/parameter[@name='localMemberHost']/text()";
-        configuredValue=readXML(axis2FilePath,xpathExpression);
-        Assert.assertEquals(configuredValue,"127.0.1.1");
+        xpathExpression = "/axisconfig/clustering/parameter[@name='localMemberHost']/text()";
+        configuredValue = readXML(axis2FilePath, xpathExpression);
+        Assert.assertEquals(configuredValue, "127.0.1.1");
     }
 
     @Test(timeOut = STARTUP_TIMEOUT)
@@ -72,7 +72,7 @@ public class ConfiguratorTestCase extends ConfiguratorTestManager {
         //Check offset property
         xpathExpression = "/Server/Ports/Offset/text()";
         configuredValue = readXML(axis2FilePath, xpathExpression);
-        Assert.assertEquals(configuredValue,"2");
+        Assert.assertEquals(configuredValue, "2");
 
     }
 
@@ -83,11 +83,10 @@ public class ConfiguratorTestCase extends ConfiguratorTestManager {
         String xpathExpression;
         String configuredValue;
         //Check local member port property
-        xpathExpression="/axisconfig/clustering/parameter[@name='localMemberPort']/text()";
-        configuredValue=readXML(axis2FilePath,xpathExpression);
-        Assert.assertEquals(configuredValue,"4000");
+        xpathExpression = "/axisconfig/clustering/parameter[@name='localMemberPort']/text()";
+        configuredValue = readXML(axis2FilePath, xpathExpression);
+        Assert.assertEquals(configuredValue, "4000");
 
     }
-
 
 }

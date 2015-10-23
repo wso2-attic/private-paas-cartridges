@@ -15,6 +15,7 @@ package org.wso2.ppaas.configurator.tests;
 
 import org.apache.commons.exec.*;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;
@@ -25,9 +26,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -52,13 +51,13 @@ public class ConfiguratorTestManager {
     }
 
     protected static String getResourcesPath() {
-        return ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + PATH_SEP + ".."
-                + PATH_SEP + ".." + PATH_SEP + "src" + PATH_SEP + "test" + PATH_SEP + "resources";
+        return ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + PATH_SEP + ".." + PATH_SEP + ".."
+                + PATH_SEP + "src" + PATH_SEP + "test" + PATH_SEP + "resources";
     }
 
     protected static String getResourcesPath(String resourcesPath) {
-        return ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + ".." + PATH_SEP
-                + ".." + PATH_SEP + "src" + PATH_SEP + "test" + PATH_SEP + "resources" +
+        return ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + ".." + PATH_SEP + ".." + PATH_SEP + "src"
+                + PATH_SEP + "test" + PATH_SEP + "resources" +
                 PATH_SEP + resourcesPath;
     }
 
@@ -75,29 +74,25 @@ public class ConfiguratorTestManager {
             String srcConfiguratorPath = ConfiguratorTestManager.class.getResource(PATH_SEP).
                     getPath() + PATH_SEP + ".." + PATH_SEP + ".." + PATH_SEP + ".." + PATH_SEP +
                     "target" + PATH_SEP + distributionName + ".zip";
-            String unzipDestPath =
-                    ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + PATH_SEP +
-                            ".." + PATH_SEP +
-                            CONFIGURATOR_DIR_NAME + PATH_SEP;
+            String unzipDestPath = ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + PATH_SEP +
+                    ".." + PATH_SEP +
+                    CONFIGURATOR_DIR_NAME + PATH_SEP;
 
             //FileUtils.copyFile(new File(srcConfiguratorPath), new File( destConfiguratorPath));
             unzip(srcConfiguratorPath, unzipDestPath);
             String destConfiguratorPath = ConfiguratorTestManager.class.getResource(PATH_SEP).
-                    getPath()
-                    + PATH_SEP + ".." +
+                    getPath() + PATH_SEP + ".." +
                     PATH_SEP + CONFIGURATOR_DIR_NAME + PATH_SEP + distributionName;
 
-            String srcAgentConfPath = getResourcesPath(resourcesPath) + PATH_SEP +
+            String srcConfiguratorConfPath = getResourcesPath(resourcesPath) + PATH_SEP +
                     TEMPLATE_MODULES;
-            String destAgentConfPath = destConfiguratorPath + PATH_SEP + TEMPLATE_MODULES;
-            FileUtils.copyDirectory(new File(srcAgentConfPath), new File(destAgentConfPath));
-
+            String destConfiguratorConfPath = destConfiguratorPath + PATH_SEP + TEMPLATE_MODULES;
+            FileUtils.copyDirectory(new File(srcConfiguratorConfPath), new File(destConfiguratorConfPath));
 
             log.info("Configurator setup completed");
 
             return destConfiguratorPath;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             String message = "Could not setup configurator distribution";
             log.error(message, e);
             throw new RuntimeException(message, e);
@@ -140,11 +135,46 @@ public class ConfiguratorTestManager {
 
     public void setup(String resourcePath, Map<String, String> environment) {
         String configuratorPath = setupConfigurator(resourcePath);
-        log.info("Python agent working directory name: " + CONFIGURATOR_DIR_NAME);
+        log.info("Configurator working directory name: " + CONFIGURATOR_DIR_NAME);
         log.info("Starting configurator ...");
-        int result = executeCommand("python " + configuratorPath + PATH_SEP
-                + "configurator.py", environment);
-        log.info("Configurator completed " + result);
+        int result = executeCommand("python " + configuratorPath + PATH_SEP + "configurator.py", environment);
+        if (result != 0) {
+            throw new RuntimeException("Configurator returned with non-zero exit code");
+        }
+    }
+
+    /**
+     * Sleep current thread
+     *
+     * @param time Time to sleep in milli-seconds
+     */
+    protected void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException ignore) {
+        }
+    }
+
+    /**
+     * Return new lines found in the output
+     *
+     * @param currentOutputLines current output lines
+     * @param output             output
+     * @return new lines printed by Python agent process
+     */
+    protected List<String> getNewLines(List<String> currentOutputLines, String output) {
+        List<String> newLines = new ArrayList<String>();
+
+        if (StringUtils.isNotBlank(output)) {
+            String[] lines = output.split(File.separator);
+            for (String line : lines) {
+                if (!currentOutputLines.contains(line)) {
+                    currentOutputLines.add(line);
+                    newLines.add(line);
+                }
+            }
+        }
+        return newLines;
     }
 
     protected void tearDown() {
@@ -156,21 +186,18 @@ public class ConfiguratorTestManager {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         try {
-            String targetFile =
-                    ConfiguratorTestManager.class.getResource(PATH_SEP).getPath()
-                            + ".." + PATH_SEP + CONFIGURATOR_DIR_NAME + PATH_SEP + resourcePath;
+            String targetFile = ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + ".." + PATH_SEP
+                    + CONFIGURATOR_DIR_NAME + PATH_SEP + resourcePath;
             builder = factory.newDocumentBuilder();
             Document doc = builder.parse(targetFile);
             XPathFactory xPathfactory = XPathFactory.newInstance();
             XPath xpath = xPathfactory.newXPath();
-            XPathExpression expr =
-                    xpath.compile(xpathExpression);
+            XPathExpression expr = xpath.compile(xpathExpression);
             String value = expr.evaluate(doc, XPathConstants.STRING).toString();
             log.info("Parsed value" + value);
             return value;
 
-        }
-        catch (ParserConfigurationException | SAXException | IOException |
+        } catch (ParserConfigurationException | SAXException | IOException |
                 XPathExpressionException e) {
             log.error("Error in parsing xml " + e.getMessage());
         }
@@ -184,32 +211,59 @@ public class ConfiguratorTestManager {
      */
     protected int executeCommand(final String commandText, Map<String, String> environment) {
         final ByteArrayOutputStreamLocal outputStream = new ByteArrayOutputStreamLocal();
-        int result;
+        final int[] result = new int[1];
+        final boolean[] hasProcessEnded = { false };
         try {
             CommandLine commandline = CommandLine.parse(commandText);
             DefaultExecutor exec = new DefaultExecutor();
             PumpStreamHandler streamHandler = new PumpStreamHandler(outputStream);
-            exec.setWorkingDirectory(new File(
-                    ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() +
-                            ".." + PATH_SEP + CONFIGURATOR_DIR_NAME));
+            exec.setWorkingDirectory(new File(ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() +
+                    ".." + PATH_SEP + CONFIGURATOR_DIR_NAME));
             exec.setStreamHandler(streamHandler);
             ExecuteWatchdog watchdog = new ExecuteWatchdog(TIMEOUT);
             exec.setWatchdog(watchdog);
-            result = exec.execute(commandline, environment);
+            exec.execute(commandline, environment, new ExecuteResultHandler() {
+                @Override
+                public void onProcessComplete(int i) {
+                    log.info(commandText + " process completed with return code: " + i);
+                    result[0] = i;
+                    hasProcessEnded[0] = true;
+                }
 
-        }
-        catch (Exception e) {
+                @Override
+                public void onProcessFailed(ExecuteException e) {
+                    log.error(commandText + " process failed", e);
+                    hasProcessEnded[0] = true;
+                }
+            });
+
+            List<String> outputLines = new ArrayList<String>();
+            while (!outputStream.isClosed() && !hasProcessEnded[0]) {
+                List<String> newLines = getNewLines(outputLines, outputStream.toString());
+                if (newLines.size() > 0) {
+                    for (String line : newLines) {
+                        if (line.contains("Exception in thread") || line.contains("ERROR")) {
+                            try {
+                                throw new RuntimeException(line);
+                            } catch (Exception e) {
+                                log.error("ERROR found in configurator log", e);
+                            }
+                        }
+                        log.info("[CONFIGURATOR] " + line);
+                    }
+                }
+            }
+            return result[0];
+        } catch (Exception e) {
             log.error(outputStream.toString(), e);
             throw new RuntimeException(e);
         }
-        return result;
     }
 
     /**
      * Implements ByteArrayOutputStream.isClosed() method
      */
-    protected class ByteArrayOutputStreamLocal extends
-            org.apache.commons.io.output.ByteArrayOutputStream {
+    protected class ByteArrayOutputStreamLocal extends org.apache.commons.io.output.ByteArrayOutputStream {
         private boolean closed;
 
         @Override
