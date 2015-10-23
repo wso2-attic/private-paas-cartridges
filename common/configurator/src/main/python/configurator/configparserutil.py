@@ -21,6 +21,8 @@ import ConfigParser
 import os
 import logging
 
+import constants
+
 log = logging.getLogger()
 
 
@@ -28,7 +30,7 @@ class ConfigParserUtil(ConfigParser.ConfigParser):
     def as_dictionary(self):
         """
         read configuration file and create a dictionary
-        :return: configurations as a dictionary
+        :return configurations as a dictionary
         """
         d = dict(self._sections)
         for k in d:
@@ -37,15 +39,15 @@ class ConfigParserUtil(ConfigParser.ConfigParser):
         return d
 
     @staticmethod
-    def convert_properties_to_dictionary(variable):
+    def convert_properties_to_dictionary(property):
         """
         convert and return multi valued properties as a dictionary e.g :- Members,port mappings
-        :param property:
-        :return: dictionary of properties
+        :param property: multi-valued string property to be converted to a dictionary
+        :return dictionary of properties
         """
-        variable = variable.replace('[', '')
-        variable = variable.replace(']', '')
-        properties = variable.split(",")
+        property = property.replace('[', '')
+        property = property.replace(']', '')
+        properties = property.split(",")
         return dict(s.split(':') for s in properties)
 
     @staticmethod
@@ -62,24 +64,43 @@ class ConfigParserUtil(ConfigParser.ConfigParser):
         return context
 
     @staticmethod
-    def get_context_from_env(template_variables, default_context):
+    def get_context_from_env(template_variables, configuration_context):
         """
         Read values from environment variables
-        :param template_variables:
-        :return: dictionary containing environment variables
+        :param template_variables: list of variables
+        :param configuration_context: dictionary containing configurations loaded from module.ini
+        :return dictionary containing values for variables
         """
         context = {}
         while template_variables:
             var = template_variables.pop()
             if not os.environ.get(var):
-                log.info("Environment variable %s is not found. Reading from module.ini", var)
-                if var in default_context:
-                    context[var] = os.environ.get(var, default_context[var])
+                if var in configuration_context:
+                    context[var] = os.environ.get(var, configuration_context[var])
                 else:
-                    log.warn("Variable %s is not found in module.ini or in environment variables",
-                             var)
+                    log.warn("Variable %s is not found in module.ini or in environment variables", var)
             else:
                 context[var] = os.environ.get(var)
 
         context = ConfigParserUtil.get_multivalued_attributes_as_dictionary(context)
         return context
+
+    @staticmethod
+    def str_to_bool(input_string):
+        """
+        parse string to boolean value
+        :param input_string: string to be parsed as a boolean
+        :return: boolean value of input string
+        """
+        input_string = str(input_string).strip().lower()
+        if input_string == 'true':
+            return True
+        elif input_string == 'false':
+            return False
+        else:
+            raise ValueError
+
+    @staticmethod
+    def get_carbon_home(configuration_context):
+        return os.environ.get(constants.CONFIG_CARBON_HOME_KEY,
+                              configuration_context[constants.CONFIG_SETTINGS_KEY][constants.CONFIG_CARBON_HOME_KEY])

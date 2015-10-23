@@ -37,6 +37,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
     CONST_SERVICE_NAME = "SERVICE_NAME"
     CONST_CLUSTER_ID = "CLUSTER_ID"
     CONST_MGT = "mgt"
+    CONST_WORKER = "worker"
 
     CONST_PORT_MAPPING_MGT_HTTP_TRANSPORT = "mgt-http"
     CONST_PORT_MAPPING_MGT_HTTPS_TRANSPORT = "mgt-https"

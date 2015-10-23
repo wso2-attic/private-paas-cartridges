@@ -23,68 +23,61 @@ from distutils.dir_util import copy_tree
 import logging
 import logging.config
 import os
-
 from jinja2 import Environment, FileSystemLoader, meta
+import sys
 
 import constants
 from configparserutil import ConfigParserUtil
 
 PATH = os.path.dirname(os.path.abspath(__file__))
-
 logging.config.fileConfig(os.path.join(PATH, 'conf', 'logging_config.ini'))
 log = logging.getLogger(__name__)
-
-PACK_LOCATION = None
-READ_FROM_ENVIRONMENT = None
-TEMPLATE_DIRECTORY = None
-TEMPLATE_ENVIRONMENT = Environment(
+template_environment = Environment(
     autoescape=False,
     loader=FileSystemLoader(os.path.abspath(os.sep)),
     trim_blocks=False)
 
 
-def render_template(template_filename, default_context):
+def render_template(template_filename, configuration_context):
     """
-    parse the xml file and return the content as a text
+    parse the template file and return the content as a text
 
     :param template_filename: template filename path
-    :param default_context: dictionary containing configurations read from module.ini
-    :return: xml as a string
+    :param configuration_context: dictionary containing configurations loaded from module.ini
+    :return populated template content
     """
-    if READ_FROM_ENVIRONMENT == "true":
-        template_source = \
-            TEMPLATE_ENVIRONMENT.loader.get_source(TEMPLATE_ENVIRONMENT, template_filename)[0]
-        parsed_content = TEMPLATE_ENVIRONMENT.parse(template_source)
+    settings = configuration_context[constants.CONFIG_SETTINGS_KEY]
+    # Converting multi-valued params to dictionary
+    params_context = configuration_context[constants.CONFIG_PARAMS_KEY]
+
+    if ConfigParserUtil.str_to_bool(settings[constants.CONFIG_READ_FROM_ENVIRONMENT_KEY]):
+        log.info("READ_FROM_ENVIRONMENT is set to True. Reading template parameters from environment variables")
+        template_source = template_environment.loader.get_source(template_environment, template_filename)[0]
+        parsed_content = template_environment.parse(template_source)
         variables = meta.find_undeclared_variables(parsed_content)
-        log.debug("Template variables : %s", variables)
-        context = ConfigParserUtil.get_context_from_env(variables, default_context)
+        params_context_dict = ConfigParserUtil.get_context_from_env(variables, params_context)
     else:
-        context = default_context
+        params_context_dict = ConfigParserUtil.get_multivalued_attributes_as_dictionary(params_context)
 
-    # Adding CARBON_HOME to context as it is required for registry db
-    context[constants.CONFIG_SETTINGS_CARBON_HOME] = PACK_LOCATION
-    log.info("Final context generated for rendering %s : %s ", os.path.basename(template_filename),
-             context)
-    log.info("Rendering template: %s \n", template_filename)
-    return TEMPLATE_ENVIRONMENT.get_template(template_filename).render(context)
+    log.info("Rendering template file: %s using template parameters: %s", template_filename, params_context_dict)
+    return template_environment.get_template(template_filename).render(params_context_dict)
 
 
-def generate_file_from_template(template_path, output_path, context):
+def generate_file_from_template(source, target, configuration_context):
     """
     Generate file from the given template file
 
-    :param template_path: Path to the template file
-    :param output_path: Path to the output file
-    :param context: Dictionary containing values to be used by jinja engine
-    :return: None
+    :param source: Path to the template file
+    :param target: Path to the output file
+    :param configuration_context: dictionary containing configurations loaded from module.ini
+    :return None
     """
-    directory = os.path.dirname(output_path)
+    directory = os.path.dirname(target)
     if not os.path.exists(directory):
         os.makedirs(directory)
-    with open(output_path, 'w') as xml_file:
-        log.info("Rendering output file: " + output_path)
-        content = render_template(template_path, context)
-        log.debug("Creating content: " + content)
+    with open(target, 'w') as xml_file:
+        content = render_template(source, configuration_context)
+        log.debug("Writing content to [file] %s [content] %s", target, content)
         xml_file.write(content)
 
 
@@ -92,103 +85,94 @@ def generate_context(config_file_path):
     """
     Read the config.ini and generate context based on settings
 
-    :param config_file_path: location of the config.ini file
-    :return: dictionary containing configurations for jinja engine
+    :param config_file_path: location of the module.ini file
+    :return dictionary containing configurations loaded from module.ini
     """
     # Read configuration file
     config_parser = ConfigParserUtil()
     config_parser.optionxform = str
-    config_parser.read(os.path.join(PATH, config_file_path))
+    config_parser.read(os.path.join(config_file_path))
     configurations = config_parser.as_dictionary()
-    log.debug("Configuration file content %s", configurations)
-    settings = configurations[constants.CONFIG_SETTINGS]
-    global PACK_LOCATION
-    PACK_LOCATION = os.environ.get(constants.CONFIG_SETTINGS_CARBON_HOME,
-                                   settings[constants.CONFIG_SETTINGS_CARBON_HOME])
-    log.info("CARBON_HOME : %s" % PACK_LOCATION)
-    context = configurations[constants.CONFIG_PARAMS]
-
-    log.info("Context generated: %s", context)
-    # if read_env_variables is true context will be generated from environment variables
-    # if read_env_variables is not true context will be read from config.ini
-    if settings["READ_FROM_ENVIRONMENT"] == "true":
-        global READ_FROM_ENVIRONMENT
-        READ_FROM_ENVIRONMENT = "true"
-        log.info("Reading from environment")
-    else:
-        # Converting multi-valued params to dictionary
-        context = ConfigParserUtil.get_multivalued_attributes_as_dictionary(context)
-    return context
+    log.debug("Configurations loaded: %s", configurations)
+    return configurations
 
 
-def traverse(root_dir, context):
+def traverse(templates_dir, configuration_context):
     """
     traverse through the folder structure and generate xml files
 
-    :param root_dir: path to the template/{wso2_server}/conf folder
-    :param context: dictionary containing values to be used by jinja engine
-    :return:None
+    :param templates_dir: path to the template directory in template module
+    :param configuration_context: dictionary containing configurations loaded from module.ini
+    :return None
     """
-    log.info("Starting to configure: " + root_dir)
-    for dir_name, subdirList, fileList in os.walk(root_dir):
-        for file_name in fileList:
+    log.info("Scanning for templates in %s", templates_dir)
+    carbon_home = ConfigParserUtil.get_carbon_home(configuration_context)
+    for root, dirs, files in os.walk(templates_dir):
+        for filename in files:
             # generating the relative path of the template
-            template_file_name = os.path.join(dir_name, file_name)
-            log.debug("Template file name: %s " % template_file_name)
-            config_file_name = \
-                os.path.splitext(os.path.relpath(os.path.join(dir_name, file_name), root_dir))[0]
-            config_file_name = os.path.join(PACK_LOCATION,
-                                            config_file_name)
-            log.debug("Template file: %s ", template_file_name)
-            log.debug("Output configuration file: %s ", config_file_name)
-            generate_file_from_template(template_file_name, config_file_name, context)
+            template_file_path = os.path.join(root, filename)
+            log.debug("Template file path: %s ", template_file_path)
+            template_relative_path = os.path.splitext(os.path.relpath(os.path.join(root, filename), templates_dir))[0]
+            log.debug("Teplate relative path: %s", template_relative_path)
+            template_file_target = os.path.join(carbon_home, template_relative_path)
+            log.debug("Template file target path: %s ", template_file_target)
+
+            # populate the template and copy to target location
+            generate_file_from_template(template_file_path, template_file_target, configuration_context)
 
 
-def copy_files_to_pack(source):
+def copy_files_to_pack(source, target):
     """
     Copy files in the template's files directory to pack preserving the structure provided
     :param source: path to files directory in template folder
+    :param target: target path to copy the files in template folder
     :return:
     """
-    result = copy_tree(source, PACK_LOCATION, verbose=1)
-    log.info("Files copied: %s", result)
+    result = copy_tree(source, target, verbose=1)
+    log.info("Files copied [to] %s, [from] %s with [result] %s", source, target, result)
 
 
 def configure():
     """
-    Main method    :return: None
+    Main method
+    :return None
     """
-    log.info("Configurator started")
+    log.info("Running WSO2 Private PaaS Configurator...")
+    # read template module dir from environmental vars or default to configurator's path
+    template_module_parent_dir = os.environ.get(constants.TEMPLATE_MODULE_PATH_ENV_KEY,
+                                                os.path.join(PATH, constants.TEMPLATE_MODULE_FOLDER_NAME))
+    log.info("Scanning the template module directory: %s" % template_module_parent_dir)
     # traverse through the template directory
-    global TEMPLATE_DIRECTORY
-    TEMPLATE_DIRECTORY = os.environ.get("CONFIGURATOR_TEMPLATE_PATH", constants.TEMPLATE_DIRECTORY)
-    log.info("Scanning template directory :%s" % TEMPLATE_DIRECTORY)
-    for dirName in os.listdir(os.path.join(PATH, TEMPLATE_DIRECTORY)):
-        if dirName == ".gitkeep":
+    only_directories = [f for f in os.listdir(template_module_parent_dir) if
+                        os.path.isdir(os.path.join(template_module_parent_dir, f))]
+    for file_name in only_directories:
+        module_settings_file_path = os.path.join(template_module_parent_dir, file_name, constants.CONFIG_FILE_NAME)
+        templates_dir = os.path.join(template_module_parent_dir, file_name, constants.TEMPLATES_FOLDER_NAME)
+        files_dir = os.path.join(template_module_parent_dir, file_name, constants.FILES_FOLDER_NAME)
+        if os.path.isfile(module_settings_file_path):
+            log.info("Module settings file found for template module: %s", file_name)
+        else:
+            log.warn("Could not find module settings file at: %s. Skipping directory...", module_settings_file_path)
             continue
 
-        module_file_path = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
-                                        constants.CONFIG_FILE_NAME)
-        template_dir = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
-                                    constants.TEMPLATE_FOLDER_NAME)
-        files_dir = os.path.join(PATH, TEMPLATE_DIRECTORY, dirName,
-                                 constants.FILES_DIRECTORY_NAME)
-        if os.path.isfile(module_file_path):
-            log.info("module.ini file found: %s", module_file_path)
-        else:
-            log.error("module.ini file not found in path: %s", module_file_path)
-            return
-        log.info("Template directory: %s", template_dir)
-        context = generate_context(module_file_path)
-        traverse(template_dir, context)
+        log.info("Populating templates at: %s", templates_dir)
+        configuration_context = generate_context(module_settings_file_path)
+        traverse(templates_dir, configuration_context)
 
-        # copy files if exists
+        # copy files directory if it exists
         if os.path.exists(files_dir):
-            log.info("Copying files...")
-            copy_files_to_pack(files_dir)
+            log.info("Copying files at: %s", files_dir)
+            target = ConfigParserUtil.get_carbon_home(configuration_context)
+            copy_files_to_pack(files_dir, target)
 
-    log.info("Configuration completed")
+        log.info("Configuration completed for template module: %s", file_name)
+
+    log.info("End of WSO2 Private PaaS Configurator")
 
 
 if __name__ == "__main__":
-    configure()
+    try:
+        configure()
+    except Exception as e:
+        log.exception("Error while executing WSO2 Private PaaS Configurator: %s", e)
+        sys.exit(1)
