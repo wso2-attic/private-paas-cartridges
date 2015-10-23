@@ -29,7 +29,9 @@
             </includes>
             <excludes>
                 <exclude>**/*.gitkeep</exclude>
+                <exclude>**/*.pyc</exclude>
             </excludes>
+            <fileMode>0755</fileMode>
         </fileSet>
     </fileSets>
 
@@ -40,7 +42,7 @@
             <filtered>true</filtered>
         </file>
         <file>
-            <source>../../LICENSE</source>
+            <source>../../../../LICENSE</source>
             <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
         </file>

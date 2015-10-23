@@ -23,13 +23,12 @@
         <version>4.1.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>org.wso2.ppaas.cartridges.common</artifactId>
+    <artifactId>cartridges-common</artifactId>
     <packaging>pom</packaging>
     <name>Common Components and Plugins</name>
 
     <modules>
         <module>configurator</module>
-        <module>configurator/live-test</module>
         <module>vm</module>
     </modules>
 </project>

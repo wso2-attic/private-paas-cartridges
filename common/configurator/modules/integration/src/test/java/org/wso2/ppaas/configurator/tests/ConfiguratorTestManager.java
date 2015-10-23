@@ -39,15 +39,18 @@ import java.util.zip.ZipInputStream;
 public class ConfiguratorTestManager {
     public static final String PATH_SEP = File.separator;
     private static final Log log = LogFactory.getLog(ConfiguratorTestManager.class);
+    public static final String DISTRIBUTION_PATH = "distribution.path";
     public static final String DISTRIBUTION_NAME = "distribution.name";
     public static final String TEMPLATE_MODULES = "template-modules";
+    protected String distributionPath;
     protected String distributionName;
     protected final UUID CONFIGURATOR_DIR_NAME = UUID.randomUUID();
     public final long TIMEOUT = 180000;
 
     public ConfiguratorTestManager() {
+        distributionPath = System.getProperty(DISTRIBUTION_PATH);
         distributionName = System.getProperty(DISTRIBUTION_NAME);
-        log.info("Configurator distribution name: " + distributionName);
+        log.info("Configurator distribution name: " + distributionPath);
     }
 
     protected static String getResourcesPath() {
@@ -70,19 +73,11 @@ public class ConfiguratorTestManager {
     protected String setupConfigurator(String resourcesPath) {
         try {
             log.info("Setting up Configurator...");
-
-            String srcConfiguratorPath = ConfiguratorTestManager.class.getResource(PATH_SEP).
-                    getPath() + PATH_SEP + ".." + PATH_SEP + ".." + PATH_SEP + ".." + PATH_SEP +
-                    "target" + PATH_SEP + distributionName + ".zip";
             String unzipDestPath = ConfiguratorTestManager.class.getResource(PATH_SEP).getPath() + PATH_SEP +
-                    ".." + PATH_SEP +
-                    CONFIGURATOR_DIR_NAME + PATH_SEP;
-
-            //FileUtils.copyFile(new File(srcConfiguratorPath), new File( destConfiguratorPath));
-            unzip(srcConfiguratorPath, unzipDestPath);
+                    ".." + PATH_SEP + CONFIGURATOR_DIR_NAME + PATH_SEP;
+            unzip(distributionPath, unzipDestPath);
             String destConfiguratorPath = ConfiguratorTestManager.class.getResource(PATH_SEP).
-                    getPath() + PATH_SEP + ".." +
-                    PATH_SEP + CONFIGURATOR_DIR_NAME + PATH_SEP + distributionName;
+                    getPath() + PATH_SEP + ".." + PATH_SEP + CONFIGURATOR_DIR_NAME + PATH_SEP + distributionName;
 
             String srcConfiguratorConfPath = getResourcesPath(resourcesPath) + PATH_SEP +
                     TEMPLATE_MODULES;

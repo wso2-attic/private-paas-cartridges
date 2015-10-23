@@ -19,36 +19,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
-        <artifactId>org.wso2.ppaas.cartridges.common</artifactId>
+        <artifactId>cartridges-common</artifactId>
         <version>4.1.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>org.wso2.ppaas.cartridges.common.configurator</artifactId>
+    <artifactId>configurator-parent</artifactId>
     <packaging>pom</packaging>
-    <name>Python Configurator</name>
+    <name>Configurator Aggregation Module</name>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>dist</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attached</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>${configurator.distribution.name}-${project.version}</finalName>
-                            <descriptors>
-                                <descriptor>assembly.xml</descriptor>
-                            </descriptors>
-                            <appendAssemblyId>false</appendAssemblyId>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+        <module>modules/distribution</module>
+        <module>modules/integration</module>
+    </modules>
 </project>
