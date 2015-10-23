@@ -18,8 +18,10 @@
 
 
 import ConfigParser
+import getopt
 import os
 import logging
+import sys
 
 import constants
 
@@ -101,6 +103,29 @@ class ConfigParserUtil(ConfigParser.ConfigParser):
             raise ValueError
 
     @staticmethod
+    def print_usage():
+        print "./configurator.py [-d <template_directory>]"
+
+    @staticmethod
     def get_carbon_home(configuration_context):
         return os.environ.get(constants.CONFIG_CARBON_HOME_KEY,
                               configuration_context[constants.CONFIG_SETTINGS_KEY][constants.CONFIG_CARBON_HOME_KEY])
+
+    @staticmethod
+    def get_template_module_dir_from_cargs(cli_arguments):
+        template_module_parent_dir = None
+        try:
+            opts, args = getopt.getopt(cli_arguments, "hd:")
+        except getopt.GetoptError:
+            log.error("Invalid argument was given.")
+            ConfigParserUtil.print_usage()
+            sys.exit(2)
+
+        for opt, arg in opts:
+            if opt == "-h":
+                ConfigParserUtil.print_usage()
+                sys.exit(0)
+            elif opt == "-d":
+                template_module_parent_dir = os.path.abspath(arg)
+
+        return template_module_parent_dir

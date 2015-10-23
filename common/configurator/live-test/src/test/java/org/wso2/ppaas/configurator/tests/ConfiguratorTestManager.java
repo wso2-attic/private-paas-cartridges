@@ -26,7 +26,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.*;
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -40,10 +43,7 @@ public class ConfiguratorTestManager {
     public static final String TEMPLATE_MODULES = "template-modules";
     protected String distributionName;
     protected final UUID CONFIGURATOR_DIR_NAME = UUID.randomUUID();
-    protected ByteArrayOutputStreamLocal outputStream;
     public final long TIMEOUT = 180000;
-
-    protected Map<String, Executor> executorList = new HashMap<String, Executor>();
 
     public ConfiguratorTestManager() {
         distributionName = System.getProperty(DISTRIBUTION_NAME);
@@ -166,7 +166,7 @@ public class ConfiguratorTestManager {
         List<String> newLines = new ArrayList<String>();
 
         if (StringUtils.isNotBlank(output)) {
-            String[] lines = output.split(File.separator);
+            String[] lines = output.split(System.lineSeparator());
             for (String line : lines) {
                 if (!currentOutputLines.contains(line)) {
                     currentOutputLines.add(line);
@@ -207,10 +207,11 @@ public class ConfiguratorTestManager {
     /**
      * Execute shell command
      *
-     * @param commandText
+     * @param commandText command to be executed
+     * @param environment map of environmental variables to be passed to the process
      */
     protected int executeCommand(final String commandText, Map<String, String> environment) {
-        final ByteArrayOutputStreamLocal outputStream = new ByteArrayOutputStreamLocal();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final int[] result = new int[1];
         final boolean[] hasProcessEnded = { false };
         try {
@@ -237,43 +238,26 @@ public class ConfiguratorTestManager {
                 }
             });
 
-            List<String> outputLines = new ArrayList<String>();
-            while (!outputStream.isClosed() && !hasProcessEnded[0]) {
-                List<String> newLines = getNewLines(outputLines, outputStream.toString());
-                if (newLines.size() > 0) {
-                    for (String line : newLines) {
-                        if (line.contains("Exception in thread") || line.contains("ERROR")) {
-                            try {
-                                throw new RuntimeException(line);
-                            } catch (Exception e) {
-                                log.error("ERROR found in configurator log", e);
-                            }
+            List<String> outputLines = new ArrayList<>();
+            List<String> newLines;
+            while (!hasProcessEnded[0] | ((newLines = getNewLines(outputLines, outputStream.toString())).size() > 0)) {
+                for (String line : newLines) {
+                    if (line.contains("Exception in thread") || line.contains("ERROR")) {
+                        try {
+                            throw new RuntimeException(line);
+                        } catch (Exception e) {
+                            log.error("Error found in configurator log", e);
                         }
-                        log.info("[CONFIGURATOR] " + line);
                     }
+                    log.info("[CONFIGURATOR] " + line);
                 }
+
+                sleep(1000);
             }
             return result[0];
         } catch (Exception e) {
             log.error(outputStream.toString(), e);
             throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Implements ByteArrayOutputStream.isClosed() method
-     */
-    protected class ByteArrayOutputStreamLocal extends org.apache.commons.io.output.ByteArrayOutputStream {
-        private boolean closed;
-
-        @Override
-        public void close() throws IOException {
-            super.close();
-            closed = true;
-        }
-
-        public boolean isClosed() {
-            return closed;
         }
     }
 }
