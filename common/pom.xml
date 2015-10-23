@@ -29,6 +29,7 @@
 
     <modules>
         <module>configurator</module>
+        <module>docker</module>
         <module>vm</module>
     </modules>
 </project>
