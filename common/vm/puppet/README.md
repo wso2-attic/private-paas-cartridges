@@ -52,7 +52,7 @@ $java_distribution 	    = 'jdk-7u80-linux-x64.tar.gz'
 $java_folder    		= 'jdk1.7.0_72'
 ```
 ##### **Configurator Module**
-(1) Copy wso2ppaas-configurator-4.1.1.zip from `<private-paas-cartridges_home>/common/configurator/target/wso2ppaas-configurator-4.1.1.zip`  to `/etc/puppet/modules/configurator/files` folder.
+(1) Copy wso2ppaas-configurator-4.1.1.zip from `<private-paas-cartridges_home>/common/configurator/modules/distribution/target/wso2ppaas-configurator-4.1.1.zip`  to `/etc/puppet/modules/configurator/files` folder.
 
 (2) Change file permission to 0755 for wso2ppaas-configurator-4.1.1.zip .
 ```
