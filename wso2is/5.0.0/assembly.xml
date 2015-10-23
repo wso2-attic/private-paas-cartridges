@@ -29,8 +29,6 @@
                 <include>**/*</include>
             </includes>
             <excludes>
-                <exclude>**/*.gitkeep</exclude>
-                <exclude>**/*.gitignore</exclude>
                 <exclude>packages/*/**</exclude>
                 <exclude>plugins/*/**</exclude>
             </excludes>

@@ -29,7 +29,7 @@
                 <include>**/*</include>
             </includes>
             <excludes>
-                <exclude>packages/*</exclude>
+                <exclude>packages/*/**</exclude>
             </excludes>
         </fileSet>
     </fileSets>
