@@ -17,14 +17,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
-        <artifactId>org.wso2.ppaas.cartridges.common</artifactId>
+        <artifactId>configurator-parent</artifactId>
         <version>4.1.1-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>configurator-live-tests</artifactId>
+    <artifactId>configurator-integration</artifactId>
     <packaging>jar</packaging>
-    <name>Python Configurator Live Tests</name>
+    <name>Configurator Integration Tests</name>
 
     <profiles>
         <profile>
@@ -57,13 +57,18 @@
                         <configuration>
                             <systemProperties>
                                 <property>
-                                    <name>distribution.name</name>
-                                    <value>${configurator.distribution.name}-${project.version}
+                                    <name>distribution.path</name>
+                                    <value>
+                                        ${basedir}/../distribution/target/${configurator.distribution.name}-${project.version}.zip
                                     </value>
+                                </property>
+                                <property>
+                                    <name>distribution.name</name>
+                                    <value>${configurator.distribution.name}-${project.version}</value>
                                 </property>
                             </systemProperties>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/configurator-testing1.xml
+                                <suiteXmlFile>src/test/resources/configurator-testng.xml
                                 </suiteXmlFile>
                             </suiteXmlFiles>
                             <workingDirectory>${basedir}/target</workingDirectory>

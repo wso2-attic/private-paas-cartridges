@@ -16,12 +16,14 @@
 #
 # ------------------------------------------------------------------------
 
-from plugins.contracts import ICartridgeAgentPlugin
-from modules.util.log import LogFactory
-from entity import *
 import subprocess
 import socket
 import os
+
+from plugins.contracts import ICartridgeAgentPlugin
+from modules.util.log import LogFactory
+from entity import *
+from config import Config
 
 
 class WSO2StartupHandler(ICartridgeAgentPlugin):
@@ -65,7 +67,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
     ENV_CONFIG_PARAM_CLUSTERING = 'CONFIG_PARAM_CLUSTERING'
     ENV_CONFIG_PARAM_MEMBERSHIP_SCHEME = 'CONFIG_PARAM_MEMBERSHIP_SCHEME'
 
-
     def run_plugin(self, values):
 
         # read from 'values'
@@ -91,19 +92,23 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         WSO2StartupHandler.log.info("Port Offset: %s" % port_offset)
 
         # export Proxy Ports as Env. variables - used in catalina-server.xml
-        mgt_http_proxy_port = self.read_proxy_port(port_mappings_str, port_offset, self.CONST_PORT_MAPPING_MGT_HTTP_TRANSPORT,
+        mgt_http_proxy_port = self.read_proxy_port(port_mappings_str, port_offset,
+                                                   self.CONST_PORT_MAPPING_MGT_HTTP_TRANSPORT,
                                                    self.CONST_PROTOCOL_HTTP, self)
-        mgt_https_proxy_port = self.read_proxy_port(port_mappings_str, port_offset, self.CONST_PORT_MAPPING_MGT_HTTPS_TRANSPORT,
+        mgt_https_proxy_port = self.read_proxy_port(port_mappings_str, port_offset,
+                                                    self.CONST_PORT_MAPPING_MGT_HTTPS_TRANSPORT,
                                                     self.CONST_PROTOCOL_HTTPS, self)
 
         self.export_env_var(self.ENV_CONFIG_PARAM_HTTP_PROXY_PORT, mgt_http_proxy_port)
         self.export_env_var(self.ENV_CONFIG_PARAM_HTTPS_PROXY_PORT, mgt_https_proxy_port)
-        
+
         # export servlet ports as environment variables.
-        mgt_http_servlet_port = self.read_servlet_port(port_mappings_str, port_offset, self.CONST_PORT_MAPPING_MGT_HTTP_TRANSPORT,
-                                                   self.CONST_PROTOCOL_HTTP)
-        mgt_https_servlet_port = self.read_servlet_port(port_mappings_str, port_offset, self.CONST_PORT_MAPPING_MGT_HTTPS_TRANSPORT,
-                                                    self.CONST_PROTOCOL_HTTPS)
+        mgt_http_servlet_port = self.read_servlet_port(port_mappings_str, port_offset,
+                                                       self.CONST_PORT_MAPPING_MGT_HTTP_TRANSPORT,
+                                                       self.CONST_PROTOCOL_HTTP)
+        mgt_https_servlet_port = self.read_servlet_port(port_mappings_str, port_offset,
+                                                        self.CONST_PORT_MAPPING_MGT_HTTPS_TRANSPORT,
+                                                        self.CONST_PROTOCOL_HTTPS)
 
         self.export_env_var(self.ENV_CONFIG_PARAM_HTTP_SERVLET_PORT, mgt_http_servlet_port)
         self.export_env_var(self.ENV_CONFIG_PARAM_HTTPS_SERVLET_PORT, mgt_https_servlet_port)
@@ -112,7 +117,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         sub_domain = None
         if service_type.endswith(self.CONST_MANAGER):
             sub_domain = self.CONST_MGT
-            
+
         self.export_env_var(self.ENV_CONFIG_PARAM_SUB_DOMAIN, sub_domain)
 
         # if CONFIG_PARAM_MEMBERSHIP_SCHEME is not set, set the private-paas membership scheme as default one
@@ -131,9 +136,9 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                 # export mb_ip as Env.variable - used in jndi.properties
                 self.export_env_var(self.ENV_CONFIG_PARAM_MB_HOST, mb_ip)
 
-        # set local ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
-        local_ip = socket.gethostbyname(socket.gethostname())
-        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, local_ip)
+        # set instance private ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
+        private_ip = self.get_member_private_ip(topology, Config.service_name, Config.cluster_id, Config.member_id)
+        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, private_ip)
 
         # start configurator
         WSO2StartupHandler.log.info("Configuring WSO2 %s..." % self.CONST_PRODUCT)
@@ -150,6 +155,29 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         p = subprocess.Popen(start_command, env=env_var, shell=True)
         output, errors = p.communicate()
         WSO2StartupHandler.log.info("WSO2 %s started successfully" % self.CONST_PRODUCT)
+
+    def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        service = topology.get_service(service_name)
+        if service is None:
+            raise Exception("Service not found in topology [service] %s" % service_name)
+
+        cluster = service.get_cluster(cluster_id)
+        if cluster is None:
+            raise Exception("Cluster id not found in topology [cluster] %s" % cluster_id)
+
+        member = cluster.get_member(member_id)
+        if member is None:
+            raise Exception("Member id not found in topology [member] %s" % member_id)
+
+        if member.member_default_private_ip and not member.member_default_private_ip.isspace():
+            WSO2StartupHandler.log.info(
+                "Member private ip read from the topology: %s" % member.member_default_private_ip)
+            return member.member_default_private_ip
+        else:
+            local_ip = socket.gethostbyname(socket.gethostname())
+            WSO2StartupHandler.log.info(
+                "Member private ip not found in the topology. Reading from the socket interface: %s" % local_ip)
+            return local_ip
 
     def export_host_names(self, topology, app_id):
         """
@@ -176,7 +204,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         """
         cluster_ids = []
         cluster_id_of_service = None
-#        if service_type.endswith(self.CONST_MANAGER) or service_type.endswith(self.CONST_WORKER):
+        #        if service_type.endswith(self.CONST_MANAGER) or service_type.endswith(self.CONST_WORKER):
         if service_type.endswith(self.CONST_MANAGER):
             for service_name in self.SERVICES:
                 cluster_of_service = self.get_cluster_of_service(topology, service_name, app_id)
@@ -239,8 +267,9 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                     proxy_port = name_value_array[3].split(":")[1]
                     # If PROXY_PORT is not set, set PORT as the proxy port (ex:Kubernetes),
                     if proxy_port == '0':
-                        #proxy_port = name_value_array[2].split(":")[1]
-                        proxy_port = self.read_servlet_port(port_mappings_str, port_offset, port_mapping_name, port_mapping_protocol)
+                        # proxy_port = name_value_array[2].split(":")[1]
+                        proxy_port = self.read_servlet_port(port_mappings_str, port_offset, port_mapping_name,
+                                                            port_mapping_protocol)
 
                     if name == port_mapping_name and protocol == port_mapping_protocol:
                         return proxy_port
@@ -257,7 +286,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
             WSO2StartupHandler.log.info("Exported environment variable %s: %s" % (variable, value))
         else:
             WSO2StartupHandler.log.warn("Could not export environment variable %s " % variable)
-
 
     @staticmethod
     def read_servlet_port(port_mappings_str, port_offset, port_mapping_name, port_mapping_protocol):
@@ -279,7 +307,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
 
                     if port_offset is None:
                         port_offset = 0
-                        
+
                     servlet_port = str(int(servlet_port) + int(port_offset))
 
                     if name == port_mapping_name and protocol == port_mapping_protocol:

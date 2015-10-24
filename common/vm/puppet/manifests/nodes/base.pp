@@ -19,19 +19,19 @@
 node 'base' {
 
 # General Configurations
-  $ppaas_cartridge_version = '4.1.0'
+  $ppaas_cartridge_version = '4.1.1-SNAPSHOT'
   $server_ip               = $ipaddress
 
 # PCA Configurations
   $pca_name             = 'apache-stratos-python-cartridge-agent'
   $pca_version          = '4.1.4'
   $local_package_dir    = '/mnt/packs'
-  $mb_ip                = 'localhost'
+  $mb_ip                = '192.168.30.96'
   $mb_port              = '1883'
-  $cep_urls             = "localhost:7711"
+  $cep_urls             = "192.168.30.96:7711"
   $cep_username         = 'admin'
   $cep_password         = 'admin'
-  $bam_ip               = 'localhost'
+  $bam_ip               = '192.168.30.97'
   $bam_port             = '7611'
   $bam_secure_port      = '7711'
   $bam_username         = 'admin'
@@ -43,7 +43,7 @@ node 'base' {
 
 # JAVA Configurations
   $java_distribution    = 'jdk-7u80-linux-x64.tar.gz'
-  $java_folder          = 'jdk1.7.0_72'
+  $java_folder          = 'jdk1.7.0_80'
 
 # Configurator Configurations
   $configurator_name    = 'wso2ppaas-configurator'

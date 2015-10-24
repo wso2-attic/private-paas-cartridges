@@ -22,26 +22,29 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>files/</directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/files/</outputDirectory>
+            <directory>src/main/python/configurator</directory>
+            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
-        </fileSet>
-        <fileSet>
-            <directory>templates/</directory>
-            <outputDirectory>${pom.artifactId}-${pom.version}/templates/</outputDirectory>
-            <includes>
-                <include>**/*</include>
-            </includes>
+            <excludes>
+                <exclude>template-modules/*/**</exclude>
+                <exclude>**/*.pyc</exclude>
+            </excludes>
+            <fileMode>0755</fileMode>
         </fileSet>
     </fileSets>
+
     <files>
         <file>
-            <source>module.ini</source>
-            <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
+            <source>README.md</source>
+            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
-            <fileMode>600</fileMode>
+        </file>
+        <file>
+            <source>../../../../LICENSE</source>
+            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
+            <filtered>true</filtered>
         </file>
     </files>
 </assembly>

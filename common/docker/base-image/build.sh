@@ -26,7 +26,7 @@ configurator_version=`grep -oP '<version>\K[^<]+' pom.xml| head -1`
 popd
 
 wso2_base_image_version=${configurator_version%-*}
-configurator_path=`cd ${script_path}/../../configurator; pwd`
+configurator_path=`cd ${script_path}/../../configurator/modules/distribution; pwd`
 
 echo "----------------------------------"
 echo "Building Configurator"

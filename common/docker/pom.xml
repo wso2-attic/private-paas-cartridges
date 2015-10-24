@@ -25,10 +25,10 @@
         <version>4.1.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>wso2ppaas-vm-tools</artifactId>
+    <artifactId>wso2ppaas-cartridges-docker-base-image</artifactId>
     <packaging>pom</packaging>
-    <name>Tools for VM scenario</name>
-    <description>Aggregate module which contains tools required for Virtual Machine scenario</description>
+    <name>Cartridges Docker Base Image Distribution</name>
+    <description>Creates a distribution with WSO2 PPaaS cartridges base image Dockerfile and build scripts</description>
 
     <build>
         <plugins>

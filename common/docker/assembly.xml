@@ -20,28 +20,24 @@
         <format>zip</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
+
     <fileSets>
         <fileSet>
-            <directory>src/main/python/configurator</directory>
-            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
+            <directory>base-image/</directory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/</outputDirectory>
             <includes>
                 <include>**/*</include>
             </includes>
             <excludes>
-                <exclude>**/*.gitkeep</exclude>
+                <exclude>packages/*/**</exclude>
             </excludes>
         </fileSet>
     </fileSets>
 
     <files>
         <file>
-            <source>README.md</source>
-            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
-            <filtered>true</filtered>
-        </file>
-        <file>
             <source>../../LICENSE</source>
-            <outputDirectory>${configurator.distribution.name}-${pom.version}</outputDirectory>
+            <outputDirectory>${pom.artifactId}-${pom.version}</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>

@@ -16,12 +16,14 @@
 #
 # ------------------------------------------------------------------------
 
-from plugins.contracts import ICartridgeAgentPlugin
-from modules.util.log import LogFactory
-from entity import *
 import subprocess
 import socket
 import os
+
+from plugins.contracts import ICartridgeAgentPlugin
+from modules.util.log import LogFactory
+from entity import *
+from config import Config
 
 
 class WSO2StartupHandler(ICartridgeAgentPlugin):
@@ -62,7 +64,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
     # clustering related environment variables read from payload_parameters
     ENV_CONFIG_PARAM_CLUSTERING = 'CONFIG_PARAM_CLUSTERING'
     ENV_CONFIG_PARAM_MEMBERSHIP_SCHEME = 'CONFIG_PARAM_MEMBERSHIP_SCHEME'
-
 
     def run_plugin(self, values):
 
@@ -119,9 +120,9 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                 # export mb_ip as Env.variable - used in jndi.properties
                 self.export_env_var(self.ENV_CONFIG_PARAM_MB_HOST, mb_ip)
 
-        # set local ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
-        local_ip = socket.gethostbyname(socket.gethostname())
-        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, local_ip)
+        # set instance private ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
+        private_ip = self.get_member_private_ip(topology, Config.service_name, Config.cluster_id, Config.member_id)
+        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, private_ip)
 
         # start configurator
         WSO2StartupHandler.log.info("Configuring WSO2 %s..." % self.CONST_PRODUCT)
@@ -141,6 +142,29 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         p = subprocess.Popen(start_command, env=env_var, shell=True)
         output, errors = p.communicate()
         WSO2StartupHandler.log.info("WSO2 %s started successfully" % self.CONST_PRODUCT)
+
+    def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        service = topology.get_service(service_name)
+        if service is None:
+            raise Exception("Service not found in topology [service] %s" % service_name)
+
+        cluster = service.get_cluster(cluster_id)
+        if cluster is None:
+            raise Exception("Cluster id not found in topology [cluster] %s" % cluster_id)
+
+        member = cluster.get_member(member_id)
+        if member is None:
+            raise Exception("Member id not found in topology [member] %s" % member_id)
+
+        if member.member_default_private_ip and not member.member_default_private_ip.isspace():
+            WSO2StartupHandler.log.info(
+                "Member private ip read from the topology: %s" % member.member_default_private_ip)
+            return member.member_default_private_ip
+        else:
+            local_ip = socket.gethostbyname(socket.gethostname())
+            WSO2StartupHandler.log.info(
+                "Member private ip not found in the topology. Reading from the socket interface: %s" % local_ip)
+            return local_ip
 
     def export_host_names(self, topology, app_id):
         """

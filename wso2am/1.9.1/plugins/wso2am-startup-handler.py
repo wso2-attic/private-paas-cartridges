@@ -16,14 +16,17 @@
 #
 # ------------------------------------------------------------------------
 
+import subprocess
+import os
+import time
+import socket
+
 from plugins.contracts import ICartridgeAgentPlugin
 from modules.util.log import LogFactory
 from entity import *
-import subprocess
-import os
 import mdsclient
-import time
-import socket
+from entity import *
+from config import Config
 
 
 class WSO2AMStartupHandler(ICartridgeAgentPlugin):
@@ -111,6 +114,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         clustering = values.get(WSO2AMStartupHandler.ENV_CONFIG_PARAM_CLUSTERING, 'false')
         my_cluster_id = values[WSO2AMStartupHandler.CONST_CLUSTER_ID]
         external_lb = values.get(WSO2AMStartupHandler.ENV_CONFIG_PARAM_USE_EXTERNAL_LB_FOR_KUBERNETES, 'false')
+        # read topology from PCA TopologyContext
+        topology = TopologyContext.topology
 
         # log above values
         WSO2AMStartupHandler.log.info("Port Mappings: %s" % port_mappings_str)
@@ -146,6 +151,10 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
         # export CONFIG_PARAM_MEMBERSHIP_SCHEME
         self.export_env_var(WSO2AMStartupHandler.ENV_CONFIG_PARAM_MEMBERSHIP_SCHEME, membership_scheme)
+
+        # set instance private ip
+        member_ip = self.get_member_private_ip(topology, Config.service_name, Config.cluster_id, Config.member_id)
+        self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
 
         if clustering == 'true' and membership_scheme == self.CONST_PPAAS_MEMBERSHIP_SCHEME:
             service_list = None
@@ -204,9 +213,7 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 self.update_hosts_file(gateway_ip, gateway_host_name)
                 self.update_hosts_file(gateway_worker_ip, gateway_worker_host_name)
 
-            member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_name(app_id, service_name, member_ip)
-            self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
             self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_IP, gateway_host)
             self.set_gateway_ports(gateway_ports)
             self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP, gateway_worker_host)
@@ -246,13 +253,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
             self.export_env_var(self.ENV_CONFIG_PARAM_KEYMANAGER_IP, keymanager_host)
             km_port = self.set_keymanager_ports(keymanager_ports)
-
-            member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_names_for_gw(app_id, member_ip)
-            self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
-
             start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=gateway-manager start"
-
 
         elif profile == self.CONST_GATEWAY_WORKER:
             # this is for gateway worker profile
@@ -285,28 +287,22 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
             self.export_env_var(self.ENV_CONFIG_PARAM_KEYMANAGER_IP, keymanager_host)
             km_port = self.set_keymanager_ports(keymanager_ports)
-
-            member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_names_for_gw(app_id, member_ip)
-            self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
-
             start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=gateway-worker start"
-
 
         elif profile == self.CONST_PUBLISHER:
             # this is for publisher profile
             # remove previous data from metadata service
             # add new values to meta data service - publisher ip
-            # retrieve values from meta data service - store ip, km ip and mgt console port, gw ip, mgt console port, pt http and https ports
+            # retrieve values from meta data service - store ip, km ip and mgt console port, gw ip, mgt console port,
+            # pt http and https ports
             # check deployment is vm, if vm update /etc/hosts with values
             # export retrieve values as environment variables
             # export hostname for publisher
             # set the start command
 
             self.remove_data_from_metadata(self.ENV_CONFIG_PARAM_PUBLISHER_IP)
-
             self.add_data_to_meta_data_service(self.ENV_CONFIG_PARAM_PUBLISHER_IP, load_balancer_ip)
-
             store_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_STORE_IP)
             keymanager_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_KEYMANAGER_IP)
             keymanager_ports = self.get_data_from_meta_data_service(app_id, self.CONST_CONFIG_PARAM_KEYMANAGER_PORTS)
@@ -315,7 +311,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             gateway_worker_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP)
             gateway_worker_ports = self.get_data_from_meta_data_service(app_id,
                                                                         self.CONST_CONFIG_PARAM_GATEWAY_WORKER_PORTS)
-
             environment_type = self.find_environment_type(external_lb, service_name, app_id)
 
             if environment_type == WSO2AMStartupHandler.CONST_KUBERNETES:
@@ -347,27 +342,22 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             self.set_gateway_ports(gateway_ports)
             self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP, gateway_worker_host)
             self.set_gateway_worker_ports(gateway_worker_ports)
-
-            member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_name(app_id, service_name, member_ip)
-            self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
             start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=api-publisher start"
-
 
         elif profile == self.CONST_STORE:
             # this is for store profile
             # remove previous data from metadata service
             # add new values to meta data service - store ip
-            # retrieve values from meta data service - publisher ip, km ip and mgt console port, gw ip, mgt console port, pt http and https ports
+            # retrieve values from meta data service - publisher ip, km ip and mgt console port, gw ip,
+            # mgt console port, pt http and https ports
             # check deployment is vm, if vm update /etc/hosts with values
             # export retrieve values as environment variables
             # export hostname for store
             # set the start command
 
             self.remove_data_from_metadata(self.ENV_CONFIG_PARAM_STORE_IP)
-
             self.add_data_to_meta_data_service(self.ENV_CONFIG_PARAM_STORE_IP, load_balancer_ip)
-
             publisher_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_PUBLISHER_IP)
             keymanager_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_KEYMANAGER_IP)
             keymanager_ports = self.get_data_from_meta_data_service(app_id, self.CONST_CONFIG_PARAM_KEYMANAGER_PORTS)
@@ -376,7 +366,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             gateway_worker_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP)
             gateway_worker_ports = self.get_data_from_meta_data_service(app_id,
                                                                         self.CONST_CONFIG_PARAM_GATEWAY_WORKER_PORTS)
-
             environment_type = self.find_environment_type(external_lb, service_name, app_id)
 
             if environment_type == WSO2AMStartupHandler.CONST_KUBERNETES:
@@ -395,7 +384,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 gateway_host = gateway_host_name
                 gateway_worker_host = gateway_worker_host_name
                 publisher_host = publisher_host_name
-
                 self.update_hosts_file(keymanager_ip, keymanager_host_name)
                 self.update_hosts_file(gateway_ip, gateway_host_name)
                 self.update_hosts_file(gateway_worker_ip, gateway_worker_host_name)
@@ -408,12 +396,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             self.set_gateway_ports(gateway_ports)
             self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP, gateway_worker_host)
             self.set_gateway_worker_ports(gateway_worker_ports)
-
-            member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_name(app_id, service_name, member_ip)
-            self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
             start_command = "exec ${CARBON_HOME}/bin/wso2server.sh -Dprofile=api-store start"
-
 
         elif profile == self.CONST_PUBSTORE:
             # Publisher and Store runs on a same node (PubStore profile)
@@ -430,7 +414,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             gateway_worker_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP)
             gateway_worker_ports = self.get_data_from_meta_data_service(app_id,
                                                                         self.CONST_CONFIG_PARAM_GATEWAY_WORKER_PORTS)
-
             environment_type = self.find_environment_type(external_lb, service_name, app_id)
 
             if environment_type == WSO2AMStartupHandler.CONST_KUBERNETES:
@@ -457,12 +440,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             self.set_gateway_ports(gateway_ports)
             self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_WORKER_IP, gateway_worker_host)
             self.set_gateway_worker_ports(gateway_worker_ports)
-
-            member_ip = socket.gethostbyname(socket.gethostname())
             self.set_host_name(app_id, service_name, member_ip)
-            self.export_env_var("CONFIG_PARAM_LOCAL_MEMBER_HOST", member_ip)
             start_command = "exec ${CARBON_HOME}/bin/wso2server.sh start"
-
         else:
             # This is the default profile
             # for kubernetes, load balancer ip should specify and no need for vm
@@ -494,6 +473,28 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         output, errors = p.communicate()
         WSO2AMStartupHandler.log.info("WSO2 API Manager started successfully")
 
+    def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        service = topology.get_service(service_name)
+        if service is None:
+            raise Exception("Service not found in topology [service] %s" % service_name)
+
+        cluster = service.get_cluster(cluster_id)
+        if cluster is None:
+            raise Exception("Cluster id not found in topology [cluster] %s" % cluster_id)
+
+        member = cluster.get_member(member_id)
+        if member is None:
+            raise Exception("Member id not found in topology [member] %s" % member_id)
+
+        if member.member_default_private_ip and not member.member_default_private_ip.isspace():
+            WSO2AMStartupHandler.log.info(
+                "Member private ip read from the topology: %s" % member.member_default_private_ip)
+            return member.member_default_private_ip
+        else:
+            local_ip = socket.gethostbyname(socket.gethostname())
+            WSO2AMStartupHandler.log.info(
+                "Member private ip not found in the topology. Reading from the socket interface: %s" % local_ip)
+            return local_ip
 
     def set_keymanager_ports(self, keymanager_ports):
         """
@@ -524,7 +525,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 gateway_mgt_https_pp = gateway_ports_array[1]
 
         self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_HTTPS_PROXY_PORT, str(gateway_mgt_https_pp))
-
 
     def set_gateway_worker_ports(self, gateway_worker_ports):
         """
@@ -587,7 +587,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
         return service_proxy_port
 
-
     def get_data_from_meta_data_service(self, app_id, receive_data):
         """
         Get data from meta data service
@@ -604,7 +603,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
         return mds_response.properties[receive_data]
 
-
     def add_data_to_meta_data_service(self, key, value):
         """
         add data to meta data service
@@ -613,7 +611,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         mdsclient.MDSPutRequest()
         data = {"key": key, "values": [value]}
         mdsclient.put(data, app=True)
-
 
     def remove_data_from_metadata(self, key):
         """
@@ -636,7 +633,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                     for entry in read_data:
                         mdsclient.delete_property_value(key, entry)
 
-
     def set_cluster_ids(self, app_id, service_list):
         """
         Set clusterIds of services read from topology for worker manager instances
@@ -656,7 +652,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             cluster_ids_string = ",".join(cluster_ids)
             self.export_env_var(self.ENV_CONFIG_PARAM_CLUSTER_IDs, cluster_ids_string)
 
-
     def export_env_var(self, variable, value):
         """
         Export value as an environment variable
@@ -667,7 +662,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             WSO2AMStartupHandler.log.info("Exported environment variable %s: %s" % (variable, value))
         else:
             WSO2AMStartupHandler.log.warn("Could not export environment variable %s " % variable)
-
 
     def read_cluster_id_of_service(self, service_name, app_id):
         """
@@ -684,7 +678,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
         return cluster_id
 
-
     def update_hosts_file(self, ip_address, host_name):
         """
         Updates /etc/hosts file with clustering hostnames
@@ -696,7 +689,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         output, errors = p.communicate()
         WSO2AMStartupHandler.log.info(
             "Successfully updated [ip_address] %s & [hostname] %s in etc/hosts" % (ip_address, host_name))
-
 
     def set_host_names_for_gw(self, app_id, member_ip):
         """
@@ -714,7 +706,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         self.export_env_var(self.ENV_CONFIG_PARAM_MGT_HOST_NAME, mgt_host_name)
         self.export_env_var(self.ENV_CONFIG_PARAM_HOST_NAME, host_name)
 
-
     def set_host_name(self, app_id, service_name, member_ip):
         """
         Set hostname of service read from topology for any service name
@@ -725,18 +716,19 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         self.export_env_var(self.ENV_CONFIG_PARAM_HOST_NAME, host_name)
         self.update_hosts_file(member_ip, host_name)
 
-
     def get_host_name_from_cluster(self, service_name, app_id):
         """
         Get hostname for a service
         :return: hostname
         """
         clusters = self.get_clusters_from_topology(service_name)
-
+        hostname = None
         if clusters is not None:
             for cluster in clusters:
                 if cluster.app_id == app_id:
                     hostname = cluster.hostnames[0]
+        if not hostname:
+            raise Exception("Could not retrieve hostname for [service] %s, [app_id] %s" % (service_name, app_id))
 
         return hostname
 
@@ -755,7 +747,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
         return isKubernetes
 
-
     def get_clusters_from_topology(self, service_name):
         """
         get clusters from topology
@@ -773,7 +764,6 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
         return clusters
 
-
     def find_environment_type(self, external_lb, service_name, app_id):
         """
         Check for vm or kubernetes
@@ -789,5 +779,3 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 return WSO2AMStartupHandler.CONST_KUBERNETES
             else:
                 return WSO2AMStartupHandler.CONST_VM
-
-

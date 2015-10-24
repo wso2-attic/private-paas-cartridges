@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2005-2015 WSO2, Inc. (http://wso2.com)
   ~
@@ -15,20 +14,19 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
-        <artifactId>cartridges-common</artifactId>
+        <artifactId>configurator-parent</artifactId>
         <version>4.1.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>wso2ppaas-vm-tools</artifactId>
+    <artifactId>org.wso2.ppaas.cartridges.common.configurator</artifactId>
     <packaging>pom</packaging>
-    <name>Tools for VM scenario</name>
-    <description>Aggregate module which contains tools required for Virtual Machine scenario</description>
+    <name>Configurator Distribution</name>
 
     <build>
         <plugins>
@@ -43,8 +41,9 @@
                             <goal>attached</goal>
                         </goals>
                         <configuration>
+                            <finalName>${configurator.distribution.name}-${project.version}</finalName>
                             <descriptors>
-                                <descriptor>${basedir}/assembly.xml</descriptor>
+                                <descriptor>assembly.xml</descriptor>
                             </descriptors>
                             <appendAssemblyId>false</appendAssemblyId>
                         </configuration>

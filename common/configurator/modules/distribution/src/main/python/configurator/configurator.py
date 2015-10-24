@@ -135,16 +135,17 @@ def copy_files_to_pack(source, target):
 def configure():
     """
     Main method
+    :param cli_arguments: command line arguments
     :return None
     """
-    log.info("Running WSO2 Private PaaS Configurator...")
-    # read template module dir from environmental vars or default to configurator's path
-    template_module_parent_dir = os.environ.get(constants.TEMPLATE_MODULE_PATH_ENV_KEY,
-                                                os.path.join(PATH, constants.TEMPLATE_MODULE_FOLDER_NAME))
+
     log.info("Scanning the template module directory: %s" % template_module_parent_dir)
     # traverse through the template directory
     only_directories = [f for f in os.listdir(template_module_parent_dir) if
                         os.path.isdir(os.path.join(template_module_parent_dir, f))]
+    if len(only_directories) == 0:
+        log.info("No directories found at %s", template_module_parent_dir)
+
     for file_name in only_directories:
         module_settings_file_path = os.path.join(template_module_parent_dir, file_name, constants.CONFIG_FILE_NAME)
         templates_dir = os.path.join(template_module_parent_dir, file_name, constants.TEMPLATES_FOLDER_NAME)
@@ -172,6 +173,14 @@ def configure():
 
 if __name__ == "__main__":
     try:
+        cli_arguments = sys.argv[1:]
+        # read template module dir from environmental vars or default to configurator's path
+        template_module_parent_dir = ConfigParserUtil.get_template_module_dir_from_cargs(cli_arguments)
+
+        if template_module_parent_dir is None:
+            template_module_parent_dir = os.environ.get(constants.TEMPLATE_MODULE_PATH_ENV_KEY,
+                                                        os.path.join(PATH, constants.TEMPLATE_MODULE_FOLDER_NAME))
+        log.info("Running WSO2 Private PaaS Configurator...")
         configure()
     except Exception as e:
         log.exception("Error while executing WSO2 Private PaaS Configurator: %s", e)
