@@ -533,8 +533,12 @@
         -->
         <!-- The host name or IP address of this member -->
 
-        <parameter name="localMemberHost">{{ CONFIG_PARAM_LOCAL_MEMBER_HOST }}</parameter>
-
+        {% if CONFIG_PARAM_LOCAL_MEMBER_HOST is defined -%}
+        <parameter name="localMemberHost">{{CONFIG_PARAM_LOCAL_MEMBER_HOST}}</parameter>
+        {% else -%}
+        <parameter name="localMemberHost">127.0.0.1</parameter>
+        {% endif -%}
+        
         <!--
             The bind adress of this member. The difference between localMemberHost & localMemberBindAddress
             is that localMemberHost is the one that is advertised by this member, while localMemberBindAddress
