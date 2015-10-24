@@ -16,15 +16,14 @@
 #
 # ------------------------------------------------------------------------
 
-import mdsclient
-from plugins.contracts import ICartridgeAgentPlugin
-from xml.dom.minidom import parse
 import socket
-from modules.util.log import LogFactory
-import time
 import subprocess
 import os
+
+from plugins.contracts import ICartridgeAgentPlugin
+from modules.util.log import LogFactory
 from entity import *
+from config import Config
 
 
 class WSO2DASStartupHandler(ICartridgeAgentPlugin):
@@ -41,7 +40,7 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
     CONST_PROTOCOL_HTTPS = "https"
     CONST_PORT_MAPPINGS = "PORT_MAPPINGS"
     CONST_CLUSTER_ID = "CLUSTER_ID"
-    CONST_CARBON_HOME="CARBON_HOME"
+    CONST_CARBON_HOME = "CARBON_HOME"
 
     SERVICES = ["wso2das-300"]
 
@@ -73,7 +72,6 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
     ENV_CONFIG_PARAM_HTTP_PROXY_PORT = 'CONFIG_PARAM_HTTP_PROXY_PORT'
     ENV_CONFIG_PARAM_HTTPS_PROXY_PORT = 'CONFIG_PARAM_HTTPS_PROXY_PORT'
     ENV_CONFIG_PARAM_HOST_NAME = 'CONFIG_PARAM_HOST_NAME'
-
 
     def run_plugin(self, values):
 
@@ -108,7 +106,7 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
 
         self.export_env_var(WSO2DASStartupHandler.ENV_CONFIG_PARAM_MB_IP, mb_ip)
 
-        #create symbolic for spark directory
+        # create symbolic for spark directory
         srcDir = carbon_home
         destDir = '/mnt/' + service_name
 
@@ -129,8 +127,10 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
             # export Cluster_Ids as Env. variables - used in axis2.xml
             self.export_cluster_ids(cluster_of_service)
             self.export_spark_master_count(cluster_of_service)
-            member_ip = socket.gethostbyname(socket.gethostname())
-            self.export_env_var(WSO2DASStartupHandler.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, member_ip)
+
+        # set instance private ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
+        private_ip = self.get_member_private_ip(topology, Config.service_name, Config.cluster_id, Config.member_id)
+        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, private_ip)
 
         # configure server
         WSO2DASStartupHandler.log.info("Configuring WSO2 DAS ...")
@@ -162,6 +162,29 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
         p = subprocess.Popen(start_command, env=env_var, shell=True)
         output, errors = p.communicate()
         WSO2DASStartupHandler.log.debug("WSO2 DAS started successfully")
+
+    def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        service = topology.get_service(service_name)
+        if service is None:
+            raise Exception("Service not found in topology [service] %s" % service_name)
+
+        cluster = service.get_cluster(cluster_id)
+        if cluster is None:
+            raise Exception("Cluster id not found in topology [cluster] %s" % cluster_id)
+
+        member = cluster.get_member(member_id)
+        if member is None:
+            raise Exception("Member id not found in topology [member] %s" % member_id)
+
+        if member.member_default_private_ip and not member.member_default_private_ip.isspace():
+            WSO2DASStartupHandler.log.info(
+                "Member private ip read from the topology: %s" % member.member_default_private_ip)
+            return member.member_default_private_ip
+        else:
+            local_ip = socket.gethostbyname(socket.gethostname())
+            WSO2DASStartupHandler.log.info(
+                "Member private ip not found in the topology. Reading from the socket interface: %s" % local_ip)
+            return local_ip
 
     def export_cluster_ids(self, cluster_of_service):
         """
@@ -199,7 +222,6 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
                     properties = member.properties
             if properties is not None:
                 self.export_env_var(self.ENV_CONFIG_PARAM_CARBON_SPARK_MASTER_COUNT, properties["MIN_COUNT"])
-
 
     def get_clusters_from_topology(self, service_name):
         """
@@ -293,7 +315,6 @@ class WSO2DASStartupHandler(ICartridgeAgentPlugin):
         output, errors = p.communicate()
         WSO2DASStartupHandler.log.info(
             "Successfully updated [ip_address] %s & [hostname] %s in etc/hosts" % (ip_address, host_name))
-
 
     @staticmethod
     def get_cluster_of_service(topology, service_name, app_id):

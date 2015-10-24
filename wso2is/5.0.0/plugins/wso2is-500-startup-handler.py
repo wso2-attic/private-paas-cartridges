@@ -16,14 +16,16 @@
 #
 # ------------------------------------------------------------------------
 
-from plugins.contracts import ICartridgeAgentPlugin
-from modules.util.log import LogFactory
-from entity import *
 import subprocess
 import socket
 import os
-import mdsclient
 import time
+
+from plugins.contracts import ICartridgeAgentPlugin
+from modules.util.log import LogFactory
+from entity import *
+import mdsclient
+from config import Config
 
 
 class WSO2StartupHandler(ICartridgeAgentPlugin):
@@ -85,7 +87,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
 
     # This is payload parameter which enables to use an external lb when using kubernetes. Use true when using with kub.
     ENV_CONFIG_PARAM_USE_EXTERNAL_LB_FOR_KUBERNETES = 'CONFIG_PARAM_USE_EXTERNAL_LB_FOR_KUBERNETES'
-
 
     def run_plugin(self, values):
 
@@ -192,9 +193,9 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                 # export mb_ip as Env.variable - used in jndi.properties
                 self.export_env_var(self.ENV_CONFIG_PARAM_MB_HOST, mb_ip)
 
-        # set local ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
-        local_ip = socket.gethostbyname(socket.gethostname())
-        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, local_ip)
+        # set instance private ip as CONFIG_PARAM_LOCAL_MEMBER_HOST
+        private_ip = self.get_member_private_ip(topology, Config.service_name, Config.cluster_id, Config.member_id)
+        self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, private_ip)
 
         # start configurator
         WSO2StartupHandler.log.info("Configuring WSO2 %s..." % self.CONST_PRODUCT)
@@ -215,6 +216,28 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         output, errors = p.communicate()
         WSO2StartupHandler.log.info("WSO2 %s started successfully" % self.CONST_PRODUCT)
 
+    def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        service = topology.get_service(service_name)
+        if service is None:
+            raise Exception("Service not found in topology [service] %s" % service_name)
+
+        cluster = service.get_cluster(cluster_id)
+        if cluster is None:
+            raise Exception("Cluster id not found in topology [cluster] %s" % cluster_id)
+
+        member = cluster.get_member(member_id)
+        if member is None:
+            raise Exception("Member id not found in topology [member] %s" % member_id)
+
+        if member.member_default_private_ip and not member.member_default_private_ip.isspace():
+            WSO2StartupHandler.log.info(
+                "Member private ip read from the topology: %s" % member.member_default_private_ip)
+            return member.member_default_private_ip
+        else:
+            local_ip = socket.gethostbyname(socket.gethostname())
+            WSO2StartupHandler.log.info(
+                "Member private ip not found in the topology. Reading from the socket interface: %s" % local_ip)
+            return local_ip
 
     def set_gateway_worker_ports(self, gateway_worker_ports):
         """
@@ -233,7 +256,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_WORKER_PT_HTTP_PROXY_PORT, str(gateway_pt_http_pp))
         self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_WORKER_PT_HTTPS_PROXY_PORT, str(gateway_pt_https_pp))
 
-
     def set_gateway_ports(self, gateway_ports):
         """
         Expose gateway ports
@@ -249,7 +271,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
 
         self.export_env_var(self.ENV_CONFIG_PARAM_GATEWAY_HTTPS_PROXY_PORT, str(gateway_mgt_https_pp))
 
-
     def set_host_name(self, app_id, service_name, member_ip):
         """
         Set hostname of service read from topology for any service name
@@ -259,7 +280,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         host_name = self.get_host_name_from_cluster(service_name, app_id)
         self.export_env_var(self.ENV_CONFIG_PARAM_HOST_NAME, host_name)
         self.update_hosts_file(member_ip, host_name)
-
 
     def update_hosts_file(self, ip_address, host_name):
         """
@@ -272,7 +292,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         output, errors = p.communicate()
         WSO2StartupHandler.log.info(
             "Successfully updated [ip_address] %s & [hostname] %s in etc/hosts" % (ip_address, host_name))
-
 
     def get_host_name_from_cluster(self, service_name, app_id):
         """
@@ -287,7 +306,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                     hostname = cluster.hostnames[0]
 
         return hostname
-
 
     def find_environment_type(self, external_lb, service_name, app_id):
         """
@@ -304,7 +322,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                 return WSO2StartupHandler.CONST_KUBERNETES
             else:
                 return WSO2StartupHandler.CONST_VM
-
 
     def get_clusters_from_topology(self, service_name):
         """
@@ -323,7 +340,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
 
         return clusters
 
-
     def check_for_kubernetes_cluster(self, service_name, app_id):
         """
         Check the deployment is kubernetes
@@ -338,7 +354,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                     isKubernetes = cluster.is_kubernetes_cluster
 
         return isKubernetes
-
 
     def get_data_from_meta_data_service(self, app_id, receive_data):
         """
@@ -356,7 +371,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
 
         return mds_response.properties[receive_data]
 
-
     def add_data_to_meta_data_service(self, key, value):
         """
         add data to meta data service
@@ -365,7 +379,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         mdsclient.MDSPutRequest()
         data = {"key": key, "values": [value]}
         mdsclient.put(data, app=True)
-
 
     def remove_data_from_metadata(self, key):
         """
@@ -387,7 +400,6 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
                 else:
                     for entry in read_data:
                         mdsclient.delete_property_value(key, entry)
-
 
     def export_host_names(self, topology, app_id):
         """
