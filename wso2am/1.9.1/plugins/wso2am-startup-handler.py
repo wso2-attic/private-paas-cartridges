@@ -474,6 +474,10 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         WSO2AMStartupHandler.log.info("WSO2 API Manager started successfully")
 
     def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        """
+        return member private ip
+        :return: local_ip
+        """
         service = topology.get_service(service_name)
         if service is None:
             raise Exception("Service not found in topology [service] %s" % service_name)

@@ -142,7 +142,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
             self.add_data_to_meta_data_service(self.ENV_CONFIG_PARAM_KEYMANAGER_IP, lb_ip)
             self.add_data_to_meta_data_service(self.CONST_CONFIG_PARAM_KEYMANAGER_PORTS,
                                                "Ports:" + mgt_https_proxy_port)
-            self.add_data_to_meta_data_service(self.CONST_KM_SERVICE_NAME, service_name)
+            self.add_data_to_meta_data_service(self.CONST_KM_SERVICE_NAME, service_type)
 
             gateway_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_GATEWAY_IP)
             gateway_ports = self.get_data_from_meta_data_service(app_id, self.CONST_CONFIG_PARAM_GATEWAY_PORTS)
