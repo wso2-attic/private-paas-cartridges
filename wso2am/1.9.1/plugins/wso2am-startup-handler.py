@@ -66,6 +66,7 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
     CONST_KUBERNETES = "KUBERNETES"
     CONST_VM = "VM"
     CONST_EXTERNAL_LB_FOR_KUBERNETES = "EXTERNAL_LB_FOR_KUBERNETES"
+    CONST_KM_SERVICE_NAME = 'KEY_MANAGER_SERVICE_NAME'
 
     GATEWAY_SERVICES = [CONST_GATEWAY_MANAGER_SERVICE_NAME, CONST_GATEWAY_WORKER_SERVICE_NAME]
     PUB_STORE_SERVICES = [CONST_PUBLISHER_SERVICE_NAME, CONST_STORE_SERVICE_NAME]
@@ -184,10 +185,12 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
 
             self.remove_data_from_metadata(self.ENV_CONFIG_PARAM_KEYMANAGER_IP)
             self.remove_data_from_metadata(self.CONST_CONFIG_PARAM_KEYMANAGER_PORTS)
+            self.remove_data_from_metadata(self.CONST_KM_SERVICE_NAME)
 
             self.add_data_to_meta_data_service(self.ENV_CONFIG_PARAM_KEYMANAGER_IP, load_balancer_ip)
             self.add_data_to_meta_data_service(self.CONST_CONFIG_PARAM_KEYMANAGER_PORTS,
                                                "Ports:" + mgt_https_proxy_port)
+            self.add_data_to_meta_data_service(self.CONST_KM_SERVICE_NAME, service_name)
 
             gateway_ip = self.get_data_from_meta_data_service(app_id, self.ENV_CONFIG_PARAM_GATEWAY_IP)
             gateway_ports = self.get_data_from_meta_data_service(app_id, self.CONST_CONFIG_PARAM_GATEWAY_PORTS)
@@ -243,7 +246,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             if environment_type == WSO2AMStartupHandler.CONST_KUBERNETES:
                 keymanager_host = keymanager_ip
             else:
-                keymanager_host_name = self.get_host_name_from_cluster(self.CONST_KEY_MANAGER_SERVICE_NAME, app_id)
+                keymanager_service_name = self.get_data_from_meta_data_service(app_id, self.CONST_KM_SERVICE_NAME)
+                keymanager_host_name = self.get_host_name_from_cluster(keymanager_service_name, app_id)
                 keymanager_host = keymanager_host_name
                 self.update_hosts_file(keymanager_ip, keymanager_host_name)
 
@@ -276,7 +280,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
             if environment_type == WSO2AMStartupHandler.CONST_KUBERNETES:
                 keymanager_host = keymanager_ip
             else:
-                keymanager_host_name = self.get_host_name_from_cluster(self.CONST_KEY_MANAGER_SERVICE_NAME, app_id)
+                keymanager_service_name = self.get_data_from_meta_data_service(app_id, self.CONST_KM_SERVICE_NAME)
+                keymanager_host_name = self.get_host_name_from_cluster(keymanager_service_name, app_id)
                 keymanager_host = keymanager_host_name
                 self.update_hosts_file(keymanager_ip, keymanager_host_name)
 
@@ -314,7 +319,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 gateway_worker_host = gateway_worker_ip
                 store_host = store_ip
             else:
-                keymanager_host_name = self.get_host_name_from_cluster(self.CONST_KEY_MANAGER_SERVICE_NAME, app_id)
+                keymanager_service_name = self.get_data_from_meta_data_service(app_id, self.CONST_KM_SERVICE_NAME)
+                keymanager_host_name = self.get_host_name_from_cluster(keymanager_service_name, app_id)
                 gateway_host_name = self.get_host_name_from_cluster(self.CONST_GATEWAY_MANAGER_SERVICE_NAME, app_id)
                 gateway_worker_host_name = self.get_host_name_from_cluster(self.CONST_GATEWAY_WORKER_SERVICE_NAME,
                                                                            app_id)
@@ -368,7 +374,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 gateway_worker_host = gateway_worker_ip
                 publisher_host = publisher_ip
             else:
-                keymanager_host_name = self.get_host_name_from_cluster(self.CONST_KEY_MANAGER_SERVICE_NAME, app_id)
+                keymanager_service_name = self.get_data_from_meta_data_service(app_id, self.CONST_KM_SERVICE_NAME)
+                keymanager_host_name = self.get_host_name_from_cluster(keymanager_service_name, app_id)
                 gateway_host_name = self.get_host_name_from_cluster(self.CONST_GATEWAY_MANAGER_SERVICE_NAME, app_id)
                 gateway_worker_host_name = self.get_host_name_from_cluster(self.CONST_GATEWAY_WORKER_SERVICE_NAME,
                                                                            app_id)
@@ -414,7 +421,8 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
                 gateway_host = gateway_ip
                 gateway_worker_host = gateway_worker_ip
             else:
-                keymanager_host_name = self.get_host_name_from_cluster(self.CONST_KEY_MANAGER_SERVICE_NAME, app_id)
+                keymanager_service_name = self.get_data_from_meta_data_service(app_id, self.CONST_KM_SERVICE_NAME)
+                keymanager_host_name = self.get_host_name_from_cluster(keymanager_service_name, app_id)
                 gateway_host_name = self.get_host_name_from_cluster(self.CONST_GATEWAY_MANAGER_SERVICE_NAME, app_id)
                 gateway_worker_host_name = self.get_host_name_from_cluster(self.CONST_GATEWAY_WORKER_SERVICE_NAME,
                                                                            app_id)
@@ -466,6 +474,10 @@ class WSO2AMStartupHandler(ICartridgeAgentPlugin):
         WSO2AMStartupHandler.log.info("WSO2 API Manager started successfully")
 
     def get_member_private_ip(self, topology, service_name, cluster_id, member_id):
+        """
+        return member private ip
+        :return: local_ip
+        """
         service = topology.get_service(service_name)
         if service is None:
             raise Exception("Service not found in topology [service] %s" % service_name)
