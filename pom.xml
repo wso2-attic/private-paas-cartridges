@@ -485,7 +485,7 @@
         <stratos.version>4.1.4</stratos.version>
 
         <!-- WSO2 Private PaaS version -->
-        <ppaas.version>4.1.0-SNAPSHOT</ppaas.version>
+        <ppaas.version>4.1.0</ppaas.version>
 
         <!-- distribution properties -->
         <configurator.distribution.name>wso2ppaas-configurator</configurator.distribution.name>
