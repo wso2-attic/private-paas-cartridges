@@ -498,11 +498,11 @@
         {%  endif -%}
 
         {% if CONFIG_PARAM_MEMBERSHIP_SCHEME == 'kubernetes' -%}
-        <!-- private-paas membership scheme specific parameters -->
+        <!-- kubernetes membership scheme specific parameters -->
         <parameter name="membershipSchemeClassName">org.wso2.carbon.membership.scheme.kubernetes.KubernetesMembershipScheme</parameter>
         <parameter name="KUBERNETES_MASTER">{{KUBERNETES_MASTER}}</parameter>
-        <parameter name="KUBERNETES_SERVICES">{{KUBERNETES_SERVICES}}</parameter>
         <parameter name="KUBERNETES_NAMESPACE">{{KUBERNETES_NAMESPACE}}</parameter>
+        <parameter name="KUBERNETES_SERVICES">{{KUBERNETES_SERVICES}}</parameter>
         {%  endif -%}
 
         <!--<parameter name="licenseKey">xxx</parameter>-->
