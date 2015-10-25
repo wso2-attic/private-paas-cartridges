@@ -116,7 +116,7 @@ class WSO2StartupHandler(ICartridgeAgentPlugin):
         self.export_env_var(self.ENV_CONFIG_PARAM_LOCAL_MEMBER_HOST, private_ip)
 
         # set thrift server host as the IP
-        self.export_env_var(self.ENV_CONFIG_PARAM_THRIFT_SERVER_HOST, local_ip)
+        self.export_env_var(self.ENV_CONFIG_PARAM_THRIFT_SERVER_HOST, private_ip)
 
         # start configurator
         WSO2StartupHandler.log.info("Configuring WSO2 %s..." % self.CONST_PRODUCT)
