@@ -532,12 +532,7 @@
             <parameter name="mcastBindAddress">127.0.0.1</parameter>
         -->
         <!-- The host name or IP address of this member -->
-
-        {% if CONFIG_PARAM_LOCAL_MEMBER_HOST is defined -%}
         <parameter name="localMemberHost">{{CONFIG_PARAM_LOCAL_MEMBER_HOST}}</parameter>
-        {% else -%}
-        <parameter name="localMemberHost">127.0.0.1</parameter>
-        {% endif -%}
         
         <!--
             The bind adress of this member. The difference between localMemberHost & localMemberBindAddress
