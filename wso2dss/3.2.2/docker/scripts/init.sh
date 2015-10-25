@@ -27,6 +27,8 @@ mkdir -p $server_path
 unzip /opt/wso2${WSO2_SERVER_TYPE}-${WSO2_SERVER_VERSION}.zip -d $server_path
 rm /opt/wso2${WSO2_SERVER_TYPE}-${WSO2_SERVER_VERSION}.zip
 export CARBON_HOME="$server_path/wso2${WSO2_SERVER_TYPE}-${WSO2_SERVER_VERSION}"
+export CONFIG_PARAM_LOCAL_MEMBER_HOST=${local_ip}
+
 echo "CARBON_HOME=${CARBON_HOME}" >> /etc/environment
 echo "CARBON_HOME is set to ${CARBON_HOME}"
 
