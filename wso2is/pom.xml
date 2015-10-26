@@ -27,7 +27,7 @@
 
     <artifactId>ppaas-cartridges-wso2is-parent</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 IS Cartridge Parent</name>
+    <name>WSO2 Identity Server Cartridge Parent</name>
 
     <modules>
         <module>5.0.0</module>

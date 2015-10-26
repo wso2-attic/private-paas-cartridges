@@ -59,7 +59,7 @@ function build_image () {
        echo "Copying" $2 - $3 "common plugins"
        echo "----------------------------------"
        pushd ${8}
-       cp * $6/plugins
+       cp *.py *.yapsy-plugin $6/plugins
        popd
     fi
 

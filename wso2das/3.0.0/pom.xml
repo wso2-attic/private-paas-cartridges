@@ -27,7 +27,7 @@
 
     <artifactId>wso2das-3.0.0-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 DAS 3.0.0 Cartridge</name>
+    <name>WSO2 Data Analytics Server 3.0.0 Cartridge</name>
 
     <build>
         <plugins>

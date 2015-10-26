@@ -27,7 +27,7 @@
 
     <artifactId>wso2ppaas-common-plugins</artifactId>
     <packaging>pom</packaging>
-    <name>Cartridge plugins</name>
+    <name>Common Plugins</name>
     <description>Plugins for the cartridges</description>
 
     <build>

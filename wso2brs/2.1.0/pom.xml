@@ -27,7 +27,7 @@
 
     <artifactId>wso2brs-2.1.0-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 BRS 2.1.0 Cartridge</name>
+    <name>WSO2 Business Rules Server 2.1.0 Cartridge</name>
 
     <build>
         <plugins>

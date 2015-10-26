@@ -27,7 +27,7 @@
 
     <artifactId>wso2mb-3.0.0-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 MB 3.0.0 Cartridge</name>
+    <name>WSO2 Message Broker 3.0.0 Cartridge</name>
 
     <build>
         <plugins>
