@@ -30,23 +30,48 @@ Final files folder should look like following.
 │   ├── dbscripts
 │   ├── lib
 │   └── repository
-│       └── components
-│           ├── dropins
-│           ├── lib
-│           └── patches
-│               ├── patch0955
-│               │   ├── org.wso2.carbon.webapp.list.ui_4.2.1.jar
-│               │   ├── org.wso2.carbon.webapp.mgt_4.2.2.jar
-│               │   └── org.wso2.carbon.webapp.mgt.stub_4.2.0.jar
-│               ├── patch1095
-│               │   └── wss4j_1.5.11.wso2v6.jar
-│               ├── patch1261
-│               │   ├── org.wso2.carbon.tomcat.ext_4.2.0.jar
-│               │   ├── org.wso2.carbon.tomcat.patch_4.2.0.jar
-│               │   ├── tomcat_7.0.34.wso2v1.jar
-│               │   └── tomcat-ha_7.0.34.wso2v1.jar
-│               └── patch1262
-│                   └── org.wso2.carbon.webapp.mgt_4.2.2.jar
+│       ├── components
+│       │   ├── dropins
+│       │   ├── lib
+│       │   └── patches
+│       │       ├── patch0955
+│       │       │   ├── org.wso2.carbon.webapp.list.ui_4.2.1.jar
+│       │       │   ├── org.wso2.carbon.webapp.mgt_4.2.2.jar
+│       │       │   └── org.wso2.carbon.webapp.mgt.stub_4.2.0.jar
+│       │       ├── patch1095
+│       │       │   └── wss4j_1.5.11.wso2v6.jar
+│       │       ├── patch1193
+│       │       │   └── org.wso2.carbon.webapp.mgt_4.2.0.jar
+│       │       ├── patch1194
+│       │       │   └── org.wso2.carbon.identity.application.authenticator.samlsso_4.2.1.jar
+│       │       ├── patch1235
+│       │       │   └── org.wso2.carbon.identity.mgt_4.2.2.jar
+│       │       ├── patch1256
+│       │       │   ├── org.wso2.carbon.identity.core_4.2.3.jar
+│       │       │   ├── org.wso2.carbon.identity.sso.saml_4.2.3.jar
+│       │       │   ├── org.wso2.carbon.identity.sts.passive.ui_4.2.1.jar
+│       │       │   └── org.wso2.carbon.ui_4.2.0.jar
+│       │       ├── patch1261
+│       │       │   ├── org.wso2.carbon.tomcat.ext_4.2.0.jar
+│       │       │   ├── org.wso2.carbon.tomcat.patch_4.2.0.jar
+│       │       │   ├── tomcat_7.0.34.wso2v1.jar
+│       │       │   └── tomcat-ha_7.0.34.wso2v1.jar
+│       │       ├── patch1262
+│       │       │   └── org.wso2.carbon.webapp.mgt_4.2.2.jar
+│       │       ├── patch1268
+│       │       │   ├── org.wso2.carbon.identity.application.authenticator.basicauth_4.2.0.jar
+│       │       │   ├── org.wso2.carbon.identity.core_4.2.0.jar
+│       │       │   ├── org.wso2.carbon.identity.mgt_4.2.0.jar
+│       │       │   └── org.wso2.carbon.user.core_4.2.0.jar
+│       │       └── patch1270
+│       │           ├── org.wso2.carbon.identity.application.authenticator.basicauth_4.2.1.jar
+│       │           ├── org.wso2.carbon.identity.core_4.2.2.jar
+│       │           └── org.wso2.carbon.identity.mgt_4.2.1.jar
+│       └── deployment
+│           └── server
+│               └── webapps
+│                   ├── authenticationendpoint.war
+│                   └── oauth2.war
 
 ```
 
