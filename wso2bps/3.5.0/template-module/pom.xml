@@ -20,7 +20,7 @@
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
         <artifactId>ppaas-cartridges-parent</artifactId>
-        <version>4.1.1-SNAPSHOT</version>
+        <version>4.1.1</version>
     </parent>
 
     <artifactId>wso2bps-3.5.0-template-module</artifactId>

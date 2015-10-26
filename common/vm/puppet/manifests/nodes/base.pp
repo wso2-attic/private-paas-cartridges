@@ -19,7 +19,7 @@
 node 'base' {
 
 # General Configurations
-  $ppaas_cartridge_version = '4.1.1-SNAPSHOT'
+  $ppaas_cartridge_version = '4.1.1'
   $server_ip               = $ipaddress
 
 # PCA Configurations
@@ -47,7 +47,7 @@ node 'base' {
 
 # Configurator Configurations
   $configurator_name    = 'wso2ppaas-configurator'
-  $configurator_version = '4.1.1-SNAPSHOT'
+  $configurator_version = '4.1.1'
 
   require ppaas_base
 }
