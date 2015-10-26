@@ -32,9 +32,11 @@ Default value is 120 seconds. Value should be specified in seconds.
   is same which is used in IS cartridge
   
   4. In VM scenario use the following structure for puppet. 
-  
+ 
+```
    wso2iskm500
   │   │   ├── packs
   │   │   │   └── Include the pre packaged IS pack and default IS template module
   │   │   └── plugins
   │   │       └── Include default IS plugins 
+```
