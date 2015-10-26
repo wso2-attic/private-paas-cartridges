@@ -9,8 +9,15 @@ WSO2-IS 5.0.0 Template for the Configurator
 
 **Security patches**
 
+* patch1270
+* patch1268
 * patch1262
 * patch1261
+* patch1256
+  - Note: copy authenticationendpoint.war and oauth2.war files in resources folder of this patch to files/repository/deployment/server/webapps folder
+* patch1235
+* patch1194
+* patch1193
 * patch1095
 * patch0955
 
