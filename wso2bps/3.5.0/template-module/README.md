@@ -3,9 +3,11 @@ WSO2-BPS 3.5.0 Template for the Configurator
 
 ###Creating BPS Template Module for Private PaaS
 
-(1) Build the template module with above files.
+(1) Build the template module zip file by running the following command.
 
-	mvn clean install
+```
+mvn clean install
+```
 
 ---
 ### Configuration parameters

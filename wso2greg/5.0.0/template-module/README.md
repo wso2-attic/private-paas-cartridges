@@ -3,40 +3,11 @@ WSO2-GREG 5.0.0 Template for the Configurator
 
 ###Creating GREG Template Module for Private PaaS
 
-(1) Copy [mysql-connector-java-5.1.xx-bin.jar](http://dev.mysql.com/downloads/connector/j/) file to `<template_module_home>/files/repository/components/lib` folder. (Folder structure needs to be created.)
+(1) Build the template module zip file by running the following command.
 
-(2) Copy `<private_paas_home>/extensions/carbon/ppaas-membership-scheme/target/wso2ppaas-membership-scheme-4.1.0.jar` file to `<template_module_home>/files/repository/components/dropins` folder.
-
-(3) Copy following jar files to `<template_module_home>/files/repository/components/dropins` folder.
-
- * activemq_client_5.10.0_1.0.0.jar
- * geronimo_j2ee_management_1.1_spec_1.0.1_1.0.0.jar
- * hawtbuf_1.9_1.0.0.jar 
- * org.apache.commons.lang3_3.1.0.jar
- * org.apache.stratos.common-4.1.4.jar
- * org.apache.stratos.messaging-4.1.4.jar
-
-
-(4) Final files folder should look like following.
-
-files
-└── repository
-    └── components
-        ├── dropins
-        │   ├── activemq_client_5.10.0_1.0.0.jar
-        │   ├── geronimo_j2ee_management_1.1_spec_1.0.1_1.0.0.jar
-        │   ├── hawtbuf_1.9_1.0.0.jar
-        │   ├── org.apache.commons.lang3_3.1.0.jar
-        │   ├── org.apache.stratos.common-4.1.4.jar
-        │   ├── org.apache.stratos.messaging-4.1.4.jar
-        │   └── wso2ppaas-membership-scheme-4.1.0.jar
-        └── lib
-            └── mysql-connector-java-5.1.34-bin.jar
-
-
-(5) Build the template module with above files.
-
-	mvn clean install
+```
+mvn clean install
+```
 
 ---
 ### Configuration parameters

@@ -3,7 +3,7 @@ WSO2-MB 3.0.0 Template for the Configurator
 
 ###Creating MB Template Module for Private PaaS
 
-Build the template module using the following command.
+(1) Build the template module zip file by running the following command.
 
 ```
 mvn clean install

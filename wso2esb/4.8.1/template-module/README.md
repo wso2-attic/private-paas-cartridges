@@ -8,8 +8,8 @@
     extracted patch folders to `files/repository/components/patches` directory.
 
 **Security patches**
-* patch1095
 * patch1261
+* patch1095
 
 Final files folder should look like following.
 
@@ -33,7 +33,7 @@ Final files folder should look like following.
 
 ```
 
-(2) Build the template module using the following command.
+(2) Build the template module zip file by running the following command.
 
 ```
 mvn clean install
