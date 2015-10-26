@@ -53,7 +53,4 @@
         </plugins>
     </build>
 
-    <modules>
-        <module>template-module</module>
-    </modules>
 </project>
