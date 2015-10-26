@@ -27,7 +27,7 @@
 
     <artifactId>wso2dss-3.2.2-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 DSS 3.2.2 Cartridge</name>
+    <name>WSO2 Data Services Server 3.2.2 Cartridge</name>
 
     <build>
         <plugins>

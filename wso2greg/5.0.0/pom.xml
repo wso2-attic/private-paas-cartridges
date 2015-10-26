@@ -27,7 +27,7 @@
 
     <artifactId>wso2greg-5.0.0-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 GREG 5.0.0 Cartridge</name>
+    <name>WSO2 Governance Registry 5.0.0 Cartridge</name>
 
     <build>
         <plugins>

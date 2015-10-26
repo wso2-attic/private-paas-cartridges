@@ -18,13 +18,13 @@ WSO2 Private PaaS 4.1.0
 
 - Load Balancer is needed to run API-M Application. Update the cartridge definitions with lb ip as follows under property section.
 
-name : payload_parameter.CONFIG_PARAM_LB_IP 
-value : <LB_IP>
+    * name : payload_parameter.CONFIG_PARAM_LB_IP 
+    * value : (LB_IP)
 
 - Server Shutdown timeout can be changed adding a new property as follows under property section in a cartridge definition.
 
-name : payload_parameter.CONFIG_PARAM_SERVER_SHUTDOWN_TIMEOUT 
-value : 120 
+    * name : payload_parameter.CONFIG_PARAM_SERVER_SHUTDOWN_TIMEOUT
+    * value : 120 
 
 Default value is 120 seconds. Value should be specified in seconds.
 
@@ -46,8 +46,10 @@ is same which is used in IS cartridge
 
   4. In VM scenario use the following structure for puppet. 
 
- wso2iskm500
-│   │   ├── packs
-│   │   │   └── Include the pre packaged IS pack and default IS template module
-│   │   └── plugins
-│   │       └── Include default IS plugins 
+```
+ wso2isaskm500
+   │   ├── packs
+   │   │   └── Include the pre packaged IS pack and default IS template module
+   │   └── plugins
+   │       └── Include default IS plugins 
+```

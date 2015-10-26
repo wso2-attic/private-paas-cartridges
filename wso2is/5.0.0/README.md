@@ -12,8 +12,8 @@ WSO2 Private PaaS 4.1.0 or above
 
 - Server Shutdown timeout can be changed adding a new property as follows under property section in a cartridge definition.
 
-name : payload_parameter.CONFIG_PARAM_SERVER_SHUTDOWN_TIMEOUT
-value : 120 
+    * name : payload_parameter.CONFIG_PARAM_SERVER_SHUTDOWN_TIMEOUT
+    * value : 120 
 
 Default value is 120 seconds. Value should be specified in seconds.
 
@@ -32,9 +32,11 @@ Default value is 120 seconds. Value should be specified in seconds.
   is same which is used in IS cartridge
   
   4. In VM scenario use the following structure for puppet. 
-  
-   wso2iskm500
-  │   │   ├── packs
-  │   │   │   └── Include the pre packaged IS pack and default IS template module
-  │   │   └── plugins
-  │   │       └── Include default IS plugins 
+ 
+```
+ wso2isaskm500
+   │   ├── packs
+   │   │   └── Include the pre packaged IS pack and default IS template module
+   │   └── plugins
+   │       └── Include default IS plugins 
+```

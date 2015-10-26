@@ -27,7 +27,7 @@
 
     <artifactId>wso2as-5.2.1-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 AS 5.2.1 Cartridge</name>
+    <name>WSO2 Application Server 5.2.1 Cartridge</name>
 
     <build>
         <plugins>

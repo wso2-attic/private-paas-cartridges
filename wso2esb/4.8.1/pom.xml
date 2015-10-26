@@ -27,7 +27,7 @@
 
     <artifactId>wso2esb-4.8.1-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 ESB 4.8.1 Cartridge</name>
+    <name>WSO2 Enterprise Service Bus 4.8.1 Cartridge</name>
 
     <build>
         <plugins>

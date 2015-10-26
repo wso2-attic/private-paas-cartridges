@@ -27,7 +27,7 @@
 
     <artifactId>ppaas-cartridges-wso2esb-parent</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 ESB Cartridge Parent</name>
+    <name>WSO2 Enterprise Service Bus Cartridge Parent</name>
 
     <modules>
         <module>4.8.1</module>

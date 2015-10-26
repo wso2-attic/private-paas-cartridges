@@ -27,7 +27,7 @@
 
     <artifactId>wso2is-5.0.0-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 IS 5.0.0 Cartridge</name>
+    <name>WSO2 Identity Server 5.0.0 Cartridge</name>
 
     <build>
         <plugins>

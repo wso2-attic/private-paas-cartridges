@@ -27,7 +27,7 @@
 
     <artifactId>wso2bps-3.5.0-cartridge</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 BPS 3.5.0 Cartridge</name>
+    <name>WSO2 Business Process Server 3.5.0 Cartridge</name>
 
     <build>
         <plugins>
