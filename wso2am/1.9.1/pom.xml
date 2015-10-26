@@ -20,7 +20,7 @@
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
         <artifactId>ppaas-cartridges-wso2am-parent</artifactId>
-        <version>4.1.1</version>
+        <version>4.1.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>wso2am-1.9.1-cartridge</artifactId>

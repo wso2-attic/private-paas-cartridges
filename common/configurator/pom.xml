@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.wso2.ppaas.cartridges</groupId>
         <artifactId>cartridges-common</artifactId>
-        <version>4.1.1</version>
+        <version>4.1.2-SNAPSHOT</version>
     </parent>
 
     <artifactId>configurator-parent</artifactId>
