@@ -62,6 +62,7 @@
                 <exclude>files/repository/components/dropins/*/**</exclude>
                 <exclude>files/repository/components/lib/*/**</exclude>
                 <exclude>files/repository/components/patches/*/**</exclude>
+                <exclude>files/repository/deployment/server/webapps/*/**</exclude>
             </excludes>
         </fileSet>
         <fileSet>
