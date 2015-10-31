@@ -86,15 +86,15 @@
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_USER_NAME",
-      "value": "<ANALYTICS_WSO2_ANALYTICS_FS_DB_USERNAME>"
+      "value": "root"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_PASSWORD",
-      "value": "<ANALYTICS_WSO2_ANALYTICS_FS_DB_PASSWORD>"
+      "value": "root"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME",
-      "value": "<ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME>"
+      "value": "com.mysql.jdbc.Driver"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_URL",
@@ -102,15 +102,15 @@
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_USER_NAME",
-      "value": "<ANALYTICS_EVENT_STORE_DB_USERNAME>"
+      "value": "root"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_PASSWORD",
-      "value": "<ANALYTICS_EVENT_STORE_DB_PASSWORD>"
+      "value": "root"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME",
-      "value": "<ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME>"
+      "value": "com.mysql.jdbc.Driver"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_URL",
@@ -118,15 +118,63 @@
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_USER_NAME",
-      "value": "<ANALYTICS_PROCESSED_DATA_STORE_DB_USERNAME>"
+      "value": "root"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_PASSWORD",
-      "value": "<ANALYTICS_PROCESSED_DATA_STORE_DB_PASSWORD>"
+      "value": "root"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME",
-      "value": "<ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME>"
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_URL",
+      "value": "jdbc:mysql://192.168.30.245:3306/registry_db?autoReconnect=true"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_USER_NAME",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_PASSWORD",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_DRIVER_CLASS_NAME",
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
+      "value": "jdbc:mysql://192.168.30.245:3306/das_config_db?autoReconnect=true"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_USER_NAME",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_PASSWORD",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_DRIVER_CLASS_NAME",
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_URL",
+      "value": "jdbc:mysql://192.168.30.245:3306/userstore_db?autoReconnect=true"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_USER_NAME",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_PASSWORD",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_DRIVER_CLASS_NAME",
+      "value": "com.mysql.jdbc.Driver"
     }
   ]
 }
