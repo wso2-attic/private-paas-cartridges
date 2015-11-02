@@ -38,7 +38,7 @@ samples
   "value": "`<DAS_CONFIG_DB_PASSWORD>`"
 },
 {
-  "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME",
+  "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER",
   "value": "com.mysql.jdbc.Driver"
 },
 {
@@ -54,7 +54,7 @@ samples
   "value": "`<DAS_CONFIG_DB_PASSWORD>`"
 },
 {
-  "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME",
+  "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER",
   "value": "com.mysql.jdbc.Driver"
 },
 {
@@ -70,7 +70,7 @@ samples
   "value": "`<DAS_CONFIG_DB_PASSWORD>`"
 },
 {
-  "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME",
+  "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER",
   "value": "com.mysql.jdbc.Driver"
 },
 {

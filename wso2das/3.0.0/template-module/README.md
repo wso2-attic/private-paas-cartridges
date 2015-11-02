@@ -123,7 +123,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for Analytics FS DB
 
-    CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for Event Store DB
 
@@ -139,7 +139,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for Event Store DB
 
-    CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for Processed Data Store DB
 
@@ -155,7 +155,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for Processed Data Store DB
 
-    CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for registry DB
 
@@ -171,7 +171,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for registry DB
 
-    CONFIG_PARAM_REGISTRY_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_REGISTRY_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for user DB
 
@@ -187,7 +187,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for user DB
 
-    CONFIG_PARAM_USER_MGT_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_USER_MGT_DB_DRIVER=com.mysql.jdbc.Driver
 ##### Used in
 
 * < DAS_HOME >/repository/conf/user-mgt.xml

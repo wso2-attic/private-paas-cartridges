@@ -85,8 +85,8 @@
             "value": "<ANALYTICS_WSO2_ANALYTICS_FS_DB_PASSWORD>"
         },
         {
-            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME",
-            "value": "<ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER_CLASS_NAME>"
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER",
+            "value": "<ANALYTICS_WSO2_ANALYTICS_FS_DB_DRIVER>"
         },
         {
             "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_URL",
@@ -101,8 +101,8 @@
             "value": "<ANALYTICS_EVENT_STORE_DB_PASSWORD>"
         },
         {
-            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME",
-            "value": "<ANALYTICS_EVENT_STORE_DB_DRIVER_CLASS_NAME>"
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_EVENT_STORE_DB_DRIVER",
+            "value": "<ANALYTICS_EVENT_STORE_DB_DRIVER>"
         },
         {
             "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_URL",
@@ -117,8 +117,8 @@
             "value": "<ANALYTICS_PROCESSED_DATA_STORE_DB_PASSWORD>"
         },
         {
-            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME",
-            "value": "<ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER_CLASS_NAME>"
+            "name": "payload_parameter.CONFIG_PARAM_WSO2_ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER",
+            "value": "<ANALYTICS_PROCESSED_DATA_STORE_DB_DRIVER>"
         }
     ]
 }

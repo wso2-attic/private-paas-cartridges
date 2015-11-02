@@ -38,7 +38,7 @@ samples
   "value":"`<MB_METRICS_DB_PASSWORD>`"
 },
 {
-    "name": "payload_parameter.CONFIG_PARAM_MB_METRICS_DB_DRIVER_CLASS_NAME",
+    "name": "payload_parameter.CONFIG_PARAM_MB_METRICS_DB_DRIVER",
     "value": "com.mysql.jdbc.Driver"
 },
 {
@@ -54,7 +54,7 @@ samples
   "value":"`<MB_STORE_DB_PASSWORD>`"
 },
 {
-    "name": "payload_parameter.CONFIG_PARAM_MB_STORE_DB_DRIVER_CLASS_NAME",
+    "name": "payload_parameter.CONFIG_PARAM_MB_STORE_DB_DRIVER",
     "value": "com.mysql.jdbc.Driver"
 }
 ```

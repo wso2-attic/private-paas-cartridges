@@ -109,7 +109,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for MB store DB
 
-    CONFIG_PARAM_MB_STORE_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_MB_STORE_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for MB metrics DB
 
@@ -125,7 +125,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for MB metrics DB
 
-    CONFIG_PARAM_MB_METRICS_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_MB_METRICS_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for registry DB
 
@@ -141,7 +141,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for registry DB
 
-    CONFIG_PARAM_REGISTRY_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_REGISTRY_DB_DRIVER=com.mysql.jdbc.Driver
 
 #### Set URL for user DB
 
@@ -157,7 +157,7 @@ You can configure following in the ***module.ini*** file.
 ```
 #### Set Driver class name for user DB
 
-    CONFIG_PARAM_USER_MGT_DB_DRIVER_CLASS_NAME=com.mysql.jdbc.Driver
+    CONFIG_PARAM_USER_MGT_DB_DRIVER=com.mysql.jdbc.Driver
 
 ##### Used in
 
