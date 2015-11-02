@@ -140,7 +140,7 @@
                     <url>{{CONFIG_PARAM_USER_MGT_DB_URL}}</url>
                     <username>{{CONFIG_PARAM_USER_MGT_DB_USER_NAME}}</username>
                     <password>{{CONFIG_PARAM_USER_MGT_DB_PASSWORD}}</password>
-                    <driverClassName>{{CONFIG_PARAM_USER_MGT_DB_DRIVER}</driverClassName>
+                    <driverClassName>{{CONFIG_PARAM_USER_MGT_DB_DRIVER}}</driverClassName>
                     <maxActive>50</maxActive>
                     <maxWait>60000</maxWait>
                     <testOnBorrow>true</testOnBorrow>
