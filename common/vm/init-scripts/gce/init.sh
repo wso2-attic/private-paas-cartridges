@@ -38,7 +38,7 @@ CURL=`which curl`
 
 COMMAND="${PUPPETAGENT} -vt"
 IP=`${IFCONFIG} eth0 | ${GREP} -e "inet addr" | ${AWK} '{print $2}' | ${CUT} -d ':' -f 2`
-LOG=/tmp/puppet-init.log
+LOG=/tmp/puppet.log
 
 HOSTSFILE=/etc/hosts
 HOSTNAMEFILE=/etc/hostname
@@ -95,7 +95,7 @@ if [ ! -d /tmp/payload ]; then
 
 	## Clean old poop
 	${ECHO} "Removing all existing certificates .."
-	#${FIND} /var/lib/puppet -type f -print0 | ${XARGS} -0r ${RM}
+	${RM} -rf /var/lib/puppet/ssl/*
 
 	${MKDIR} -p /tmp/payload
 	${CURL} "http://metadata.google.internal/computeMetadata/v1/instance/attributes/stratos_usermetadata" \
