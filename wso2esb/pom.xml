@@ -31,5 +31,6 @@
 
     <modules>
         <module>4.8.1</module>
+        <module>4.9.0</module>
     </modules>
 </project>

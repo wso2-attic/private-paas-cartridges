@@ -1,0 +1,112 @@
+{
+    "type": "wso2esb-490-manager",
+    "category": "framework",
+    "provider": "wso2",
+    "host": "mgt.esb.wso2.org",
+    "displayName": "WSO2 ESB 4.9.0 Manager",
+    "description": "WSO2 ESB 4.9.0 Manager Cartridge",
+    "version": "4.9.0",
+    "multiTenant": false,
+    "loadBalancingIPType": "public",
+    "portMapping": [
+        {
+            "name": "mgt-http",
+            "protocol": "http",
+            "port": 9763,
+            "proxyPort": 80
+        },
+        {
+            "name": "mgt-https",
+            "protocol": "https",
+            "port": 9443,
+            "proxyPort": 443
+        }
+    ],
+    "iaasProvider": [
+        {
+            "type": "openstack",
+            "imageId": "RegionOne/4d90cf74-6a1c-463e-8f04-10fe9254fcdf",
+            "property": [
+                {
+                    "name": "instanceType",
+                    "value": "RegionOne/15c3065c-462c-4977-9143-094d63d1c2c7"
+                },
+                {
+                    "name": "keyPair",
+                    "value": "test-key"
+                },
+                {
+                    "name": "securityGroups",
+                    "value": "default"
+                }
+            ],
+            "networkInterfaces": [
+                {
+                    "networkUuid": "512e1f54-1e85-4dac-b2e6-f0b30fc552cf"
+                }
+            ]
+        }
+    ],
+    "property": [
+        {
+            "name": "payload_parameter.COMMIT_ENABLED",
+            "value": "true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+            "value": "true"
+        },
+        {
+            "name": "payload_parameter.LB_IP",
+            "value": "127.0.0.1"
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_REGISTRY_DB_URL",
+            "value":"jdbc:mysql://192.168.30.7:3306/stratos_reg_db?autoReconnect=true"
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_REGISTRY_DB_USER_NAME",
+            "value":""
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_REGISTRY_DB_PASSWORD",
+            "value":""
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_DRIVER",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
+            "value":"jdbc:mysql://192.168.30.7:3306/config_db_esb?autoReconnect=true"
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_CONFIG_DB_USER_NAME",
+            "value":""
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_CONFIG_DB_PASSWORD",
+            "value":""
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_DRIVER",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_USER_MGT_DB_URL",
+            "value":"jdbc:mysql://192.168.30.7:3306/stratos_user_db?autoReconnect=true"
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_USER_MGT_DB_USER_NAME",
+            "value":""
+        },
+        {
+            "name":"payload_parameter.CONFIG_PARAM_USER_MGT_DB_PASSWORD",
+            "value":""
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_DRIVER",
+            "value": "com.mysql.jdbc.Driver"
+        }
+    ]
+}
