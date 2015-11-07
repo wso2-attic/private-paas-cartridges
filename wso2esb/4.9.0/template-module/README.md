@@ -4,36 +4,7 @@
 
 ###Creating ESB Template Module for Private PaaS
 
-(1) Download the following [security patches](http://product-dist.wso2.com/downloads/carbon/4.2.0/) and copy the 
-    extracted patch folders to `files/repository/components/patches` directory.
-
-**Security patches**
-* patch1261
-* patch1095
-
-Final files folder should look like following.
-
-```
-├── files
-│   ├── bin
-│   ├── dbscripts
-│   ├── lib
-│   └── repository
-│       └── components
-│           ├── dropins
-│           ├── lib
-│           └── patches
-│               ├── patch1095
-│               │   └── wss4j_1.5.11.wso2v6.jar
-│               └── patch1261
-│                   ├── org.wso2.carbon.tomcat.ext_4.2.0.jar
-│                   ├── org.wso2.carbon.tomcat.patch_4.2.0.jar
-│                   ├── tomcat_7.0.34.wso2v1.jar
-│                   └── tomcat-ha_7.0.34.wso2v1.jar
-
-```
-
-(2) Build the template module zip file by running the following command.
+(1) Build the template module zip file by running the following command.
 
 ```
 mvn clean install
