@@ -1,0 +1,17 @@
+{
+    "name": "wso2as-530-group",
+    "cartridges": [
+        "wso2as-530-manager",
+        "wso2as-530-worker"
+    ],
+    "dependencies": {
+        "startupOrders": [
+            {
+                "aliases": [
+                    "cartridge.wso2as-530-manager",
+                    "cartridge.wso2as-530-worker"
+                ]
+            }
+        ]
+    }
+}

@@ -31,5 +31,6 @@
 
     <modules>
         <module>5.2.1</module>
+        <module>5.3.0</module>
     </modules>
 </project>

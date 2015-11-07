@@ -1,0 +1,111 @@
+{
+  "type": "wso2as-530-worker",
+  "category": "framework",
+  "provider": "wso2",
+  "host": "as.wso2.org",
+  "displayName": "WSO2 AS 5.3.0 Worker",
+  "description": "WSO2 AS 5.3.0 Worker Cartridge",
+  "version": "5.3.0",
+  "multiTenant": true,
+  "loadBalancingIPType": "public",
+  "portMapping": [
+    {
+      "name": "mgt-http",
+      "protocol": "http",
+      "port": 9763,
+      "proxyPort": 80
+    },
+    {
+      "name": "mgt-https",
+      "protocol": "https",
+      "port": 9443,
+      "proxyPort": 443
+    }
+  ],
+  "iaasProvider": [
+    {
+      "type": "ec2",
+      "imageId": "/",
+      "property": [
+        {
+          "name": "instanceType",
+          "value": "t2.medium"
+        },
+        {
+          "name": "securityGroupIds",
+          "value": "sg-57a61333"
+        },
+        {
+          "name": "tag:Name",
+          "value": "WSO2 PPaaS AS Worker"
+        },
+        {
+          "name": "tag:User",
+          "value": "xxxxxx"
+        }
+      ]
+    }
+  ],
+  "property": [
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
+      "value": "true"
+    },
+    {
+      "name": "payload_parameter.LB_IP",
+      "value": "127.0.0.1"
+    },
+    {
+      "name": "payload_parameter.START_CMD",
+      "value": "PCA"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_URL",
+      "value": "jdbc:mysql://172.17.8.1:3306/registry_44x"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_USER_NAME",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_PASSWORD",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_DRIVER",
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
+      "value": "jdbc:mysql://172.17.8.1:3306/config_db_as_530"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_USER_NAME",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_PASSWORD",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_DRIVER",
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_URL",
+      "value": "jdbc:mysql://172.17.8.1:3306/userstore_44x"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_USER_NAME",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_PASSWORD",
+      "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_DRIVER",
+      "value": "com.mysql.jdbc.Driver"
+    }
+  ]
+}
