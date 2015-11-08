@@ -22,7 +22,7 @@ docker images
 ```
 (5) If successfully built, docker image similar to following should display.
 ```
-wso2/mb-3.0.0        4.1.1             ac57800e96c2        2 minutes ago         777.6 MB
+wso2/mb-3.0.0        4.1.2             ac57800e96c2        2 minutes ago         777.6 MB
 ```
 ## Docker environment variables
 ```

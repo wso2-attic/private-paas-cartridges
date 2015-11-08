@@ -32,7 +32,7 @@ docker images
 
 (5) If successfully built docker image similar to following should display
 ```
-wso2/am-1.9.1        4.1.1              ac57800e96c2        2 minutes ago         1.145 GB
+wso2/am-1.9.1        4.1.2              ac57800e96c2        2 minutes ago         1.145 GB
 ```
 ## Docker environment variables
 ```
