@@ -68,7 +68,8 @@
             <directory>../../common/plugins/</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/plugins/</outputDirectory>
             <includes>
-                <include>**/*</include>
+                <include>**/*.py</include>
+                <include>**/*.yapsy-plugin</include>
             </includes>
         </fileSet>
     </fileSets>
