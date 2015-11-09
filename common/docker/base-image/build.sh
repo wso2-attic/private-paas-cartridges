@@ -39,5 +39,5 @@ popd
 echo "----------------------------------"
 echo "Building base docker image"
 echo "----------------------------------"
-sudo docker build -t wso2/base-image:${wso2_base_image_version} .
+docker build -t wso2/base-image:${wso2_base_image_version} .
 echo "Base docker image built successfully"
