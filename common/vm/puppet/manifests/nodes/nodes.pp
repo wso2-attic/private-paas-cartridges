@@ -16,7 +16,7 @@
 
 # WSO2 Server Nodes definition
 
-# ESB cartridge node
+# ESB 4.8.1 cartridge node
 node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 
   class { 'java': }
@@ -30,7 +30,21 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 }
 
 
-# IS cartridge node
+# ESB 4.9.0 cartridge node
+node /[0-9]{1,12}.*wso2esb-490/ inherits base {
+
+  class { 'java': }
+class { 'python_agent': }
+class { 'configurator': }
+class { 'wso2installer':
+    server_name      => 'wso2esb-4.9.0',
+    module_name      => 'wso2esb490'
+
+  }
+}
+
+
+# IS 5.0.0 cartridge node
 node /[0-9]{1,12}.*wso2is-500/ inherits base {
 
   class { 'java': }
@@ -55,7 +69,7 @@ node /[0-9]{1,12}.*wso2am-190/ inherits base {
   }
 }
 
-# IS cartridge node for API Manager
+# IS 5.0.0 cartridge node for API Manager
 node /[0-9]{1,12}.*wso2is-as-km-500/ inherits base {
 
   class { 'java': }
@@ -81,7 +95,7 @@ node /[0-9]{1,12}.*wso2am-191/ inherits base {
 }
 
 
-# AppServer cartridge node
+# AppServer 5.2.1 cartridge node
 node /[0-9]{1,12}.*wso2as-521/ inherits base {
 
   class { 'java': }
@@ -93,6 +107,18 @@ node /[0-9]{1,12}.*wso2as-521/ inherits base {
   }
 }
 
+# AppServer 5.3.0 cartridge node
+node /[0-9]{1,12}.*wso2as-530/ inherits base {
+
+  class { 'java': }
+class { 'python_agent': }
+class { 'configurator': }
+class { 'wso2installer':
+    server_name      => 'wso2as-5.3.0',
+    module_name      => 'wso2as530'
+  }
+}
+
 
 # DAS 3.0.0 cartridge node
 node /[0-9]{1,12}.*wso2das-300/ inherits base {
@@ -101,7 +127,7 @@ node /[0-9]{1,12}.*wso2das-300/ inherits base {
   class { 'python_agent': }
   class { 'configurator': }
   class { 'wso2installer':
-    server_name      => 'wso2das-3.0.0-SNAPSHOT',
+    server_name      => 'wso2das-3.0.0',
     module_name      => 'wso2das300'
   }
 }
@@ -127,7 +153,7 @@ node /[0-9]{1,12}.*wso2mb-300/ inherits base {
   class { 'python_agent': }
   class { 'configurator': }
   class { 'wso2installer':
-    server_name      => 'wso2mb-3.0.0-SNAPSHOT',
+    server_name      => 'wso2mb-3.0.0',
     module_name      => 'wso2mb300'
   }
 }
@@ -168,6 +194,19 @@ node /[0-9]{1,12}.*wso2greg-500/ inherits base {
   class { 'wso2installer':
     server_name      => 'wso2greg-5.0.0',
     module_name      => 'wso2greg500'
+  }
+}
+
+
+# GREG 5.1.0 cartridge node
+node /[0-9]{1,12}.*wso2greg-510/ inherits base {
+
+  class { 'java': }
+class { 'python_agent': }
+class { 'configurator': }
+class { 'wso2installer':
+    server_name      => 'wso2greg-5.1.0',
+    module_name      => 'wso2greg510'
   }
 }
 
