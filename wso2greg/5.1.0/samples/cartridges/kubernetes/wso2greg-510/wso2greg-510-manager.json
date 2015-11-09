@@ -78,7 +78,7 @@
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
-      "value": "jdbc:mysql://172.17.8.1:3306/config_db_esb_490"
+      "value": "jdbc:mysql://172.17.8.1:3306/config_db_greg_510"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_USER_NAME",
