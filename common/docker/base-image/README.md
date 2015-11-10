@@ -22,7 +22,7 @@ RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password
 sh build.sh
 ```
 
-If you need to use the already build version of the configurator,execute the following command with the input parameter b
+If you need to use the already build version of the configurator,execute the following command with the input parameter -b
 ```
 sh build.sh -b
 ```
