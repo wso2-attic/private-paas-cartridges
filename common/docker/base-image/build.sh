@@ -20,7 +20,7 @@
 set -e
 prgdir=`dirname "$0"`
 script_path=`cd "$prgdir"; pwd`
-
+configurator_build="$0"
 pushd `cd ${script_path}/../../; pwd`
 configurator_version=`grep -oP '<version>\K[^<]+' pom.xml| head -1`
 popd
@@ -33,7 +33,9 @@ echo "Building Configurator"
 echo "----------------------------------"
 pushd ${configurator_path}
 mvn clean install
-cp -v target/wso2ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
+if [[ "$configurator_build" == "-b" ]]; then
+    cp -v target/wso2ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
+fi
 popd
 
 echo "----------------------------------"
