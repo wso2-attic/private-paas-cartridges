@@ -36,8 +36,8 @@ if [[ "$configurator_build" == "-b" ]]; then
     pushd ${configurator_path}
     mvn clean install
     cp -v target/wso2ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
+    popd
 fi
-popd
 
 echo "----------------------------------"
 echo "Building base docker image"
