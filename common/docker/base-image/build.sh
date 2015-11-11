@@ -22,7 +22,7 @@ prgdir=`dirname "$0"`
 script_path=`cd "$prgdir"; pwd`
 configurator_build="$0"
 pushd `cd ${script_path}/../../; pwd`
-configurator_version=`grep -oP '<version>\K[^<]+' pom.xml| head -1`
+configurator_version=4.1.2
 popd
 
 wso2_base_image_version=${configurator_version%-*}
@@ -31,12 +31,14 @@ configurator_path=`cd ${script_path}/../../configurator/modules/distribution; pw
 echo "----------------------------------"
 echo "Building Configurator"
 echo "----------------------------------"
-pushd ${configurator_path}
-mvn clean install
+
 if [[ "$configurator_build" == "-b" ]]; then
+    pushd ${configurator_path}
+    mvn clean install
     cp -v target/wso2ppaas-configurator-${configurator_version}.zip ${script_path}/packages/
+    popd
 fi
-popd
+
 
 echo "----------------------------------"
 echo "Building base docker image"
