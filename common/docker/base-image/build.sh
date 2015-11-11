@@ -22,7 +22,7 @@ prgdir=`dirname "$0"`
 script_path=`cd "$prgdir"; pwd`
 configurator_build="$0"
 pushd `cd ${script_path}/../../; pwd`
-configurator_version=4.1.2-SNAPSHOT
+configurator_version=4.1.3-SNAPSHOT
 popd
 
 wso2_base_image_version=${configurator_version%-*}
