@@ -15,7 +15,7 @@ RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password
 
 * [apache-stratos-cartridge-agent-4.1.4.zip ](http://www.apache.org/dyn/closer.cgi/stratos)
 * [jdk-7u80-linux-x64.tar.gz](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-* [](Build the configurator and copy the configurator zip)
+* [wso2ppaas-configurator-4.1.2.zip]
 
 (3)  Run build.sh file to build the docker image:
 ```
