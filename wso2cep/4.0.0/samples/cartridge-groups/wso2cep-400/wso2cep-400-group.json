@@ -1,0 +1,7 @@
+{
+    "name": "wso2cep-400-group",
+    "cartridges": [
+        "wso2cep-400-presenter",
+        "wso2cep-400-worker"
+        ]
+}

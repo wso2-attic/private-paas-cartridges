@@ -1,0 +1,40 @@
+{
+  "type": "wso2cep-400-presenter",
+  "category": "framework",
+  "provider": "wso2",
+  "host": "presenter.cep.wso2.org",
+  "displayName": "WSO2 CEP 4.0.0 Presenter",
+  "description": "WSO2 CEP 4.0.0 Presenter Cartridge",
+  "version": "4.0.0",
+  "multiTenant": true,
+  "loadBalancingIPType": "public",
+  "portMapping": [
+    {
+      "name": "mgt-http",
+      "protocol": "http",
+      "port": 9763,
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    },
+    {
+      "name": "mgt-https",
+      "protocol": "https",
+      "port": 9443,
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    }
+  ],
+  "iaasProvider": [
+    {
+      "type": "mock",
+      "imageId": "wso2/cep:4.0.0",
+      "networkInterfaces": [
+      ],
+      "property": [
+      ]
+    }
+  ],
+  "property": [
+
+  ]
+}
