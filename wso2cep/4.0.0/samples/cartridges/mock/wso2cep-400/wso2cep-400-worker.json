@@ -1,0 +1,40 @@
+{
+  "type": "wso2cep-400-worker",
+  "category": "framework",
+  "provider": "wso2",
+  "host": "cep.wso2.org",
+  "displayName": "WSO2 CEP 4.0.0 Worker",
+  "description": "WSO2 CEP 4.0.0 Worker Cartridge",
+  "version": "4.0.0",
+  "multiTenant": true,
+  "loadBalancingIPType": "public",
+  "portMapping": [
+    {
+      "name": "thrift-port",
+      "protocol": "thrift",
+      "port": "7611",
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    },
+    {
+      "name": "ssl-port",
+      "protocol": "ssl",
+      "port": "7711",
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    }
+  ],
+  "iaasProvider": [
+    {
+      "type": "mock",
+      "imageId": "wso2/cep:4.0.0",
+      "networkInterfaces": [
+      ],
+      "property": [
+      ]
+    }
+  ],
+  "property": [
+
+  ]
+}

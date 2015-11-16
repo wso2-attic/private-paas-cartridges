@@ -1,0 +1,54 @@
+{
+  "type": "wso2cep-400",
+  "category": "framework",
+  "provider": "wso2",
+  "host": "cep.wso2.org",
+  "displayName": "WSO2 CEP 4.0.0",
+  "description": "WSO2 CEP 4.0.0 Cartridge",
+  "version": "4.0.0",
+  "multiTenant": true,
+  "loadBalancingIPType": "public",
+  "portMapping": [
+    {
+      "name": "mgt-http",
+      "protocol": "http",
+      "port": 9763,
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    },
+    {
+      "name": "mgt-https",
+      "protocol": "https",
+      "port": 9443,
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    },
+    {
+      "name": "pt-http",
+      "protocol": "http",
+      "port": 8280,
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    },
+    {
+      "name": "pt-https",
+      "protocol": "https",
+      "port": 8243,
+      "proxyPort": 0,
+      "kubernetesPortType": "NodePort"
+    }
+  ],
+  "iaasProvider": [
+    {
+      "type": "mock",
+      "imageId": "wso2/cep:4.0.0",
+      "networkInterfaces": [
+      ],
+      "property": [
+      ]
+    }
+  ],
+  "property": [
+
+  ]
+}
