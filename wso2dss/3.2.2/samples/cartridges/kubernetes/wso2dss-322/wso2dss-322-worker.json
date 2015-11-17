@@ -51,6 +51,58 @@
         {
             "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
             "value": "true"
+        },
+        {
+            "name": "payload_parameter.LB_IP",
+            "value": "<LOAD_BALANCER_IP>"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_URL",
+            "value": "jdbc:mysql://192.168.30.245:3306/greg_registry_db?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_USER_NAME",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_PASSWORD",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_DRIVER",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
+            "value": "jdbc:mysql://192.168.30.245:3306/greg_config_db?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_USER_NAME",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_PASSWORD",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_DRIVER",
+            "value": "com.mysql.jdbc.Driver"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_URL",
+            "value": "jdbc:mysql://192.168.30.245:3306/greg_user_db?autoReconnect=true"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_USER_NAME",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_PASSWORD",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_DRIVER",
+            "value": "com.mysql.jdbc.Driver"
         }
     ]
 }

@@ -1,5 +1,5 @@
 {
-    "type": "wso2apimanager-191",
+    "type": "wso2am-191",
     "category": "framework",
     "provider": "wso2",
     "host": "am.wso2.org",
@@ -13,25 +13,29 @@
             "name": "mgt-https",
             "protocol": "https",
             "port": 9443,
-            "proxyPort": 0
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
         },
         {
             "name": "mgt-http",
             "protocol": "http",
             "port": 9763,
-            "proxyPort": 0
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
         },
         {
             "name": "pt-http",
             "protocol": "http",
             "port": 8280,
-            "proxyPort": 0
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
         },
         {
             "name": "pt-https",
             "protocol": "https",
             "port": 8243,
-            "proxyPort": 0
+            "proxyPort": 0,
+            "kubernetesPortType": "NodePort"
         }
     ],
     "iaasProvider": [
@@ -61,17 +65,24 @@
     ],
     "property": [
         {
-            "name": "KUBERNETES_CONTAINER_CPU",
-            "value": "0"
-
+            "name": "payload_parameter.CONFIG_PARAM_PROFILE",
+            "value": "Default"
         },
         {
-            "name": "KUBERNETES_CONTAINER_MEMORY",
-            "value": "0"
+            "name": "payload_parameter.CONFIG_PARAM_APIMGT_DB_URL",
+            "value": "jdbc:mysql://172.17.42.1:3306/apim_db"
         },
         {
-            "name": "KUBERNETES_SERVICE_SESSION_AFFINITY",
-            "value": "ClientIP"
+            "name": "payload_parameter.CONFIG_PARAM_DB_USER_NAME",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_DB_PASSWORD",
+            "value": "root"
+        },
+        {
+            "name": "payload_parameter.CONFIG_PARAM_LB_IP",
+            "value": "172.17.8.102"
         }
     ]
 }

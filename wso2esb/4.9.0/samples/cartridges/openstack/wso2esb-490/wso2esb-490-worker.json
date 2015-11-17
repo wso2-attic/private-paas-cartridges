@@ -49,16 +49,16 @@
   ],
   "property": [
     {
-      "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
-      "value": "true"
-    },
-    {
       "name": "payload_parameter.LB_IP",
       "value": "127.0.0.1"
     },
     {
+      "name": "payload_parameter.START_CMD",
+      "value": "PCA"
+    },
+    {
       "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_URL",
-      "value": "jdbc:mysql://192.168.30.7:3306/stratos_reg_db?autoReconnect=true"
+      "value": "jdbc:mysql://172.17.8.1:3306/registry_44x"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_USER_NAME",
@@ -69,8 +69,12 @@
       "value": "root"
     },
     {
+      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_DRIVER",
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
       "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
-      "value": "jdbc:mysql://192.168.30.7:3306/config_db_esb?autoReconnect=true"
+      "value": "jdbc:mysql://172.17.8.1:3306/config_db_esb_490"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_USER_NAME",
@@ -81,8 +85,12 @@
       "value": "root"
     },
     {
+      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_DRIVER",
+      "value": "com.mysql.jdbc.Driver"
+    },
+    {
       "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_URL",
-      "value": "jdbc:mysql://192.168.30.7:3306/stratos_user_db?autoReconnect=true"
+      "value": "jdbc:mysql://172.17.8.1:3306/userstore_44x"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_USER_NAME",
@@ -91,6 +99,10 @@
     {
       "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_PASSWORD",
       "value": "root"
+    },
+    {
+      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_DRIVER",
+      "value": "com.mysql.jdbc.Driver"
     }
   ]
 }
