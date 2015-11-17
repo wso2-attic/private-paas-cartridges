@@ -55,10 +55,6 @@
     {
       "name": "payload_parameter.CONFIG_PARAM_CLUSTERING",
       "value": "false"
-    },
-    {
-      "name": "payload_parameter.CONFIG_PARAM_MEMBERSHIP_SCHEME",
-      "value": "stratos"
     }
   ]
 }
