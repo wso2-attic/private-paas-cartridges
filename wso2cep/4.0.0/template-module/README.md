@@ -3,8 +3,19 @@ WSO2-CEP 4.0.0 Template for the Configurator
 
 This template supports following configurations
 
-1. Clustering CEP
-2. Fronting the CEP cluster with WSO2 ELB
+1. High availability deployment
+2. Distributed mode deployment
+
+###Creating AS Template Module for Private PaaS
+
+(1) Build the template module zip file by running the following command.
+
+```
+mvn clean install
+```
+
+---
+### Configuration parameters
 
 Following are the configuration parameters that is used by the template.
 You can configure following in the ***module.ini*** file.
