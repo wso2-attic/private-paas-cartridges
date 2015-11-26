@@ -15,7 +15,7 @@ RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password
 
 * [apache-stratos-cartridge-agent-4.1.4.zip ](http://www.apache.org/dyn/closer.cgi/stratos)
 * [jdk-7u80-linux-x64.tar.gz](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-* [wso2ppaas-configurator-4.1.2.zip]
+* [wso2ppaas-configurator-4.1.3.zip]
 
 (3)  Run build.sh file to build the docker image:
 ```
@@ -33,7 +33,7 @@ docker images
 ```
 (5) If successfully built docker image similar to following should display
 ```
-wso2/base-image        4.1.2              ac57800e96c2        2 minutes ago         677.6 MB
+wso2/base-image        4.1.3              ac57800e96c2        2 minutes ago         677.6 MB
 ```
 ## Docker environment variables
 ```

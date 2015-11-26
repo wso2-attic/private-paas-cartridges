@@ -4,7 +4,7 @@ WSO2-IS 5.0.0 Template for the Configurator
 
 ###Creating IS Template Module for Private PaaS
 
-(1) Download the following [security patches](http://product-dist.wso2.com/downloads/carbon/4.2.0/) and copy the 
+(1) Download the following [security patches](http://wso2.com/security-patch-releases) and copy the 
     extracted patch folders to `files/repository/components/patches` directory.
 
 **Security patches**

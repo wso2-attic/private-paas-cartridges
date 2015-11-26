@@ -52,16 +52,16 @@ $java_distribution 	    = 'jdk-7u80-linux-x64.tar.gz'
 $java_folder    		= 'jdk1.7.0_72'
 ```
 ##### **Configurator Module**
-(1) Copy wso2ppaas-configurator-4.1.2.zip from `<private-paas-cartridges_home>/common/configurator/modules/distribution/target/wso2ppaas-configurator-4.1.2.zip`  to `/etc/puppet/modules/configurator/files` folder.
+(1) Copy wso2ppaas-configurator-4.1.3.zip from `<private-paas-cartridges_home>/common/configurator/modules/distribution/target/wso2ppaas-configurator-4.1.3.zip`  to `/etc/puppet/modules/configurator/files` folder.
 
-(2) Change file permission to 0755 for wso2ppaas-configurator-4.1.2.zip .
+(2) Change file permission to 0755 for wso2ppaas-configurator-4.1.3.zip .
 ```
-chmod 755 wso2ppaas-configurator-4.1.2.zip 
+chmod 755 wso2ppaas-configurator-4.1.3.zip 
 ```
 (3) Update the following configurator related variables in `/etc/puppet/manifests/nodes/base.pp` file with respective values.
 ```
 $configurator_name    = 'wso2ppaas-configurator'
-$configurator_version = '4.1.2'
+$configurator_version = '4.1.3'
 ```
 ### **Optional Modules**
 Following modules are not mandatory to setup puppet-master. Only servers that are used by application needs to be configured. For example, If only esb cartridge is used in application only esb related module needs to be setup.
@@ -122,7 +122,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |-- modules
 |   |-- configurator
 |   |   |-- files
-|   |   |   `-- wso2ppaas-configurator-4.1.2.zip
+|   |   |   `-- wso2ppaas-configurator-4.1.3.zip
 |   |   `-- manifests
 |   |       `-- init.pp
 |   |-- java
@@ -156,7 +156,7 @@ node /[0-9]{1,12}.*wso2esb-481/ inherits base {
 |       |   `-- wso2esb481
 |       |       |-- packs
 |       |       |   |-- README
-|       |       |   |-- wso2esb-4.8.1-template-module-4.1.2.zip
+|       |       |   |-- wso2esb-4.8.1-template-module-4.1.3.zip
 |       |       |   `-- wso2esb-4.8.1.zip
 |       |       `-- plugins
 |       |           |-- README

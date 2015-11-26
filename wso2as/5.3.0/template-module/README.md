@@ -3,44 +3,7 @@ WSO2-AS 5.3.0 Template for the Configurator
 
 ###Creating AS Template Module for Private PaaS
 
-(1) Download the following [security patches](http://product-dist.wso2.com/downloads/carbon/4.2.0/) and copy the 
-extracted patch folders to `files/repository/components/patches` directory.
-
-**Security patches**
-* patch1262
-* patch1261
-* patch1095
-* patch0955
-
-Final files folder should look like following.
-
-```
-├── files
-│   ├── bin
-│   ├── dbscripts
-│   ├── lib
-│   └── repository
-│       └── components
-│           ├── dropins
-│           ├── lib
-│           └── patches
-│               ├── patch0955
-│               │   ├── org.wso2.carbon.webapp.list.ui_4.2.1.jar
-│               │   ├── org.wso2.carbon.webapp.mgt_4.2.2.jar
-│               │   └── org.wso2.carbon.webapp.mgt.stub_4.2.0.jar
-│               ├── patch1095
-│               │   └── wss4j_1.5.11.wso2v6.jar
-│               ├── patch1261
-│               │   ├── org.wso2.carbon.tomcat.ext_4.2.0.jar
-│               │   ├── org.wso2.carbon.tomcat.patch_4.2.0.jar
-│               │   ├── tomcat_7.0.34.wso2v1.jar
-│               │   └── tomcat-ha_7.0.34.wso2v1.jar
-│               └── patch1262
-│                   └── org.wso2.carbon.webapp.mgt_4.2.2.jar
-
-```
-
-(2) Build the template module zip file by running the following command.
+(1) Build the template module zip file by running the following command.
 
 ```
 mvn clean install
