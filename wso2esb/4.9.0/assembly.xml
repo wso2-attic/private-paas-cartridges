@@ -65,6 +65,23 @@
             </excludes>
         </fileSet>
         <fileSet>
+            <directory>puppet-module/</directory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/puppet-module/</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <excludes>
+                <exclude>target/**</exclude>
+                <exclude>**/*.iml</exclude>
+                <exclude>files/bin/*/**</exclude>
+                <exclude>files/dbscripts/*/**</exclude>
+                <exclude>files/lib/*/**</exclude>
+                <exclude>files/repository/components/dropins/*/**</exclude>
+                <exclude>files/repository/components/lib/*/**</exclude>
+                <exclude>files/repository/components/patches/*/**</exclude>
+            </excludes>
+        </fileSet>
+        <fileSet>
             <directory>../../common/plugins/</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/plugins/</outputDirectory>
             <includes>
