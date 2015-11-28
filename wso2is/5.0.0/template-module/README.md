@@ -20,6 +20,7 @@ WSO2-IS 5.0.0 Template for the Configurator
 * patch1193
 * patch1095
 * patch0955
+  - Find this patch on the following page under security patches section: http://wso2.com/api-management/try-it/
 
 
 Final files folder should look like following.
