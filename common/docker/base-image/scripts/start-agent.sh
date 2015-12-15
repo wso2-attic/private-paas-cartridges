@@ -36,6 +36,25 @@ fi
 # mandatory parameters
 sed -i "s/MB-IP/${MB_IP}/g" ${PCA_HOME}/agent.conf
 sed -i "s/MB-PORT/${MB_PORT}/g" ${PCA_HOME}/agent.conf
+sed -i "s/MB-URLS/${MB_URLS}/g" ${PCA_HOME}/agent.conf
+
+if [ -z "${MB_PUBLISHER_TIMEOUT}" ]; then
+	sed -i "s/MB-PUBLISHER-TIMEOUT/900/g" ${PCA_HOME}/agent.conf
+else
+	sed -i "s/MB-PUBLISHER-TIMEOUT/${MB_PUBLISHER_TIMEOUT}/g" ${PCA_HOME}/agent.conf
+fi
+
+if [ -z "${MB_USERNAME}" ]; then
+	sed -i "s/MB-USERNAME/ /g" ${PCA_HOME}/agent.conf
+else
+	sed -i "s/MB-USERNAME/${MB_USERNAME}/g" ${PCA_HOME}/agent.conf
+fi
+
+if [ -z "${MB_PASSWORD}" ]; then
+	sed -i "s/MB-PASSWORD/ /g" ${PCA_HOME}/agent.conf
+else
+	sed -i "s/MB-PASSWORD/${MB_PASSWORD}/g" ${PCA_HOME}/agent.conf
+fi
 
 # parameters that can be empty
 # default values have to be set
