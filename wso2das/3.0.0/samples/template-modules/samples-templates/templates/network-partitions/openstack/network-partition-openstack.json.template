@@ -27,12 +27,8 @@
             "value": "{{PUPPET_MASTER_IP}}"
         },
         {
-            "name": "payload_parameter.MB_IP",
-            "value": "{{MB_IP}}"
-        },
-        {
-            "name": "payload_parameter.MB_PORT",
-            "value": "{{MB_PORT}}"
+            "name": "payload_parameter.MB_URLS",
+            "value": "{{MB_URLS}}"
         },
         {
             "name": "payload_parameter.PUPPET_HOSTNAME",

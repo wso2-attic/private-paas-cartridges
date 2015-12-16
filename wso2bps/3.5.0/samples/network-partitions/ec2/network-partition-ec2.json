@@ -35,12 +35,8 @@
             "value": "52.26.38.59"
         },
         {
-            "name": "payload_parameter.MB_IP",
-            "value": "172.30.0.173"
-        },
-        {
-            "name": "payload_parameter.MB_PORT",
-            "value": "1883"
+            "name": "payload_parameter.MB_URLS",
+            "value": "172.30.0.173:1883"
         },
         {
             "name": "payload_parameter.PUPPET_HOSTNAME",
