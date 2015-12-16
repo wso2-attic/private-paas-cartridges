@@ -69,10 +69,6 @@
       "value": "root"
     },
     {
-      "name": "payload_parameter.CONFIG_PARAM_REGISTRY_DB_DRIVER",
-      "value": "com.mysql.jdbc.Driver"
-    },
-    {
       "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_URL",
       "value": "jdbc:mysql://172.17.8.1:3306/config_db_cep_400"
     },
@@ -85,10 +81,6 @@
       "value": "root"
     },
     {
-      "name": "payload_parameter.CONFIG_PARAM_CONFIG_DB_DRIVER",
-      "value": "com.mysql.jdbc.Driver"
-    },
-    {
       "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_URL",
       "value": "jdbc:mysql://172.17.8.1:3306/userstore_44x"
     },
@@ -99,10 +91,6 @@
     {
       "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_PASSWORD",
       "value": "root"
-    },
-    {
-      "name": "payload_parameter.CONFIG_PARAM_USER_MGT_DB_DRIVER",
-      "value": "com.mysql.jdbc.Driver"
     },
     {
       "name": "payload_parameter.CONFIG_PARAM_WORKER_ENABLE",
