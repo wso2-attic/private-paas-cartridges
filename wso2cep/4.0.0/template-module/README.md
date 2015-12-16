@@ -6,7 +6,26 @@ This template supports following configurations
 1. High availability deployment
 2. Distributed mode deployment
 
-###Creating AS Template Module for Private PaaS
+###Creating CEP Template Module for Private PaaS
+
+Note: In order to use 'private-paas' membership scheme, you need to build
+[carbon 4.4.1](https://github.com/wso2/carbon-kernel/tree/v4.4.1) with
+[Private PaaS membership scheme change](https://github.com/wso2/carbon-kernel/pull/391)
+and add the resulting jar as a patch to `files/repository/components/patches` directory as below:
+
+```
+├── files
+│   ├── bin
+│   ├── dbscripts
+│   ├── lib
+│   └── repository
+│       └── components
+│           ├── dropins
+│           ├── lib
+│           └── patches
+│               ├── patch9999
+│               │   └── org.wso2.carbon.core-4.4.1.jar
+```
 
 (1) Build the template module zip file by running the following command.
 
